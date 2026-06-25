@@ -1,50 +1,20 @@
 ---
-import BranchSearch from '../components/BranchSearch';
-import VenezuelaMap from '../components/VenezuelaMap.astro';
-import branches from '../data/red-cross-branches.json';
 import Layout from '../layouts/Layout.astro';
-
-const totalBranches = branches.length;
-const statesCovered = new Set(branches.map((b) => b.state).filter(Boolean)).size;
-const withPhone = branches.filter((b) => b.phones.length > 0).length;
-const withEmail = branches.filter((b) => b.email).length;
 ---
 
 <Layout
-  title="Cruz Roja | Sismo VE"
-  description="Directorio offline de las filiales de la Cruz Roja Venezolana, con teléfonos y direcciones por estado."
-  activeNav="cruz-roja"
+  title="Sismo VE"
+  description="Acceso directo a la guía integrada de Cruz Roja Venezolana."
+  activeNav="contactos"
   pageTitle="Cruz Roja Venezolana"
-  pageIntro="Directorio de filiales con teléfono, dirección y correo cuando están disponibles. Funciona offline una vez instalada la app."
+  pageIntro="La guía completa ya está integrada en Contactos. Este acceso queda como atajo para llegar rápido a la misma información."
 >
-  <section class="grid-panel">
-    <div class="info-block">
-      <p class="eyebrow">{totalBranches} FILIALES</p>
-      <p>
-        Cubre {statesCovered} estados del país. Datos extraídos de la página oficial de la Cruz
-        Roja Venezolana y combinados con la guía de contactos de emergencia.
-      </p>
-    </div>
-    <div class="info-block">
-      <p class="eyebrow">{withPhone} CON TELÉFONO</p>
-      <p>
-        {withEmail} filiales tienen correo institucional publicado. Si falta información,
-        verifica localmente antes de necesitarla.
-      </p>
-    </div>
-  </section>
-
-  <VenezuelaMap />
-
-  <div class="contacts-toolbar">
-    <BranchSearch client:load branches={branches} />
-  </div>
-
   <section class="panel">
-    <p class="eyebrow">FUENTES</p>
+    <p class="eyebrow">SECCIÓN REUBICADA</p>
     <p class="source-note">
-      cruzroja.ve/nuestra-presencia y guía interna de contactos de emergencia. Última
-      verificación: 2026-06-25.
+      Abre la guía completa dentro de <a class="inline-text-link" href="/contactos#cruz-roja">Contactos</a>.
+      Ahí quedan juntos el directorio regional, el mapa y el número para restablecer contacto
+      entre familiares.
     </p>
   </section>
 </Layout>

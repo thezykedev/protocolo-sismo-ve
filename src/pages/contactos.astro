@@ -1,15 +1,23 @@
 ---
 import ContactSearch from '../components/ContactSearch';
+import BranchSearch from '../components/BranchSearch';
+import VenezuelaMap from '../components/VenezuelaMap.astro';
 import contacts from '../data/emergency-contacts.json';
+import branches from '../data/red-cross-branches.json';
 import Layout from '../layouts/Layout.astro';
+
+const totalBranches = branches.length;
+const statesCovered = new Set(branches.map((branch) => branch.state).filter(Boolean)).size;
+const withPhone = branches.filter((branch) => branch.phones.length > 0).length;
+const withEmail = branches.filter((branch) => branch.email).length;
 ---
 
 <Layout
-  title="Contactos | Sismo VE"
+  title="Sismo VE"
   description="Contactos de emergencia organizados para Venezuela, Caracas, Miranda, La Guaira y Valencia."
   activeNav="contactos"
   pageTitle="Contactos"
-  pageIntro="Números organizados por emergencias, ambulancias, bomberos, Protección Civil, seguridad, rescate, Cruz Roja y hospitales. En una urgencia, usa primero el número de tu operadora."
+  pageIntro="Números organizados por emergencias, ambulancias, bomberos, Protección Civil, seguridad, rescate, Cruz Roja y hospitales. La guía de Cruz Roja queda integrada aquí para que no tengas que saltar entre páginas."
 >
   <section class="panel">
     <p class="eyebrow">SIN DEPENDER DE LINKS</p>
@@ -19,15 +27,36 @@ import Layout from '../layouts/Layout.astro';
     </p>
   </section>
 
-  <section class="panel">
-    <p class="eyebrow">CRUZ ROJA POR ESTADO</p>
-    <p class="source-note">
-      Para el directorio completo de filiales con mapa, pasa a la
-      <a class="inline-text-link" href="/cruz-roja">página de Cruz Roja Venezolana</a>.
-    </p>
-  </section>
-
   <div class="contacts-toolbar">
     <ContactSearch client:load contacts={contacts} />
   </div>
+
+  <section class="panel" id="cruz-roja">
+    <p class="eyebrow">CRUZ ROJA VENEZOLANA</p>
+    <p class="source-note">
+      El directorio regional vive aquí, junto con el número para restablecer contacto entre
+      familiares. Mantengo esta sección separada para que no se mezcle con los servicios de
+      respuesta inmediata.
+    </p>
+
+    <section class="grid-panel" aria-label="Resumen de la Cruz Roja Venezolana">
+      <div class="info-block">
+        <p class="eyebrow">{totalBranches} FILIALES</p>
+        <p>Cubre {statesCovered} estados con datos de teléfono, dirección y correo.</p>
+      </div>
+      <div class="info-block">
+        <p class="eyebrow">{withPhone} CON TELÉFONO</p>
+        <p>
+          {withEmail} filiales tienen correo publicado. Si falta el teléfono, usa el contacto
+          general o verifica localmente.
+        </p>
+      </div>
+    </section>
+
+    <VenezuelaMap />
+
+    <div class="contacts-toolbar">
+      <BranchSearch client:load branches={branches} />
+    </div>
+  </section>
 </Layout>
