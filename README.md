@@ -7,8 +7,8 @@ PWA offline de protocolos sísmicos para Venezuela. Construida con Astro, Tailwi
 - `/` acciones rápidas para antes, durante y después del sismo
 - `/durante` respuesta inmediata durante la sacudida
 - `/protocolos` guía completa por fases
-- `/contactos` directorio buscable con emergencias, Cruz Roja, hospitales y apoyo vial
-- `/cruz-roja` mapa offline y directorio de las 39 filiales con teléfonos, direcciones y correos
+- `/contactos` directorio buscable con emergencias, Cruz Roja integrada, hospitales y apoyo vial
+- `/cruz-roja` atajo legible hacia la misma guía integrada de Cruz Roja dentro de `/contactos`
 - `/mochila` checklist persistente de 72 horas
 - `/instalar` guía para agregar la PWA a la pantalla de inicio
 
@@ -53,7 +53,7 @@ El proyecto está listo para [Cloudflare Pages](https://pages.cloudflare.com/).
 2. Configura el build command: `pnpm install --frozen-lockfile && pnpm build`.
 3. Output directory: `dist`.
 4. Variables de entorno en GitHub: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`.
-5. El workflow en `.github/workflows/deploy.yml` publica automáticamente en cada push a `main`.
+5. El workflow en `.github/workflows/deploy.yml` publica automáticamente en cada push a `main` cuando esos secretos están configurados.
 
 Alternativa: `wrangler pages deploy dist --project-name protocolo-sismo-ve` desde local con `CLOUDFLARE_API_TOKEN`.
 
