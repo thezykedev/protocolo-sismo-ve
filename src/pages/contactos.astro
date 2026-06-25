@@ -5,10 +5,11 @@ import contacts from '../data/emergency-contacts.json';
 import branches from '../data/red-cross-branches.json';
 import Layout from '../layouts/Layout.astro';
 
-const totalBranches = branches.length;
-const statesCovered = new Set(branches.map((branch) => branch.state).filter(Boolean)).size;
-const withPhone = branches.filter((branch) => branch.phones.length > 0).length;
-const withEmail = branches.filter((branch) => branch.email).length;
+const branchesWithPhone = branches.filter((branch) => branch.phones.length > 0);
+const totalBranches = branchesWithPhone.length;
+const statesCovered = new Set(branchesWithPhone.map((branch) => branch.state).filter(Boolean)).size;
+const withPhone = branchesWithPhone.length;
+const withEmail = branchesWithPhone.filter((branch) => branch.email).length;
 ---
 
 <Layout
@@ -18,14 +19,6 @@ const withEmail = branches.filter((branch) => branch.email).length;
   pageTitle="Contactos"
   pageIntro="Números organizados por emergencias, ambulancias, bomberos, Protección Civil, seguridad, rescate, apoyo psicosocial, veterinario, Cruz Roja y hospitales. La guía de Cruz Roja queda integrada aquí para que no tengas que saltar entre páginas."
 >
-  <section class="panel">
-    <p class="eyebrow">SIN DEPENDER DE LINKS</p>
-    <p class="source-note">
-      Quitamos el mapa para no cargar ruido visual. Esta pantalla conserva números marcables,
-      filtros rápidos y una nota corta de uso.
-    </p>
-  </section>
-
   <div class="contacts-toolbar">
     <ContactSearch client:load contacts={contacts} />
   </div>
@@ -66,7 +59,7 @@ const withEmail = branches.filter((branch) => branch.email).length;
     </section>
 
     <div class="contacts-toolbar">
-      <BranchSearch client:load branches={branches} />
+      <BranchSearch client:load branches={branchesWithPhone} />
     </div>
   </section>
 </Layout>
