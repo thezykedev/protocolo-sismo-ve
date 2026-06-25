@@ -425,7 +425,7 @@ export default function ContactSearch({ contacts }: Props) {
                   <div class="phone-list">
                     {contact.phones.map((phone) => (
                       <div
-                        class="phone-row"
+                        class={`phone-row ${phone.href ? 'phone-row--external' : ''}`}
                         key={`${contact.id}-${phone.dial ?? phone.href ?? phone.label}`}
                       >
                         <span>
@@ -434,12 +434,12 @@ export default function ContactSearch({ contacts }: Props) {
                         </span>
                         {phone.href ? (
                           <a
-                            class="contact-action"
+                            class="contact-action contact-action--muted"
                             href={phone.href}
                             target="_blank"
                             rel="noreferrer"
                           >
-                            {phone.actionLabel ?? 'Abrir'}
+                            {phone.actionLabel ?? 'Abrir enlace'}
                           </a>
                         ) : phone.dial ? (
                           <a class="contact-action" href={`tel:${phone.dial}`}>
