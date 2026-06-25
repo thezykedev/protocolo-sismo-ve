@@ -68,7 +68,7 @@ const {
 
         const states = {
           ready: {
-            text: 'Guardado para usar sin internet',
+            text: 'Lista para usar sin internet',
             tone: 'ready'
           },
           loading: {
@@ -77,7 +77,7 @@ const {
           },
           offline: {
             text: 'Funciona sin internet',
-            tone: 'offline'
+            tone: 'ready'
           }
         };
 
@@ -110,7 +110,22 @@ const {
           if (bannerDot) bannerDot.dataset.offlineTone = next.tone;
         };
 
-        const update = () => {
+        const hasCachedShell = async () => {
+          if (!('caches' in window)) return false;
+
+          try {
+            const cachedPaths = await Promise.all([
+              caches.match('/'),
+              caches.match('/index.html'),
+              caches.match('/manifest.webmanifest')
+            ]);
+            return cachedPaths.some(Boolean);
+          } catch {
+            return false;
+          }
+        };
+
+        const update = async () => {
           const online = navigator.onLine;
           const ready = isReadyStored();
 
@@ -119,7 +134,19 @@ const {
             return;
           }
 
-          setState(ready ? 'ready' : 'loading');
+          if (ready) {
+            setState('ready');
+            return;
+          }
+
+          const hasShell = await hasCachedShell();
+          if (hasShell) {
+            markReadyStored();
+            setState('ready');
+            return;
+          }
+
+          setState('loading');
         };
 
         update();
