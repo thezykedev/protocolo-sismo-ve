@@ -7,6 +7,7 @@ type ContactKind =
   | 'civil'
   | 'police'
   | 'security'
+  | 'support'
   | 'rescue'
   | 'redcross'
   | 'hospital'
@@ -15,7 +16,9 @@ type ContactKind =
 interface Phone {
   label: string;
   value: string;
-  dial: string;
+  dial?: string;
+  href?: string;
+  actionLabel?: string;
 }
 
 export interface Contact {
@@ -40,6 +43,7 @@ const kindLabels: Record<ContactKind, string> = {
   civil: 'Protección Civil',
   police: 'Policía',
   security: 'Seguridad y tránsito',
+  support: 'Apoyo y comunidad',
   rescue: 'Rescate y atención vial',
   redcross: 'Cruz Roja',
   hospital: 'Hospitales y clínicas',
@@ -53,6 +57,7 @@ const kindOrder: ContactKind[] = [
   'civil',
   'police',
   'security',
+  'support',
   'rescue',
   'redcross',
   'hospital',
@@ -295,7 +300,7 @@ export default function ContactSearch({ contacts }: Props) {
         contact.category,
         contact.state ?? '',
         contact.note,
-        ...contact.phones.flatMap((phone) => [phone.label, phone.value])
+        ...contact.phones.flatMap((phone) => [phone.label, phone.value, phone.href ?? ''])
       ].some((field) => normalize(field).includes(normalizedQuery));
     });
   }, [enriched, normalizedQuery, stateFilter, activeKinds]);
@@ -419,14 +424,28 @@ export default function ContactSearch({ contacts }: Props) {
 
                   <div class="phone-list">
                     {contact.phones.map((phone) => (
-                      <div class="phone-row" key={`${contact.id}-${phone.dial}`}>
+                      <div
+                        class="phone-row"
+                        key={`${contact.id}-${phone.dial ?? phone.href ?? phone.label}`}
+                      >
                         <span>
                           <strong>{phone.label}</strong>
                           <span>{phone.value}</span>
                         </span>
-                        <a class="contact-action" href={`tel:${phone.dial}`}>
-                          Llamar
-                        </a>
+                        {phone.href ? (
+                          <a
+                            class="contact-action"
+                            href={phone.href}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {phone.actionLabel ?? 'Abrir'}
+                          </a>
+                        ) : phone.dial ? (
+                          <a class="contact-action" href={`tel:${phone.dial}`}>
+                            {phone.actionLabel ?? 'Llamar'}
+                          </a>
+                        ) : null}
                       </div>
                     ))}
                   </div>

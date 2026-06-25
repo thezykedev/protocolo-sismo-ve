@@ -487,6 +487,45 @@
     ]
   },
   {
+    "id": "tinta-violeta",
+    "name": "Tinta Violeta",
+    "area": "Venezuela",
+    "category": "Apoyo psicológico remoto",
+    "kind": "support",
+    "note": "Atencion remota, gratuita y confidencial para apoyo psicologico despues del terremoto.",
+    "phones": [
+      { "label": "Linea 1", "value": "0412-6924062", "dial": "04126924062" },
+      { "label": "Linea 2", "value": "0412-6924073", "dial": "04126924073" }
+    ]
+  },
+  {
+    "id": "apoyo-veterinario-vieirasilguero",
+    "name": "Atencion veterinaria gratuita",
+    "area": "Venezuela",
+    "category": "Apoyo veterinario",
+    "kind": "support",
+    "note": "Apoyo veterinario gratuito por el terremoto. Contacto publicado en Instagram: @isaacdvieirasilguero.",
+    "phones": [
+      {
+        "label": "Instagram",
+        "value": "@isaacdvieirasilguero",
+        "href": "https://www.instagram.com/isaacdvieirasilguero/",
+        "actionLabel": "Abrir"
+      }
+    ]
+  },
+  {
+    "id": "donacion-colchonetas-basabe",
+    "name": "Donacion de colchonetas - Inversiones Basabe",
+    "area": "Venezuela",
+    "category": "Donacion y apoyo comunitario",
+    "kind": "support",
+    "note": "Donacion de colchonetas para los mas necesitados por el terremoto del 24 de junio de 2026.",
+    "phones": [
+      { "label": "Telefono", "value": "0412-8318598", "dial": "04128318598" }
+    ]
+  },
+  {
     "id": "transito-intt",
     "name": "Inspectoria Nacional de Transito",
     "area": "Venezuela",

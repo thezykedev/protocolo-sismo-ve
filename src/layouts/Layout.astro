@@ -22,7 +22,7 @@ const {
   activeNav = 'inicio',
   pageTitle,
   pageIntro,
-  statusText = 'Guardando para usar sin internet'
+  statusText = 'Preparando uso sin internet'
 } = Astro.props;
 ---
 
@@ -64,19 +64,36 @@ const {
         const banner = document.querySelector('[data-offline-banner]');
         const bannerText = document.querySelector('[data-offline-text]');
         const bannerDot = document.querySelector('[data-offline-dot]');
+        const storageKey = 'sismo-ve-offline-ready';
 
         const states = {
           ready: {
-            text: 'Lista para usar sin internet',
+            text: 'Guardado para usar sin internet',
             tone: 'ready'
           },
           loading: {
-            text: 'Guardando para usar sin internet',
+            text: 'Preparando uso sin internet',
             tone: 'loading'
           },
           offline: {
             text: 'Funciona sin internet',
             tone: 'offline'
+          }
+        };
+
+        const isReadyStored = () => {
+          try {
+            return localStorage.getItem(storageKey) === '1';
+          } catch {
+            return false;
+          }
+        };
+
+        const markReadyStored = () => {
+          try {
+            localStorage.setItem(storageKey, '1');
+          } catch {
+            // ignore storage errors
           }
         };
 
@@ -95,14 +112,14 @@ const {
 
         const update = () => {
           const online = navigator.onLine;
-          const controlled = Boolean(navigator.serviceWorker && navigator.serviceWorker.controller);
+          const ready = isReadyStored();
 
           if (!online) {
-            setState(controlled ? 'offline' : 'loading');
+            setState(ready ? 'offline' : 'loading');
             return;
           }
 
-          setState(controlled ? 'ready' : 'loading');
+          setState(ready ? 'ready' : 'loading');
         };
 
         update();
@@ -110,7 +127,10 @@ const {
         window.addEventListener('offline', update);
 
         if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.ready.then(update).catch(() => {});
+          navigator.serviceWorker.ready.then(() => {
+            markReadyStored();
+            update();
+          }).catch(() => {});
           navigator.serviceWorker.addEventListener('controllerchange', update);
         }
       })();

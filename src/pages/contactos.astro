@@ -1,7 +1,6 @@
 ---
 import ContactSearch from '../components/ContactSearch';
 import BranchSearch from '../components/BranchSearch';
-import VenezuelaMap from '../components/VenezuelaMap.astro';
 import contacts from '../data/emergency-contacts.json';
 import branches from '../data/red-cross-branches.json';
 import Layout from '../layouts/Layout.astro';
@@ -17,13 +16,13 @@ const withEmail = branches.filter((branch) => branch.email).length;
   description="Contactos de emergencia para sismos en Venezuela, con Cruz Roja integrada, hospitales y apoyo vial."
   activeNav="contactos"
   pageTitle="Contactos"
-  pageIntro="Números organizados por emergencias, ambulancias, bomberos, Protección Civil, seguridad, rescate, Cruz Roja y hospitales. La guía de Cruz Roja queda integrada aquí para que no tengas que saltar entre páginas."
+  pageIntro="Números organizados por emergencias, ambulancias, bomberos, Protección Civil, seguridad, rescate, apoyo psicosocial, veterinario, Cruz Roja y hospitales. La guía de Cruz Roja queda integrada aquí para que no tengas que saltar entre páginas."
 >
   <section class="panel">
     <p class="eyebrow">SIN DEPENDER DE LINKS</p>
     <p class="source-note">
-      Quitamos enlaces externos porque pueden estar caídos o no abrir durante una emergencia. Esta
-      pantalla conserva números marcables y una nota corta de uso.
+      Quitamos el mapa para no cargar ruido visual. Esta pantalla conserva números marcables,
+      filtros rápidos y una nota corta de uso.
     </p>
   </section>
 
@@ -35,25 +34,36 @@ const withEmail = branches.filter((branch) => branch.email).length;
     <p class="eyebrow">CRUZ ROJA VENEZOLANA</p>
     <p class="source-note">
       El directorio regional vive aquí, junto con el número para restablecer contacto entre
-      familiares. Mantengo esta sección separada para que no se mezcle con los servicios de
-      respuesta inmediata.
+      familiares. Mantengo esta sección ordenada por acceso rápido, sin mapa, para que la lista
+      sea más simple de recorrer.
     </p>
 
-    <section class="grid-panel" aria-label="Resumen de la Cruz Roja Venezolana">
+    <section class="grid-panel" aria-label="Accesos rápidos de la Cruz Roja Venezolana">
       <div class="info-block">
-        <p class="eyebrow">{totalBranches} FILIALES</p>
-        <p>Cubre {statesCovered} estados con datos de teléfono, dirección y correo.</p>
+        <p class="eyebrow">CONTACTO ENTRE FAMILIARES</p>
+        <p class="stat-value">0422 799 4880</p>
+        <p>Cruza la línea para reportar pérdida de contacto con un familiar.</p>
+        <a class="contact-action" href="tel:04227994880">Llamar</a>
       </div>
       <div class="info-block">
-        <p class="eyebrow">{withPhone} CON TELÉFONO</p>
+        <p class="eyebrow">CRUZ ROJA CARACAS</p>
+        <p class="stat-value">0212 571 4380</p>
+        <p>También disponible 0212 571 4713. Sede San Bernardino.</p>
+        <div class="inline-actions">
+          <a class="contact-action" href="tel:02125714380">Llamar</a>
+          <a class="contact-action contact-action--muted" href="tel:02125714713">Alterno</a>
+        </div>
+      </div>
+      <div class="info-block">
+        <p class="eyebrow">{totalBranches} FILIALES</p>
         <p>
-          {withEmail} filiales tienen correo publicado. Si falta el teléfono, usa el contacto
-          general o verifica localmente.
+          Cubre {statesCovered} estados con datos de teléfono, dirección y correo.
+        </p>
+        <p>
+          {withPhone} filiales tienen teléfono publicado y {withEmail} correo institucional.
         </p>
       </div>
     </section>
-
-    <VenezuelaMap />
 
     <div class="contacts-toolbar">
       <BranchSearch client:load branches={branches} />
