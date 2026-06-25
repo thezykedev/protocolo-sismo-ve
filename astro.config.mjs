@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import preact from '@astrojs/preact';
 import { VitePWA } from 'vite-plugin-pwa';
+import { generateSW } from 'workbox-build';
+import { resolve } from 'node:path';
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,12 +12,14 @@ export default defineConfig({
     plugins: [
       tailwindcss(),
       VitePWA({
+        strategies: 'generateSW',
         registerType: 'autoUpdate',
         injectRegister: 'auto',
         devOptions: {
           enabled: true
         },
-        includeAssets: ['favicon.svg', 'icon.svg', 'icon-192.png', 'icon-512.png'],
+        filename: 'sw.js',
+        disable: true,
         manifest: {
           name: 'Sismo VE',
           short_name: 'Sismo VE',
@@ -47,16 +51,31 @@ export default defineConfig({
               purpose: 'any maskable'
             }
           ]
-        },
-        workbox: {
-          cleanupOutdatedCaches: true,
-          clientsClaim: true,
-          skipWaiting: true,
-          navigateFallback: '/index.html',
-          globPatterns: ['**/*.{js,css,html,svg,png,ico,json,txt,woff,woff2,webmanifest}']
         }
       })
     ]
   },
-  integrations: [preact()]
+  integrations: [
+    preact(),
+    {
+      name: 'workbox-sw',
+      hooks: {
+        'astro:build:done': async ({ logger }) => {
+          const outDir = resolve(process.cwd(), 'dist');
+          logger.info(`[workbox-sw] generando service worker en ${outDir}`);
+          const result = await generateSW({
+            globDirectory: outDir,
+            globPatterns: ['**/*.{js,css,html,svg,png,ico,json,webmanifest,woff,woff2}'],
+            swDest: resolve(outDir, 'sw.js'),
+            cleanupOutdatedCaches: true,
+            clientsClaim: true,
+            skipWaiting: true,
+            navigateFallback: '/index.html',
+            sourcemap: false
+          });
+          logger.info(`[workbox-sw] SW generado: ${result.filePaths.join(', ')}`);
+        }
+      }
+    }
+  ]
 });
