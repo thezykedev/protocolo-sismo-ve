@@ -6,6 +6,9 @@ interface Props {
 }
 
 const { active } = Astro.props;
+const mobileLabels = {
+  emergencias: 'NÚMEROS'
+} as const;
 ---
 
 <nav
@@ -34,7 +37,7 @@ const { active } = Astro.props;
               />
             </svg>
           )}
-          <span>{item.label}</span>
+          <span>{mobileLabels[item.id as keyof typeof mobileLabels] ?? item.label}</span>
         </span>
       </a>
     ))

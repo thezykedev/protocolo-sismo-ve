@@ -620,6 +620,13 @@ button {
   flex: 0 0 auto;
 }
 
+.bottom-nav .nav-label > span {
+  min-width: 0;
+  white-space: normal;
+  line-height: 1.05;
+  text-align: center;
+}
+
 .nav-active {
   background: var(--yellow);
   color: var(--yellow-ink);
