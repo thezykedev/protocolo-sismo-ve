@@ -31,6 +31,9 @@ const rawCommit = (process.env.SOURCE_COMMIT ?? 'local').trim();
 const shortCommit = rawCommit === 'local' ? 'local' : rawCommit.slice(0, 7);
 const buildLabel = `v${packageInfo.version} (${shortCommit})`;
 const offlineVersion = `${packageInfo.version}-${shortCommit}`;
+const siteUrl = (process.env.COOLIFY_URL ?? 'https://sismo-ve.xyz').replace(/\/$/, '');
+const socialImagePath = '/graphics/durante-sismo.png';
+const socialImageUrl = `${siteUrl}${socialImagePath}`;
 ---
 
 <!doctype html>
@@ -42,8 +45,20 @@ const offlineVersion = `${packageInfo.version}-${shortCommit}`;
     <meta name="theme-color" content="#ffff00" />
     <meta name="apple-mobile-web-app-title" content="Sismo VE" />
     <meta name="generator" content={Astro.generator} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sismo VE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content="Persona cubierta bajo una mesa resistente durante un sismo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="canonical" href={siteUrl} />
     <title>{title}</title>
   </head>
   <body>
