@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'preact/hooks';
+import { formatVenezuelaPhone, toTelHref } from '../lib/phone';
 
 export interface Branch {
   id: string;
@@ -168,9 +169,6 @@ export default function BranchSearch({ branches }: Props) {
                 <article class="contact-card" key={branch.id}>
                   <div class="contact-card__top">
                     <div class="stack">
-                      <span class={`pill${branch.phones.length ? ' pill--verified' : ' pill--review'}`}>
-                        {branch.phones.length ? 'CON TELÉFONO' : 'SIN TELÉFONO'}
-                      </span>
                       <h3>Filial {branch.city}</h3>
                       <p class="contact-meta">
                         {branch.state} · {branch.coords.lat.toFixed(3)},{' '}
@@ -181,17 +179,24 @@ export default function BranchSearch({ branches }: Props) {
 
                   {branch.phones.length > 0 ? (
                     <div class="phone-list">
-                      {branch.phones.map((phone) => (
-                        <div class="phone-row" key={`${branch.id}-${phone.dial}`}>
-                          <span>
-                            <strong>{phone.label}</strong>
-                            <span>{phone.value}</span>
-                          </span>
-                          <a class="contact-action" href={`tel:${phone.dial}`}>
-                            Llamar
-                          </a>
-                        </div>
-                      ))}
+                      {branch.phones.map((phone) => {
+                        const displayValue = formatVenezuelaPhone(phone.value);
+                        const href = toTelHref(phone.dial);
+
+                        return (
+                          <div class="phone-row" key={`${branch.id}-${phone.dial}`}>
+                            <span>
+                              <strong>{phone.label}</strong>
+                              <span>{displayValue}</span>
+                            </span>
+                            {href ? (
+                              <a class="contact-action" href={href}>
+                                Llamar
+                              </a>
+                            ) : null}
+                          </div>
+                        );
+                      })}
                     </div>
                   ) : (
                     <p class="source-note">

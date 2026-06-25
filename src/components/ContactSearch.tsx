@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'preact/hooks';
+import { formatVenezuelaPhone, toTelHref } from '../lib/phone';
 
 type ContactKind =
   | 'emergency'
@@ -63,6 +64,8 @@ const kindOrder: ContactKind[] = [
   'hospital',
   'seismic'
 ];
+
+const regularKindOrder = kindOrder.filter((kind) => kind !== 'emergency');
 
 const STATE_ORDER = [
   'Distrito Capital',
@@ -305,15 +308,25 @@ export default function ContactSearch({ contacts }: Props) {
     });
   }, [enriched, normalizedQuery, stateFilter, activeKinds]);
 
+  const emergencyResults = useMemo(
+    () => enriched.filter((contact) => contact.kind === 'emergency'),
+    [enriched]
+  );
+
+  const filteredResults = useMemo(
+    () => results.filter((contact) => contact.kind !== 'emergency'),
+    [results]
+  );
+
   const groupedResults = useMemo(
     () =>
-      kindOrder
+      regularKindOrder
         .map((kind) => ({
           kind,
-          contacts: results.filter((contact) => contact.kind === kind)
+          contacts: filteredResults.filter((contact) => contact.kind === kind)
         }))
         .filter((group) => group.contacts.length > 0),
-    [results]
+    [filteredResults]
   );
 
   function toggleKind(kind: ContactKind) {
@@ -332,6 +345,8 @@ export default function ContactSearch({ contacts }: Props) {
   }
 
   const hasFilters = Boolean(query) || Boolean(stateFilter) || activeKinds.size > 0;
+  const visibleCount = emergencyResults.length + filteredResults.length;
+  const visibleGroupCount = groupedResults.length + (emergencyResults.length > 0 ? 1 : 0);
 
   return (
     <div class="search-shell">
@@ -390,11 +405,67 @@ export default function ContactSearch({ contacts }: Props) {
       </div>
 
       <p class="search-results-meta">
-        {results.length} contacto{results.length === 1 ? '' : 's'} ·{' '}
-        {groupedResults.length} categoría{groupedResults.length === 1 ? '' : 's'}
+        {visibleCount} contacto{visibleCount === 1 ? '' : 's'} · {visibleGroupCount} categoría
+        {visibleGroupCount === 1 ? '' : 's'}
       </p>
 
       <div class="contact-groups">
+        {emergencyResults.length > 0 && (
+          <section class="contact-group contact-group--pinned">
+            <h2>Emergencias generales</h2>
+            <div class="contacts-grid">
+              {emergencyResults.map((contact) => (
+                <article class="contact-card" key={contact.id}>
+                  <div class="contact-card__top">
+                    <div class="stack">
+                      <h3>{contact.name}</h3>
+                      <p class="contact-meta">
+                        {contact.area}
+                        {contact.state &&
+                        contact.state !== 'Nacional' &&
+                        !normalize(contact.area).includes(normalize(contact.state))
+                          ? ` · ${contact.state}`
+                          : ''}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="phone-list">
+                    {contact.phones.map((phone) => {
+                      const displayValue = phone.href ? phone.value : formatVenezuelaPhone(phone.value);
+                      const href = phone.href ?? (phone.dial ? toTelHref(phone.dial) : undefined);
+
+                      return (
+                        <div
+                          class={`phone-row ${phone.href ? 'phone-row--external' : ''}`}
+                          key={`${contact.id}-${phone.dial ?? phone.href ?? phone.label}`}
+                        >
+                          <span>
+                            <strong>{phone.label}</strong>
+                            <span>{displayValue}</span>
+                          </span>
+                          {href ? (
+                            <a
+                              class={`contact-action${phone.href ? ' contact-action--muted' : ''}`}
+                              href={href}
+                              target={phone.href ? '_blank' : undefined}
+                              rel={phone.href ? 'noreferrer' : undefined}
+                            >
+                              {phone.actionLabel ?? (phone.href ? 'Abrir enlace' : 'Llamar')}
+                            </a>
+                          ) : null}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <p class="source-note">{contact.note}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
         {groupedResults.map((group) => (
           <section class="contact-group" key={group.kind}>
             <h2>{kindLabels[group.kind]}</h2>
@@ -423,31 +494,32 @@ export default function ContactSearch({ contacts }: Props) {
                   </div>
 
                   <div class="phone-list">
-                    {contact.phones.map((phone) => (
-                      <div
-                        class={`phone-row ${phone.href ? 'phone-row--external' : ''}`}
-                        key={`${contact.id}-${phone.dial ?? phone.href ?? phone.label}`}
-                      >
-                        <span>
-                          <strong>{phone.label}</strong>
-                          <span>{phone.value}</span>
-                        </span>
-                        {phone.href ? (
-                          <a
-                            class="contact-action contact-action--muted"
-                            href={phone.href}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {phone.actionLabel ?? 'Abrir enlace'}
-                          </a>
-                        ) : phone.dial ? (
-                          <a class="contact-action" href={`tel:${phone.dial}`}>
-                            {phone.actionLabel ?? 'Llamar'}
-                          </a>
-                        ) : null}
-                      </div>
-                    ))}
+                    {contact.phones.map((phone) => {
+                      const displayValue = phone.href ? phone.value : formatVenezuelaPhone(phone.value);
+                      const href = phone.href ?? (phone.dial ? toTelHref(phone.dial) : undefined);
+
+                      return (
+                        <div
+                          class={`phone-row ${phone.href ? 'phone-row--external' : ''}`}
+                          key={`${contact.id}-${phone.dial ?? phone.href ?? phone.label}`}
+                        >
+                          <span>
+                            <strong>{phone.label}</strong>
+                            <span>{displayValue}</span>
+                          </span>
+                          {href ? (
+                            <a
+                              class={`contact-action${phone.href ? ' contact-action--muted' : ''}`}
+                              href={href}
+                              target={phone.href ? '_blank' : undefined}
+                              rel={phone.href ? 'noreferrer' : undefined}
+                            >
+                              {phone.actionLabel ?? (phone.href ? 'Abrir enlace' : 'Llamar')}
+                            </a>
+                          ) : null}
+                        </div>
+                      );
+                    })}
                   </div>
 
                   <p class="source-note">{contact.note}</p>
