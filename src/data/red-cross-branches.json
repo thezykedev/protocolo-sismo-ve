@@ -1,0 +1,652 @@
+[
+  {
+    "id": "filial-01",
+    "name": "Puerto Ayacucho",
+    "city": "Puerto Ayacucho",
+    "state": "Amazonas",
+    "coords": {
+      "lat": 5.661472,
+      "lng": -67.582774
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0416-4520708",
+        "dial": "04164520708"
+      }
+    ],
+    "address": "Avenida Constitucion, cruce con la Calle Principal de Barrio Cataniapo. C.P. 2312. Correo: puerto.ayacucho@cruzroja.ve.",
+    "email": ""
+  },
+  {
+    "id": "filial-02",
+    "name": "Anaco",
+    "city": "Anaco",
+    "state": "Anzoátegui",
+    "coords": {
+      "lat": 9.431767,
+      "lng": -64.483566
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0282-4245157",
+        "dial": "02824245157"
+      }
+    ],
+    "address": "Entre Avenida Francisco de Miranda y Avenida Boyaca, detras del SENIAT. C.P. 2001.ve.",
+    "email": "anaco@cruzroja"
+  },
+  {
+    "id": "filial-03",
+    "name": "Barcelona",
+    "city": "Barcelona",
+    "state": "Anzoátegui",
+    "coords": {
+      "lat": 10.153889,
+      "lng": -64.665667
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-04",
+    "name": "El Tigre",
+    "city": "El Tigre",
+    "state": "Anzoátegui",
+    "coords": {
+      "lat": 8.881438,
+      "lng": -64.261111
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-05",
+    "name": "Puerto Píritu",
+    "city": "Puerto Píritu",
+    "state": "Anzoátegui",
+    "coords": {
+      "lat": 10.056695,
+      "lng": -65.039414
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-06",
+    "name": "Guasdualito",
+    "city": "Guasdualito",
+    "state": "Apure",
+    "coords": {
+      "lat": 7.063449,
+      "lng": -69.496429
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0247-3411564",
+        "dial": "02473411564"
+      }
+    ],
+    "address": "Carretera Nacional via Elorza, troncal 19, sector La Coromoto, cerca del Hospital General Jose Antonio Paez. C.P. 6401.ve.",
+    "email": "guasdualito@cruzroja"
+  },
+  {
+    "id": "filial-07",
+    "name": "San Fernando de Apure",
+    "city": "San Fernando de Apure",
+    "state": "Apure",
+    "coords": {
+      "lat": 7.86567,
+      "lng": -67.485176
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-08",
+    "name": "Maracay",
+    "city": "Maracay",
+    "state": "Aragua",
+    "coords": {
+      "lat": 10.244193,
+      "lng": -67.606616
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0243-5532629",
+        "dial": "02435532629"
+      }
+    ],
+    "address": "Avenida Principal de la Coromoto, entrando por el peaje de Tapa via Avenida Bolivar, primer semaforo cruce a la izquierda. C.P. 8001.ve.",
+    "email": "maracay@cruzroja"
+  },
+  {
+    "id": "filial-09",
+    "name": "Barinas",
+    "city": "Barinas",
+    "state": "Barinas",
+    "coords": {
+      "lat": 8.622359,
+      "lng": -70.206654
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0273-5332187",
+        "dial": "02735332187"
+      }
+    ],
+    "address": "Final de la calle Camejo, edificio Cruz Roja frente al Parque La Carolina, sector La Carolina. C.P. 2201.ve.",
+    "email": "barinas@cruzroja"
+  },
+  {
+    "id": "filial-10",
+    "name": "Barinitas",
+    "city": "Barinitas",
+    "state": "Barinas",
+    "coords": {
+      "lat": 8.606075,
+      "lng": -70.202415
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-11",
+    "name": "Ciudad Bolívar",
+    "city": "Ciudad Bolívar",
+    "state": "Bolívar",
+    "coords": {
+      "lat": 8.094505,
+      "lng": -63.555334
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0285-6547001",
+        "dial": "02856547001"
+      }
+    ],
+    "address": "Centro Materno Infantil Bicentenario Ing. Lino Bossio P. C.P. 4001. Correo: ciudad.bolivar@cruzroja.ve.",
+    "email": ""
+  },
+  {
+    "id": "filial-12",
+    "name": "Ciudad Guayana",
+    "city": "Ciudad Guayana",
+    "state": "Bolívar",
+    "coords": {
+      "lat": 8.366312,
+      "lng": -62.649681
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-13",
+    "name": "Puerto Cabello",
+    "city": "Puerto Cabello",
+    "state": "Carabobo",
+    "coords": {
+      "lat": 10.4868,
+      "lng": -66.933485
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0423-616144",
+        "dial": "0423616144"
+      }
+    ],
+    "address": "Avenida Jose Antonio Paez, entre Avenida Bolivar y Avenida Juan Jose Flores, diagonal al Zoom. C.P. 4122. Correo: puerto.cabello@cruzroja.ve.",
+    "email": ""
+  },
+  {
+    "id": "filial-14",
+    "name": "Valencia",
+    "city": "Valencia",
+    "state": "Carabobo",
+    "coords": {
+      "lat": 10.20587,
+      "lng": -68.011948
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-15",
+    "name": "San Carlos",
+    "city": "San Carlos",
+    "state": "Cojedes",
+    "coords": {
+      "lat": 9.664065,
+      "lng": -68.586513
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0414-9585729",
+        "dial": "04149585729"
+      }
+    ],
+    "address": "Calle Paez, frente a la Plaza Bolivar. C.P. 8050. Correo: san.carlos@cruzroja.ve.",
+    "email": ""
+  },
+  {
+    "id": "filial-16",
+    "name": "Tucupita",
+    "city": "Tucupita",
+    "state": "Delta Amacuro",
+    "coords": {
+      "lat": 9.069177,
+      "lng": -62.045811
+    },
+    "phones": [],
+    "address": "Calle Principal Casa 127, diagonal al Jardin de Infancia Bachiller J. Vidal Marcano, urbanizacion Negro Primero. C.P. 1210.ve. En la fuente local no aparece telefono visible.",
+    "email": "tucupita@cruzroja"
+  },
+  {
+    "id": "filial-17",
+    "name": "Caracas",
+    "city": "Caracas",
+    "state": "Distrito Capital",
+    "coords": {
+      "lat": 10.504712,
+      "lng": -66.89464
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0212-5714380",
+        "dial": "02125714380"
+      },
+      {
+        "label": "Socorristas",
+        "value": "0212-5714713",
+        "dial": "02125714713"
+      }
+    ],
+    "address": "Avenida Andres Bello, edificio Cruz Roja Venezolana N 4. Urb. San Bernardino, C.P. 6301.ve.",
+    "email": "caracas@cruzroja"
+  },
+  {
+    "id": "filial-18",
+    "name": "Coro",
+    "city": "Coro",
+    "state": "Falcón",
+    "coords": {
+      "lat": 11.40535,
+      "lng": -69.678025
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0268-2523427",
+        "dial": "02682523427"
+      }
+    ],
+    "address": "Calle Buchivacoa, entre Calle Federacion y Colon, edificio Centro Clinico Solidario, al lado de la Heladeria La Banana, Mercado Viejo. C.P. 5101.ve.",
+    "email": "coro@cruzroja"
+  },
+  {
+    "id": "filial-19",
+    "name": "La Vela de Coro",
+    "city": "La Vela de Coro",
+    "state": "Falcón",
+    "coords": {
+      "lat": 11.458976,
+      "lng": -69.564854
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-20",
+    "name": "Punto Fijo",
+    "city": "Punto Fijo",
+    "state": "Falcón",
+    "coords": {
+      "lat": 11.713744,
+      "lng": -70.199547
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-21",
+    "name": "Calabozo",
+    "city": "Calabozo",
+    "state": "Guárico",
+    "coords": {
+      "lat": 8.934035,
+      "lng": -67.428091
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0246-8712971",
+        "dial": "02468712971"
+      }
+    ],
+    "address": "Calle 3 entre carreras 13 y 14, una cuadra despues de la Plaza Bolivar. C.P. 3201.ve.",
+    "email": "calabozo@cruzroja"
+  },
+  {
+    "id": "filial-22",
+    "name": "San Juan de los Morros",
+    "city": "San Juan de los Morros",
+    "state": "Guárico",
+    "coords": {
+      "lat": 9.91267,
+      "lng": -67.361459
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-23",
+    "name": "Valle de la Pascua",
+    "city": "Valle de la Pascua",
+    "state": "Guárico",
+    "coords": {
+      "lat": 9.218746,
+      "lng": -66.020147
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-24",
+    "name": "La Guaira",
+    "city": "La Guaira",
+    "state": "La Guaira",
+    "coords": {
+      "lat": 10.599169,
+      "lng": -67.001503
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0412-5928735",
+        "dial": "04125928735"
+      }
+    ],
+    "address": "Antiguo Aeropuerto Internacional de Maiquetia, rampa 4. Sede Cruz Roja. C.P. 5201. Correo: la.guaira@cruzroja.ve.",
+    "email": ""
+  },
+  {
+    "id": "filial-25",
+    "name": "Barquisimeto",
+    "city": "Barquisimeto",
+    "state": "Lara",
+    "coords": {
+      "lat": 10.034292,
+      "lng": -69.238965
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0251-8089694",
+        "dial": "02518089694"
+      }
+    ],
+    "address": "Urb. Patarata, Avenida Andres Eloy Blanco con transversal 1, calle Guri. C.P. 6101.ve.",
+    "email": "barquisimeto@cruzroja"
+  },
+  {
+    "id": "filial-26",
+    "name": "Charallave",
+    "city": "Charallave",
+    "state": "Miranda",
+    "coords": {
+      "lat": 10.24566,
+      "lng": -66.859705
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0414-2766421",
+        "dial": "04142766421"
+      }
+    ],
+    "address": "Avenida 3 T. Garcia, entre calle 14 Rivas y calle 15. C.P. 7001.ve.",
+    "email": "charallave@cruzroja"
+  },
+  {
+    "id": "filial-27",
+    "name": "Punta de Mata",
+    "city": "Punta de Mata",
+    "state": "Monagas",
+    "coords": {
+      "lat": 9.690231,
+      "lng": -63.617488
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0292-4140268",
+        "dial": "02924140268"
+      }
+    ],
+    "address": "Calle Carabobo, sector Las Viviendas, a dos cuadras de la Universidad Abierta. C.P. 4132. Correo: punta.de.mata@cruzroja.ve.",
+    "email": ""
+  },
+  {
+    "id": "filial-28",
+    "name": "Mérida",
+    "city": "Mérida",
+    "state": "Mérida",
+    "coords": {
+      "lat": 8.57267,
+      "lng": -71.1641
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0274-2632219",
+        "dial": "02742632219"
+      }
+    ],
+    "address": "Avenida Primero de Mayo, Edificio Cruz Roja, Santa Juana. C.P. 6217.ve.",
+    "email": "merida@cruzroja"
+  },
+  {
+    "id": "filial-29",
+    "name": "Porlamar",
+    "city": "Porlamar",
+    "state": "Nueva Esparta",
+    "coords": {
+      "lat": 10.944565,
+      "lng": -63.932014
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0295-4175560",
+        "dial": "02954175560"
+      }
+    ],
+    "address": "Urb. Conuco Viejo, sector Sabana Grande, frente a Villa Rosa. C.P. 3202.ve.",
+    "email": "porlamar@cruzroja"
+  },
+  {
+    "id": "filial-30",
+    "name": "Acarigua",
+    "city": "Acarigua",
+    "state": "Portuguesa",
+    "coords": {
+      "lat": 9.550365,
+      "lng": -69.180471
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0255-6239779",
+        "dial": "02556239779"
+      }
+    ],
+    "address": "Avenida Circunvalacion Sur, diagonal a la Universidad Territorial J.J. Montilla, sector Bellas Artes. C.P. 2103.ve.",
+    "email": "acarigua@cruzroja"
+  },
+  {
+    "id": "filial-31",
+    "name": "Guanare",
+    "city": "Guanare",
+    "state": "Portuguesa",
+    "coords": {
+      "lat": 9.047789,
+      "lng": -69.74698
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-32",
+    "name": "Cumana",
+    "city": "Cumana",
+    "state": "Sucre",
+    "coords": {
+      "lat": 10.431916,
+      "lng": -64.183316
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0293-4410464",
+        "dial": "02934410464"
+      }
+    ],
+    "address": "Calle Marino, detras del CC. Humboldt, frente a MRW. C.P. 5101.ve.",
+    "email": "cumana@cruzroja"
+  },
+  {
+    "id": "filial-33",
+    "name": "Trujillo",
+    "city": "Trujillo",
+    "state": "Trujillo",
+    "coords": {
+      "lat": 9.35645,
+      "lng": -70.43724
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0416-4721852",
+        "dial": "04164721852"
+      }
+    ],
+    "address": "Avenida Cuatricentenario, sector Los Lavaderos, frente al Country Club, Edificio Cruz Roja. C.P. 1201.ve.",
+    "email": "trujillo@cruzroja"
+  },
+  {
+    "id": "filial-34",
+    "name": "San Antonio del Táchira",
+    "city": "San Antonio del Táchira",
+    "state": "Táchira",
+    "coords": {
+      "lat": 7.815626,
+      "lng": -72.44419
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0414-3799592",
+        "dial": "04143799592"
+      }
+    ],
+    "address": "Carrera 7, San Antonio del Tachira. C.P. 3210. Correo: san.antonio.tachira@cruzroja.ve.",
+    "email": ""
+  },
+  {
+    "id": "filial-35",
+    "name": "San Cristóbal",
+    "city": "San Cristóbal",
+    "state": "Táchira",
+    "coords": {
+      "lat": 7.780916,
+      "lng": -72.221843
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-36",
+    "name": "Aroa",
+    "city": "Aroa",
+    "state": "Yaracuy",
+    "coords": {
+      "lat": 10.433982,
+      "lng": -68.892932
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0251-7144895",
+        "dial": "02517144895"
+      }
+    ],
+    "address": "Vereda A transversal E, entre Calle Bolivar y Sucre, sector Centro Aroa, cerca del Hospital viejo. C.P. 2050.ve.",
+    "email": "aroa@cruzroja"
+  },
+  {
+    "id": "filial-37",
+    "name": "Chivacoa",
+    "city": "Chivacoa",
+    "state": "Yaracuy",
+    "coords": {
+      "lat": 10.157238,
+      "lng": -68.897327
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-38",
+    "name": "San Felipe",
+    "city": "San Felipe",
+    "state": "Yaracuy",
+    "coords": {
+      "lat": 10.442747,
+      "lng": -68.543784
+    },
+    "phones": [],
+    "address": "",
+    "email": ""
+  },
+  {
+    "id": "filial-39",
+    "name": "Maracaibo",
+    "city": "Maracaibo",
+    "state": "Zulia",
+    "coords": {
+      "lat": 10.658804,
+      "lng": -71.612035
+    },
+    "phones": [
+      {
+        "label": "Central",
+        "value": "0261-7986455",
+        "dial": "02617986455"
+      }
+    ],
+    "address": "Avenida 11, esquina con Calle 83, sector Veritas. C.P. 5001.ve.",
+    "email": "maracaibo@cruzroja"
+  }
+]
