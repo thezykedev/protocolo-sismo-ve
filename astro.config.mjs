@@ -72,7 +72,7 @@ export default defineConfig({
             cleanupOutdatedCaches: true,
             clientsClaim: true,
             skipWaiting: true,
-            navigateFallback: '/index.html',
+            directoryIndex: 'index.html',
             sourcemap: false
           });
           logger.info(`[workbox-sw] SW generado: ${result.filePaths.join(', ')}`);
