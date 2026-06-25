@@ -18,11 +18,11 @@ interface Props {
 
 const {
   title = 'Sismo VE',
-  description = 'PWA offline de protocolos sísmicos para Venezuela.',
+  description = 'Guía de emergencias para sismos en Venezuela, con contactos clave y acceso sin internet después de la primera carga.',
   activeNav = 'inicio',
   pageTitle,
   pageIntro,
-  statusText = 'Modo offline listo'
+  statusText = 'Guardando para usar sin internet'
 } = Astro.props;
 ---
 
@@ -41,6 +41,10 @@ const {
   </head>
   <body>
     <TopBar active={activeNav} statusText={statusText} />
+    <div class="mobile-offline-banner" data-offline-banner aria-live="polite">
+      <span class="mobile-offline-banner__dot" data-offline-dot aria-hidden="true"></span>
+      <span data-offline-text>{statusText}</span>
+    </div>
     <main class="page-shell">
       {
         pageTitle && (
@@ -54,5 +58,62 @@ const {
       <slot />
     </main>
     <BottomNav active={activeNav} />
+    <script is:inline>
+      (() => {
+        const chips = Array.from(document.querySelectorAll('[data-offline-chip]'));
+        const banner = document.querySelector('[data-offline-banner]');
+        const bannerText = document.querySelector('[data-offline-text]');
+        const bannerDot = document.querySelector('[data-offline-dot]');
+
+        const states = {
+          ready: {
+            text: 'Lista para usar sin internet',
+            tone: 'ready'
+          },
+          loading: {
+            text: 'Guardando para usar sin internet',
+            tone: 'loading'
+          },
+          offline: {
+            text: 'Funciona sin internet',
+            tone: 'offline'
+          }
+        };
+
+        const setState = (state) => {
+          const next = states[state] ?? states.loading;
+          chips.forEach((chip) => {
+            chip.dataset.offlineState = state;
+            const text = chip.querySelector('[data-offline-text]');
+            if (text) text.textContent = next.text;
+          });
+
+          if (banner) banner.dataset.offlineState = state;
+          if (bannerText) bannerText.textContent = next.text;
+          if (bannerDot) bannerDot.dataset.offlineTone = next.tone;
+        };
+
+        const update = () => {
+          const online = navigator.onLine;
+          const controlled = Boolean(navigator.serviceWorker && navigator.serviceWorker.controller);
+
+          if (!online) {
+            setState(controlled ? 'offline' : 'loading');
+            return;
+          }
+
+          setState(controlled ? 'ready' : 'loading');
+        };
+
+        update();
+        window.addEventListener('online', update);
+        window.addEventListener('offline', update);
+
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.ready.then(update).catch(() => {});
+          navigator.serviceWorker.addEventListener('controllerchange', update);
+        }
+      })();
+    </script>
   </body>
 </html>

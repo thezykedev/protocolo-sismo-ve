@@ -135,6 +135,16 @@ button {
   color: var(--ready);
 }
 
+.status-chip[data-offline-state='loading'] {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.status-chip[data-offline-state='offline'] {
+  border-color: var(--orange);
+  color: #ffb980;
+}
+
 .status-chip__icon {
   position: relative;
   width: 1rem;
@@ -153,6 +163,65 @@ button {
   border-right: 2px solid var(--ready-ink);
   border-bottom: 2px solid var(--ready-ink);
   transform: rotate(45deg);
+}
+
+.status-chip[data-offline-state='loading'] .status-chip__icon {
+  border-color: var(--yellow);
+  background: var(--yellow);
+}
+
+.status-chip[data-offline-state='loading'] .status-chip__icon::after {
+  border-color: var(--yellow-ink);
+}
+
+.status-chip[data-offline-state='offline'] .status-chip__icon {
+  border-color: var(--orange);
+  background: var(--orange);
+}
+
+.status-chip[data-offline-state='offline'] .status-chip__icon::after {
+  border-color: #231200;
+}
+
+.mobile-offline-banner {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--line);
+  padding: 0.7rem 1rem;
+  background: rgba(19, 19, 19, 0.98);
+  color: var(--yellow);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mobile-offline-banner[data-offline-state='ready'] {
+  color: var(--ready);
+}
+
+.mobile-offline-banner[data-offline-state='offline'] {
+  color: #ffb980;
+}
+
+.mobile-offline-banner__dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 0 0 0 2px rgba(255, 255, 0, 0.14);
+}
+
+.mobile-offline-banner__dot[data-offline-tone='ready'] {
+  background: var(--ready);
+  box-shadow: 0 0 0 2px rgba(40, 209, 124, 0.18);
+}
+
+.mobile-offline-banner__dot[data-offline-tone='offline'] {
+  background: var(--orange);
+  box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.16);
 }
 
 .page-shell {
@@ -1437,6 +1506,13 @@ button {
 @media (max-width: 640px) {
   .status-chip {
     display: none;
+  }
+
+  .mobile-offline-banner {
+    position: sticky;
+    top: 4rem;
+    z-index: 45;
+    display: flex;
   }
 
   .hero-panel h1,
