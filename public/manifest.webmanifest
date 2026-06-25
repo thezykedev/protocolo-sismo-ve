@@ -1,0 +1,31 @@
+{
+  "name": "Sismo VE",
+  "short_name": "Sismo VE",
+  "description": "App de emergencias para sismos en Venezuela con protocolos, contactos clave y uso sin internet despues de la primera carga.",
+  "theme_color": "#ffff00",
+  "background_color": "#131313",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "lang": "es-VE",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

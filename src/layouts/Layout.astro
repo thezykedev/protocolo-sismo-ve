@@ -87,7 +87,8 @@ const buildLabel = `v${packageInfo.version} (${shortCommit})`;
         const bannerProgress = document.querySelector('[data-offline-banner-progress]');
         const storageKey = 'sismo-ve-offline-ready';
         const migrationKey = 'sismo-ve-sw-migration';
-        const migrationVersion = '2026-06-25-mpa-offline-v1';
+        const migrationVersion = '2026-06-25-mpa-offline-v2';
+        const controlReloadKey = 'sismo-ve-sw-control-reload';
 
         const states = {
           ready: {
@@ -207,6 +208,22 @@ const buildLabel = `v${packageInfo.version} (${shortCommit})`;
           }
         };
 
+        const needsControlReload = () => {
+          try {
+            return sessionStorage.getItem(controlReloadKey) !== '1';
+          } catch {
+            return true;
+          }
+        };
+
+        const markControlReload = () => {
+          try {
+            sessionStorage.setItem(controlReloadKey, '1');
+          } catch {
+            // ignore storage errors
+          }
+        };
+
         const syncReadyState = async () => {
           if (!('serviceWorker' in navigator)) return false;
 
@@ -239,12 +256,22 @@ const buildLabel = `v${packageInfo.version} (${shortCommit})`;
             setState('caching');
             const activated = await withTimeout(awaitActivation(), 12000);
             if (activated) {
+              if (!navigator.serviceWorker.controller && needsControlReload()) {
+                markControlReload();
+                location.reload();
+                return false;
+              }
               markReadyStored();
               return true;
             }
 
             setState('finalizing');
             await withTimeout(navigator.serviceWorker.ready, 12000);
+            if (!navigator.serviceWorker.controller && needsControlReload()) {
+              markControlReload();
+              location.reload();
+              return false;
+            }
             markReadyStored();
             return true;
           } catch {
