@@ -8,7 +8,6 @@ PWA offline de protocolos sísmicos para Venezuela. Construida con Astro, Tailwi
 - `/durante` respuesta inmediata durante la sacudida
 - `/protocolos` guía completa por fases
 - `/contactos` directorio buscable con emergencias, Cruz Roja integrada, hospitales y apoyo vial
-- `/cruz-roja` atajo legible hacia la misma guía integrada de Cruz Roja dentro de `/contactos`
 - `/mochila` checklist persistente de 72 horas
 - `/instalar` guía para agregar la PWA a la pantalla de inicio
 
