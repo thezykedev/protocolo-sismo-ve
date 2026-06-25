@@ -31,6 +31,7 @@ export interface Contact {
   note: string;
   phones: Phone[];
   state?: string;
+  event?: string;
 }
 
 interface Props {
@@ -66,6 +67,8 @@ const kindOrder: ContactKind[] = [
 ];
 
 const regularKindOrder = kindOrder.filter((kind) => kind !== 'emergency');
+const SPECIAL_EVENT_ID = 'terremoto-2026-06-24';
+const SPECIAL_EVENT_LABEL = 'Terremoto 24 de junio 2026';
 
 const STATE_ORDER = [
   'Distrito Capital',
@@ -267,6 +270,7 @@ export default function ContactSearch({ contacts }: Props) {
   const [query, setQuery] = useState('');
   const [stateFilter, setStateFilter] = useState('');
   const [activeKinds, setActiveKinds] = useState<Set<ContactKind>>(new Set());
+  const [specialFilter, setSpecialFilter] = useState(false);
 
   const enriched = useMemo(
     () =>
@@ -277,26 +281,45 @@ export default function ContactSearch({ contacts }: Props) {
     [contacts]
   );
 
+  const emergencyResults = useMemo(
+    () => enriched.filter((contact) => contact.kind === 'emergency' && !contact.event),
+    [enriched]
+  );
+
+  const specialResults = useMemo(
+    () => enriched.filter((contact) => contact.event === SPECIAL_EVENT_ID),
+    [enriched]
+  );
+
+  const regularContacts = useMemo(
+    () => enriched.filter((contact) => !contact.event && contact.kind !== 'emergency'),
+    [enriched]
+  );
+
   const stateCounts = useMemo(() => {
     const counts = new Map<string, number>();
-    for (const contact of enriched) {
+    for (const contact of regularContacts) {
       const state = contact.state ?? 'Nacional';
       counts.set(state, (counts.get(state) ?? 0) + 1);
     }
     return counts;
-  }, [enriched]);
+  }, [regularContacts]);
 
-  const availableStates = useMemo(() => {
-    return STATE_ORDER.filter((state) => stateCounts.has(state));
-  }, [stateCounts]);
+  const availableStates = useMemo(
+    () => STATE_ORDER.filter((state) => stateCounts.has(state)),
+    [stateCounts]
+  );
 
   const normalizedQuery = normalize(query);
 
-  const results = useMemo(() => {
-    return enriched.filter((contact) => {
-      if (stateFilter && contact.state !== stateFilter) return false;
-      if (activeKinds.size > 0 && !activeKinds.has(contact.kind)) return false;
+  const visibleContacts = useMemo(() => {
+    const source = specialFilter ? specialResults : regularContacts;
+
+    return source.filter((contact) => {
+      if (!specialFilter && stateFilter && contact.state !== stateFilter) return false;
+      if (!specialFilter && activeKinds.size > 0 && !activeKinds.has(contact.kind)) return false;
       if (!normalizedQuery) return true;
+
       return [
         contact.name,
         contact.area,
@@ -306,28 +329,34 @@ export default function ContactSearch({ contacts }: Props) {
         ...contact.phones.flatMap((phone) => [phone.label, phone.value, phone.href ?? ''])
       ].some((field) => normalize(field).includes(normalizedQuery));
     });
-  }, [enriched, normalizedQuery, stateFilter, activeKinds]);
-
-  const emergencyResults = useMemo(
-    () => enriched.filter((contact) => contact.kind === 'emergency'),
-    [enriched]
-  );
-
-  const filteredResults = useMemo(
-    () => results.filter((contact) => contact.kind !== 'emergency'),
-    [results]
-  );
+  }, [regularContacts, specialResults, specialFilter, normalizedQuery, stateFilter, activeKinds]);
 
   const groupedResults = useMemo(
     () =>
       regularKindOrder
         .map((kind) => ({
           kind,
-          contacts: filteredResults.filter((contact) => contact.kind === kind)
+          contacts: visibleContacts.filter((contact) => contact.kind === kind)
         }))
         .filter((group) => group.contacts.length > 0),
-    [filteredResults]
+    [visibleContacts]
   );
+
+  const specialGroupedResults = useMemo(() => {
+    if (!specialFilter) return [];
+
+    const groups = new Map<string, Contact[]>();
+    for (const contact of visibleContacts) {
+      const bucket = groups.get(contact.category) ?? [];
+      bucket.push(contact);
+      groups.set(contact.category, bucket);
+    }
+
+    return Array.from(groups.entries()).map(([category, contacts]) => ({
+      category,
+      contacts
+    }));
+  }, [specialFilter, visibleContacts]);
 
   function toggleKind(kind: ContactKind) {
     setActiveKinds((prev) => {
@@ -342,11 +371,84 @@ export default function ContactSearch({ contacts }: Props) {
     setQuery('');
     setStateFilter('');
     setActiveKinds(new Set());
+    setSpecialFilter(false);
   }
 
-  const hasFilters = Boolean(query) || Boolean(stateFilter) || activeKinds.size > 0;
-  const visibleCount = emergencyResults.length + filteredResults.length;
-  const visibleGroupCount = groupedResults.length + (emergencyResults.length > 0 ? 1 : 0);
+  function toggleSpecialFilter() {
+    setSpecialFilter((prev) => {
+      const next = !prev;
+      if (next) {
+        setQuery('');
+        setStateFilter('');
+        setActiveKinds(new Set());
+      }
+      return next;
+    });
+  }
+
+  const hasFilters = Boolean(query) || Boolean(stateFilter) || activeKinds.size > 0 || specialFilter;
+  const visibleCount = emergencyResults.length + visibleContacts.length;
+  const visibleGroupCount =
+    (specialFilter ? specialGroupedResults.length : groupedResults.length) +
+    (emergencyResults.length > 0 ? 1 : 0);
+
+  function renderContactCard(contact: Contact, showCategory = true) {
+    return (
+      <article class="contact-card" key={contact.id}>
+        <div class="contact-card__top">
+          <div class="stack">
+            {showCategory && (
+              <span
+                class={`pill ${contact.kind === 'emergency' ? 'pill--verified' : 'pill--review'}`}
+              >
+                {contact.category}
+              </span>
+            )}
+            <h3>{contact.name}</h3>
+            <p class="contact-meta">
+              {contact.area}
+              {contact.state &&
+              contact.state !== 'Nacional' &&
+              !normalize(contact.area).includes(normalize(contact.state))
+                ? ` · ${contact.state}`
+                : ''}
+            </p>
+          </div>
+        </div>
+
+        <div class="phone-list">
+          {contact.phones.map((phone) => {
+            const displayValue = phone.href ? phone.value : formatVenezuelaPhone(phone.value);
+            const href = phone.href ?? (phone.dial ? toTelHref(phone.dial) : undefined);
+
+            return (
+              <div
+                class={`phone-row ${phone.href ? 'phone-row--external' : ''}`}
+                key={`${contact.id}-${phone.dial ?? phone.href ?? phone.label}`}
+              >
+                <span>
+                  <strong>{phone.label}</strong>
+                  <span>{displayValue}</span>
+                </span>
+                {href ? (
+                  <a
+                    class={`contact-action${phone.href ? ' contact-action--muted' : ''}`}
+                    href={href}
+                    target={phone.href ? '_blank' : undefined}
+                    rel={phone.href ? 'noreferrer' : undefined}
+                  >
+                    {phone.actionLabel ?? (phone.href ? 'Abrir enlace' : 'Llamar')}
+                  </a>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+
+        <p class="source-note">{contact.note}</p>
+      </article>
+    );
+  }
 
   return (
     <div class="search-shell">
@@ -363,45 +465,65 @@ export default function ContactSearch({ contacts }: Props) {
       />
 
       <div class="branch-filters">
-        <label class="branch-filter">
-          <span class="small-mono">Estado / región</span>
-          <select
-            class="branch-filter__select"
-            value={stateFilter}
-            onChange={(event) =>
-              setStateFilter((event.currentTarget as HTMLSelectElement).value)
-            }
+        <div class="branch-chips branch-chips--stacked" role="group" aria-label="Filtro especial">
+          <button
+            type="button"
+            class={`chip chip--special${specialFilter ? ' chip--active' : ''}`}
+            onClick={toggleSpecialFilter}
+            aria-pressed={specialFilter}
           >
-            <option value="">Todos ({enriched.length})</option>
-            {availableStates.map((state) => {
-              const count = stateCounts.get(state) ?? 0;
-              return (
-                <option value={state} key={state}>
-                  {state} ({count})
-                </option>
-              );
-            })}
-          </select>
-        </label>
-
-        <div class="branch-chips" role="group" aria-label="Filtrar por tipo de servicio">
-          {kindOrder.map((kind) => (
-            <button
-              type="button"
-              class={`chip${activeKinds.has(kind) ? ' chip--active' : ''}`}
-              onClick={() => toggleKind(kind)}
-              aria-pressed={activeKinds.has(kind)}
-              key={kind}
-            >
-              {kindLabels[kind]}
-            </button>
-          ))}
+            {SPECIAL_EVENT_LABEL}
+          </button>
           {hasFilters && (
             <button type="button" class="chip chip--ghost" onClick={clearFilters}>
               Limpiar
             </button>
           )}
         </div>
+
+        {specialFilter ? (
+          <p class="search-results-meta">
+            Mostrando solo apoyo del terremoto 24 de junio 2026. Los números generales siguen
+            visibles arriba.
+          </p>
+        ) : (
+          <>
+            <label class="branch-filter">
+              <span class="small-mono">Estado / región</span>
+              <select
+                class="branch-filter__select"
+                value={stateFilter}
+                onChange={(event) =>
+                  setStateFilter((event.currentTarget as HTMLSelectElement).value)
+                }
+              >
+                <option value="">Todos ({regularContacts.length})</option>
+                {availableStates.map((state) => {
+                  const count = stateCounts.get(state) ?? 0;
+                  return (
+                    <option value={state} key={state}>
+                      {state} ({count})
+                    </option>
+                  );
+                })}
+              </select>
+            </label>
+
+            <div class="branch-chips" role="group" aria-label="Filtrar por tipo de servicio">
+              {kindOrder.map((kind) => (
+                <button
+                  type="button"
+                  class={`chip${activeKinds.has(kind) ? ' chip--active' : ''}`}
+                  onClick={() => toggleKind(kind)}
+                  aria-pressed={activeKinds.has(kind)}
+                  key={kind}
+                >
+                  {kindLabels[kind]}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       <p class="search-results-meta">
@@ -413,128 +535,38 @@ export default function ContactSearch({ contacts }: Props) {
         {emergencyResults.length > 0 && (
           <section class="contact-group contact-group--pinned">
             <h2>Emergencias generales</h2>
-            <div class="contacts-grid">
-              {emergencyResults.map((contact) => (
-                <article class="contact-card" key={contact.id}>
-                  <div class="contact-card__top">
-                    <div class="stack">
-                      <h3>{contact.name}</h3>
-                      <p class="contact-meta">
-                        {contact.area}
-                        {contact.state &&
-                        contact.state !== 'Nacional' &&
-                        !normalize(contact.area).includes(normalize(contact.state))
-                          ? ` · ${contact.state}`
-                          : ''}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="phone-list">
-                    {contact.phones.map((phone) => {
-                      const displayValue = phone.href ? phone.value : formatVenezuelaPhone(phone.value);
-                      const href = phone.href ?? (phone.dial ? toTelHref(phone.dial) : undefined);
-
-                      return (
-                        <div
-                          class={`phone-row ${phone.href ? 'phone-row--external' : ''}`}
-                          key={`${contact.id}-${phone.dial ?? phone.href ?? phone.label}`}
-                        >
-                          <span>
-                            <strong>{phone.label}</strong>
-                            <span>{displayValue}</span>
-                          </span>
-                          {href ? (
-                            <a
-                              class={`contact-action${phone.href ? ' contact-action--muted' : ''}`}
-                              href={href}
-                              target={phone.href ? '_blank' : undefined}
-                              rel={phone.href ? 'noreferrer' : undefined}
-                            >
-                              {phone.actionLabel ?? (phone.href ? 'Abrir enlace' : 'Llamar')}
-                            </a>
-                          ) : null}
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  <p class="source-note">{contact.note}</p>
-                </article>
-              ))}
-            </div>
+            <div class="contacts-grid">{emergencyResults.map((contact) => renderContactCard(contact, false))}</div>
           </section>
         )}
 
-        {groupedResults.map((group) => (
-          <section class="contact-group" key={group.kind}>
-            <h2>{kindLabels[group.kind]}</h2>
-            <div class="contacts-grid">
-              {group.contacts.map((contact) => (
-                <article class="contact-card" key={contact.id}>
-                  <div class="contact-card__top">
-                    <div class="stack">
-                      <span
-                        class={`pill ${
-                          contact.kind === 'emergency' ? 'pill--verified' : 'pill--review'
-                        }`}
-                      >
-                        {contact.category}
-                      </span>
-                      <h3>{contact.name}</h3>
-                      <p class="contact-meta">
-                        {contact.area}
-                        {contact.state &&
-                        contact.state !== 'Nacional' &&
-                        !normalize(contact.area).includes(normalize(contact.state))
-                          ? ` · ${contact.state}`
-                          : ''}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="phone-list">
-                    {contact.phones.map((phone) => {
-                      const displayValue = phone.href ? phone.value : formatVenezuelaPhone(phone.value);
-                      const href = phone.href ?? (phone.dial ? toTelHref(phone.dial) : undefined);
-
-                      return (
-                        <div
-                          class={`phone-row ${phone.href ? 'phone-row--external' : ''}`}
-                          key={`${contact.id}-${phone.dial ?? phone.href ?? phone.label}`}
-                        >
-                          <span>
-                            <strong>{phone.label}</strong>
-                            <span>{displayValue}</span>
-                          </span>
-                          {href ? (
-                            <a
-                              class={`contact-action${phone.href ? ' contact-action--muted' : ''}`}
-                              href={href}
-                              target={phone.href ? '_blank' : undefined}
-                              rel={phone.href ? 'noreferrer' : undefined}
-                            >
-                              {phone.actionLabel ?? (phone.href ? 'Abrir enlace' : 'Llamar')}
-                            </a>
-                          ) : null}
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  <p class="source-note">{contact.note}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-        ))}
+        {specialFilter
+          ? specialGroupedResults.map((group) => (
+              <section class="contact-group" key={group.category}>
+                <h2>{group.category}</h2>
+                <div class="contacts-grid">
+                  {group.contacts.map((contact) => renderContactCard(contact))}
+                </div>
+              </section>
+            ))
+          : groupedResults.map((group) => (
+              <section class="contact-group" key={group.kind}>
+                <h2>{kindLabels[group.kind]}</h2>
+                <div class="contacts-grid">
+                  {group.contacts.map((contact) => renderContactCard(contact))}
+                </div>
+              </section>
+            ))}
       </div>
 
-      {results.length === 0 && (
+      {specialFilter && visibleContacts.length === 0 ? (
+        <div class="empty-state">
+          No hay coincidencias en el filtro especial. Los números generales siguen visibles arriba.
+        </div>
+      ) : visibleContacts.length === 0 && emergencyResults.length === 0 ? (
         <div class="empty-state">
           No hay coincidencias. Prueba con municipio, servicio o número parcial.
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

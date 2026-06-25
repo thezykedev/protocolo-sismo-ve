@@ -961,6 +961,14 @@ button {
   gap: 0.4rem;
 }
 
+.branch-chips--stacked {
+  flex-direction: column;
+}
+
+.branch-chips--stacked .chip {
+  width: 100%;
+}
+
 .chip {
   border: 2px solid var(--line);
   background: transparent;
@@ -990,6 +998,26 @@ button {
 }
 
 .chip--active:hover {
+  color: var(--yellow-ink);
+}
+
+.chip--special {
+  border-color: var(--orange);
+  color: #ffb980;
+}
+
+.chip--special:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.chip--special.chip--active {
+  border-color: var(--yellow);
+  background: var(--yellow);
+  color: var(--yellow-ink);
+}
+
+.chip--special.chip--active:hover {
   color: var(--yellow-ink);
 }
 
