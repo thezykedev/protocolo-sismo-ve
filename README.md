@@ -1,11 +1,10 @@
 # Sismo VE
 
-PWA offline de protocolos sísmicos para Venezuela. Construida con Astro, Tailwind CSS, Preact y `vite-plugin-pwa`, con foco en carga rápida, instalación como app y consulta sin conexión.
+App offline de protocolos sísmicos para Venezuela. Construida con Astro, Tailwind CSS y Preact, con foco en carga rápida, instalación como app y consulta sin conexión.
 
 ## Qué incluye
 
 - `/` acciones rápidas para antes, durante y después del sismo
-- `/durante` respuesta inmediata durante la sacudida
 - `/protocolos` guía completa por fases
 - `/contactos` directorio buscable con emergencias, Cruz Roja integrada, hospitales y apoyo vial
 - `/mochila` checklist persistente de 72 horas
@@ -16,7 +15,7 @@ PWA offline de protocolos sísmicos para Venezuela. Construida con Astro, Tailwi
 - [Astro 7](https://astro.build/) con output estático
 - [Preact](https://preactjs.com/) para los componentes interactivos (`ContactSearch`, `BranchSearch`)
 - [Tailwind CSS 4](https://tailwindcss.com/) vía `@tailwindcss/vite`
-- [`vite-plugin-pwa`](https://vite-plugin-pwa.netlify.app/) con `generateSW`, manifest, navegación offline y precache de assets críticos
+- Service worker propio generado en build, con navegación offline y precache de rutas y assets críticos
 - Datos estructurados en `src/data/*.json` para que todo el contenido sea auditable
 
 ## Desarrollo

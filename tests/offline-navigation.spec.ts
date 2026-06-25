@@ -29,8 +29,8 @@ test.describe('offline navigation', () => {
     await page.goto('/protocolos', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('h1')).toHaveText('Protocolos');
 
-    await page.goto('/durante', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('h1')).toHaveText('Durante el sismo');
+    await page.goto('/protocolos#durante', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('#durante h2')).toHaveText('Durante el sismo');
 
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('h1').first()).toContainText('AGÁCHATE');
