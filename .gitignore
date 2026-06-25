@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 # local research and source captures
 docs/
+
+# local MCP server config (may contain credentials)
+.mcp.json
