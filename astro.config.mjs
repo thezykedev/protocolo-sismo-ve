@@ -19,7 +19,9 @@ export default defineConfig({
           enabled: true
         },
         filename: 'sw.js',
-        disable: true,
+        injectManifest: {
+          swSrc: 'src/sw.ts'
+        },
         manifest: {
           name: 'Sismo VE',
           short_name: 'Sismo VE',

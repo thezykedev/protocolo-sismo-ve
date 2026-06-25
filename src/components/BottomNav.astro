@@ -8,7 +8,11 @@ interface Props {
 const { active } = Astro.props;
 ---
 
-<nav class="bottom-nav" aria-label="Navegación principal">
+<nav
+  class="bottom-nav"
+  aria-label="Navegación principal"
+  style={`--nav-columns: ${navigationItems.length}`}
+>
   {
     navigationItems.map((item) => (
       <a class:list={[active === item.id && 'nav-active']} href={item.href}>

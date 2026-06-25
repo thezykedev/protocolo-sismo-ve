@@ -10,14 +10,14 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
-  activeNav?: 'inicio' | 'protocolos' | 'contactos' | 'cruz-roja' | 'mochila' | 'instalar';
+  activeNav?: 'inicio' | 'protocolos' | 'contactos' | 'mochila' | 'instalar';
   pageTitle?: string;
   pageIntro?: string;
   statusText?: string;
 }
 
 const {
-  title: _title,
+  title = 'Sismo VE',
   description = 'PWA offline de protocolos sísmicos para Venezuela.',
   activeNav = 'inicio',
   pageTitle,
@@ -37,7 +37,7 @@ const {
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <title>Sismo VE</title>
+    <title>{title}</title>
   </head>
   <body>
     <TopBar active={activeNav} statusText={statusText} />
