@@ -1,0 +1,27 @@
+---
+import KitChecklist from '../components/KitChecklist';
+import metadata from '../data/metadata.json';
+import kitItems from '../data/seismic-kit.json';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Mochila | Protocolo Sismo VE"
+  description="Checklist de mochila de emergencia de 72 horas."
+  activeNav="mochila"
+  pageTitle="Mochila de emergencia"
+  pageIntro="Checklist básico para una salida rápida o para mantenerte operativo durante las primeras horas."
+>
+  <KitChecklist client:load items={kitItems} storageKey={metadata.checklistStorageKey} />
+
+  <section class="grid-panel">
+    <div class="info-block">
+      <p class="eyebrow">AJUSTA TU KIT</p>
+      <p>Agrega medicinas personales, insumos para bebés, cargadores y artículos para mascotas si forman parte de tu hogar.</p>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">REVISA FECHAS</p>
+      <p>Rota agua, alimentos y fármacos de forma periódica para no descubrir vencimientos durante la emergencia.</p>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,7 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-06-25",
+  "appName": "Sismo VE",
+  "tagline": "PWA offline de protocolos sísmicos para Venezuela.",
+  "checklistStorageKey": "protocolo-sismo-ve-kit-v1"
+}

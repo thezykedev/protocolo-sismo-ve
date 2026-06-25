@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sismo VE - Protocolos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#686800",
+                        "surface-container-high": "#2a2a2a",
+                        "on-background": "#e4e2e1",
+                        "secondary-fixed-dim": "#ffb596",
+                        "secondary-container": "#fe6500",
+                        "on-primary-fixed": "#1d1d00",
+                        "inverse-on-surface": "#303030",
+                        "primary-container": "#eaea00",
+                        "on-secondary-fixed": "#360f00",
+                        "on-tertiary-container": "#636565",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "error-container": "#93000a",
+                        "on-surface": "#e4e2e1",
+                        "surface": "#131313",
+                        "on-tertiary": "#2f3131",
+                        "outline-variant": "#484831",
+                        "outline": "#939277",
+                        "on-secondary-fixed-variant": "#7c2e00",
+                        "secondary-fixed": "#ffdbcd",
+                        "surface-container": "#1f2020",
+                        "on-primary": "#323200",
+                        "inverse-surface": "#e4e2e1",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "primary-fixed-dim": "#cdcd00",
+                        "primary": "#ffffff",
+                        "tertiary": "#ffffff",
+                        "secondary": "#ffb596",
+                        "primary-fixed": "#eaea00",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-secondary": "#581e00",
+                        "surface-dim": "#131313",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container-highest": "#353535",
+                        "tertiary-container": "#e2e2e2",
+                        "surface-tint": "#cdcd00",
+                        "surface-bright": "#393939",
+                        "surface-container-low": "#1b1c1c",
+                        "surface-variant": "#353535",
+                        "on-surface-variant": "#cac8aa",
+                        "on-secondary-container": "#541d00",
+                        "on-primary-fixed-variant": "#494900",
+                        "background": "#131313",
+                        "inverse-primary": "#626200",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "border-width-thick": "4px",
+                        "border-width": "2px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-lg": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "headline-sm": ["JetBrains Mono"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "button": ["JetBrains Mono"],
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.2", "letterSpacing": "0em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "button": ["16px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e4e2e1;
+            font-family: 'Inter', sans-serif;
+        }
+        .brutal-border-b { border-bottom: 2px solid #333333; }
+        .brutal-border-t { border-top: 2px solid #333333; }
+        .brutal-border { border: 2px solid #333333; }
+        .interactive-row:hover { background-color: #FFFF00; color: #131313; }
+        .interactive-row:hover .material-symbols-outlined { color: #131313; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface flex flex-col min-h-screen pt-16 pb-20">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface border-b-[2px] border-[#333333]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">signal_cellular_connected_no_internet_4_bar</span>
+<h1 class="font-headline-md text-headline-md uppercase tracking-tighter text-on-surface">SISMO VE</h1>
+</div>
+</header>
+<!-- Sub Header (Medium TopAppBar Equivalent) -->
+<div class="sticky top-16 left-0 w-full z-40 flex items-center justify-center py-4 px-4 bg-secondary-container text-on-secondary-container brutal-border-b">
+<h2 class="font-headline-sm text-headline-sm text-center font-bold">DURANTE EL SISMO</h2>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col px-4 md:px-margin-desktop py-6 space-y-8">
+<!-- Actionable Steps List -->
+<section class="flex flex-col border-[2px] border-[#333333]">
+<div class="flex items-center gap-4 p-4 brutal-border-b interactive-row transition-colors duration-100 cursor-pointer">
+<div class="w-12 h-12 flex items-center justify-center border-2 border-current rounded-none">
+<span class="material-symbols-outlined text-[28px]">accessibility_new</span>
+</div>
+<div class="flex flex-col flex-grow">
+<span class="font-headline-sm text-headline-sm uppercase">Agáchate</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 brutal-border-b interactive-row transition-colors duration-100 cursor-pointer">
+<div class="w-12 h-12 flex items-center justify-center border-2 border-current rounded-none">
+<span class="material-symbols-outlined text-[28px]">shield</span>
+</div>
+<div class="flex flex-col flex-grow">
+<span class="font-headline-sm text-headline-sm uppercase">Cúbrete</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 brutal-border-b interactive-row transition-colors duration-100 cursor-pointer">
+<div class="w-12 h-12 flex items-center justify-center border-2 border-current rounded-none">
+<span class="material-symbols-outlined text-[28px]">front_hand</span>
+</div>
+<div class="flex flex-col flex-grow">
+<span class="font-headline-sm text-headline-sm uppercase">Sujétate</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 brutal-border-b interactive-row transition-colors duration-100 cursor-pointer">
+<div class="w-12 h-12 flex items-center justify-center border-2 border-current rounded-none">
+<span class="material-symbols-outlined text-[28px]">window</span>
+</div>
+<div class="flex flex-col flex-grow">
+<span class="font-headline-sm text-headline-sm uppercase">Aléjate de ventanas</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 interactive-row transition-colors duration-100 cursor-pointer">
+<div class="w-12 h-12 flex items-center justify-center border-2 border-current rounded-none">
+<span class="material-symbols-outlined text-[28px]">elevator</span>
+</div>
+<div class="flex flex-col flex-grow">
+<span class="font-headline-sm text-headline-sm uppercase">No uses ascensores</span>
+</div>
+</div>
+</section>
+<!-- Image Placeholder illustrating action -->
+<div class="w-full aspect-video border-[2px] border-[#333333] relative overflow-hidden group bg-surface-container-high">
+<div class="absolute inset-0 bg-cover bg-center grayscale mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A highly stylized, brutalist technical illustration of a person taking cover under a sturdy desk. The drawing uses sharp, thick black lines on a stark yellow background. The style is flat, 2D, resembling a vintage safety manual or an industrial warning sign. The lines are bold and unapologetic, lacking shading or depth. The person is crouched tightly, hands protecting the back of their neck." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCiohPWzJ2iSFEmpOBGaQmXTZqM-j3h7teLwroTyrT6mmIUGPhfJXTZT5lsiQHxgtyeJc0pWi1IS1Dpx5oMV18g36p9K1aBVumLzDFdY0XzhpPb-yN0Lmd12S1eGW0r_QxIRvI94IqWpvC4-T_l1c7wjz13q02gksQfX97H0LF6USpX73UgeZhTwZBLHzrc_s4rfSkHyj67tTvnkH-bp7KAmod-RXwwHOHM9gLEsthwI-AvRWuCQufitKKYKSW36zYGHXBV3fybmI5w')"></div>
+</div>
+<!-- Next Action Button -->
+<div class="mt-auto pt-8">
+<button class="w-full bg-primary text-on-primary font-button text-button uppercase py-4 border-2 border-primary hover:bg-[#FFFF00] hover:text-[#131313] hover:border-[#FFFF00] transition-colors duration-100 flex items-center justify-between px-6">
+<span>DESPUÉS DEL SISMO</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface border-t-[2px] border-[#333333]">
+<button class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-md text-label-md uppercase">INICIO</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container h-full w-full transition-colors">
+<span class="material-symbols-outlined mb-1">menu_book</span>
+<span class="font-label-md text-label-md uppercase">PROTOCOLOS</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined mb-1">call</span>
+<span class="font-label-md text-label-md uppercase">CONTACTOS</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined mb-1">backpack</span>
+<span class="font-label-md text-label-md uppercase">KIT</span>
+</button>
+</nav>
+<!-- Desktop SideNav Placeholder (Hidden on Mobile, Visible on Desktop to maintain layout structure if needed, though prompt implies mobile primarily via BottomNavBar) -->
+<nav class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-64 border-r-[2px] border-[#333333] bg-surface flex-col z-40">
+<div class="flex flex-col w-full">
+<button class="flex items-center gap-4 p-4 text-on-surface hover:bg-surface-container-high transition-colors brutal-border-b w-full text-left">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg uppercase">INICIO</span>
+</button>
+<button class="flex items-center gap-4 p-4 bg-primary-container text-on-primary-container transition-colors brutal-border-b w-full text-left">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-lg text-label-lg uppercase">PROTOCOLOS</span>
+</button>
+<button class="flex items-center gap-4 p-4 text-on-surface hover:bg-surface-container-high transition-colors brutal-border-b w-full text-left">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-lg text-label-lg uppercase">CONTACTOS</span>
+</button>
+<button class="flex items-center gap-4 p-4 text-on-surface hover:bg-surface-container-high transition-colors brutal-border-b w-full text-left">
+<span class="material-symbols-outlined">backpack</span>
+<span class="font-label-lg text-label-lg uppercase">KIT</span>
+</button>
+</div>
+</nav>
+<!-- Adjust main content margin for desktop sidenav -->
+<style>
+        @media (min-width: 768px) {
+            main {
+                margin-left: 16rem; /* 64 * 4px */
+            }
+            .bottom-0 {
+                display: none;
+            }
+        }
+    </style>
+</body></html>

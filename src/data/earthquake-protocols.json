@@ -1,0 +1,116 @@
+{
+  "before": {
+    "title": "Antes del sismo",
+    "keyword": "Planifica",
+    "summary": "Reduce lo que puede caerte encima, define cómo saldrás y deja listo lo que necesitas para las primeras 72 horas.",
+    "intro": "FUNVISIS insiste en que los sismos no se pueden predecir. La preparación debe quedar hecha antes: plan familiar, morral accesible, rutas despejadas y objetos pesados asegurados.",
+    "steps": [
+      {
+        "title": "Haz un plan y practícalo",
+        "body": "Define qué hará cada persona, a quién avisar, dónde reunirse y por qué ruta salir. Incluye casa, escuela, trabajo y comunidad."
+      },
+      {
+        "title": "Ubica zonas seguras y peligrosas",
+        "body": "Reconoce mesas resistentes, columnas, esquinas interiores y espacios abiertos. Evita ventanas, espejos, balcones, paredes exteriores y estantes altos."
+      },
+      {
+        "title": "Asegura lo que pueda caer",
+        "body": "Ancla bibliotecas, lámparas, televisores, calentadores, materos y objetos pesados. Aleja camas, cunas y sofás de ventanas y elementos colgantes."
+      },
+      {
+        "title": "Prepara un morral de emergencia",
+        "body": "Incluye botiquín, agua para al menos tres días, alimentos no perecederos, abrelatas, linterna, baterías, radio, pito, documentos, récipes y medicamentos."
+      },
+      {
+        "title": "Deja salidas y llaves listas",
+        "body": "Mantén pasillos libres, identifica rutas alternas, ubica herramientas para cerrar agua y gas, y deja llaves cerca de la puerta principal."
+      },
+      {
+        "title": "Incluye discapacidad y mascotas",
+        "body": "Prepara ficha personal, medicamentos, tipo de sangre, alergias, teléfono y silbato. Para mascotas: agua, alimento, correa, identificación y certificados."
+      }
+    ]
+  },
+  "during": {
+    "title": "Durante el sismo",
+    "keyword": "Mantén la calma",
+    "summary": "No corras. Protégete de objetos que caen y espera a que termine el movimiento antes de evacuar.",
+    "intro": "Durante la sacudida, la prioridad es evitar golpes, cortes y caídas. FUNVISIS recomienda agacharse, cubrirse y sujetarse si estás bajo techo.",
+    "steps": [
+      {
+        "title": "Agáchate",
+        "body": "Baja al suelo para no perder el equilibrio. Si tienes movilidad reducida, adopta una posición estable y evita desplazarte."
+      },
+      {
+        "title": "Cúbrete",
+        "body": "Ponte bajo una mesa, escritorio, cama o mueble resistente. Si no hay, cubre cara, cabeza y nuca con los brazos en una esquina interior."
+      },
+      {
+        "title": "Sujétate",
+        "body": "Agarra el mueble que te protege y quédate allí hasta que el temblor se detenga. No te coloques bajo marcos de puertas."
+      },
+      {
+        "title": "Aléjate de vidrios",
+        "body": "Sepárate de ventanas, espejos, puertas de vidrio, balcones, paredes exteriores, lámparas y objetos colgantes."
+      },
+      {
+        "title": "Si estás afuera o en vehículo",
+        "body": "Aléjate de edificios, postes, árboles y cables. Si manejas, reduce velocidad, detente en un sitio seguro, activa intermitentes y permanece dentro."
+      },
+      {
+        "title": "Si usas silla de ruedas",
+        "body": "Ubícate cerca de una estructura resistente o esquina interior, frena la silla y cubre tu cabeza con brazos, bolso o maletín."
+      }
+    ]
+  },
+  "after": {
+    "title": "Después del sismo",
+    "keyword": "Toma precauciones",
+    "summary": "Evacúa con cuidado, evita fuego, revisa servicios y prepárate para réplicas.",
+    "intro": "Cuando termina la sacudida, los riesgos continúan: fugas de gas, vidrios, estructuras dañadas, incendios, polvo, réplicas y posible tsunami en zonas costeras.",
+    "steps": [
+      {
+        "title": "Evacúa sin correr",
+        "body": "Busca un camino despejado hacia un área abierta y segura. No uses ascensores ni escaleras mecánicas. No regreses por objetos."
+      },
+      {
+        "title": "No enciendas llamas",
+        "body": "Usa linterna. No uses fósforos, velas ni yesqueros porque puede haber fuga de gas y riesgo de explosión."
+      },
+      {
+        "title": "Corta servicios si es seguro",
+        "body": "Interrumpe gas, agua y electricidad si puedes hacerlo sin exponerte. Atiende incendios solo si no ponen en peligro tu vida."
+      },
+      {
+        "title": "Protégete al moverte",
+        "body": "Usa zapatos, cubre boca y nariz si hay polvo, evita escombros inestables y aléjate de construcciones que puedan caer."
+      },
+      {
+        "title": "Prepárate para réplicas",
+        "body": "Pueden ocurrir minutos, horas o días después. Mantente en el punto de reunión y lejos de fachadas, postes, cables y vidrios."
+      },
+      {
+        "title": "Si quedas atrapado",
+        "body": "Mantén la calma. Usa un pito o golpea una tubería o pared. Grita solo como último recurso para evitar inhalar polvo."
+      },
+      {
+        "title": "Si estás en la costa",
+        "body": "Si el sismo dificultó mantenerte de pie, evacúa de inmediato hacia zonas altas por posible tsunami."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "title": "Qué hacer antes, durante y después de un terremoto",
+      "url": "http://www.funvisis.gob.ve/funvisis_mejores_practicas.pdf",
+      "institution": "FUNVISIS",
+      "notes": "Base principal para las tres fases: planifica, mantén la calma y toma precauciones."
+    },
+    {
+      "title": "Manual de Autoprotección en caso de sismos",
+      "url": "http://www.funvisis.gob.ve/archivos/pdf/MANUAL_DE_AUTOPROTECCION_DE_FUNVISIS.pdf",
+      "institution": "FUNVISIS",
+      "notes": "Referencia para autoprotección, morral de emergencia y recomendaciones para personas con discapacidad."
+    }
+  ]
+}

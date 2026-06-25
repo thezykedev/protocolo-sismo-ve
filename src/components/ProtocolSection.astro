@@ -1,0 +1,45 @@
+---
+interface Step {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  id: string;
+  title: string;
+  keyword?: string;
+  summary?: string;
+  intro: string;
+  accent?: 'yellow' | 'orange' | 'white';
+  imageSrc?: string;
+  imageAlt?: string;
+  steps: Step[];
+}
+
+const { id, title, keyword, summary, intro, accent = 'white', imageSrc, imageAlt, steps } = Astro.props;
+---
+
+<section class:list={['protocol-section', `protocol-accent--${accent}`]} id={id}>
+  {
+    imageSrc && (
+      <img class="protocol-image" src={imageSrc} alt={imageAlt ?? ''} loading="lazy" />
+    )
+  }
+  <p class="eyebrow">{keyword ?? 'MOMENTO CLAVE'}</p>
+  <h2>{title}</h2>
+  {summary && <p class="phase-summary">{summary}</p>}
+  <p class="protocol-section__intro">{intro}</p>
+  <div class="protocol-steps">
+    {
+      steps.map((step, index) => (
+        <article class="protocol-step">
+          <div class="protocol-step__index">{String(index + 1).padStart(2, '0')}</div>
+          <div>
+            <h3 class="protocol-step__title">{step.title}</h3>
+            <p class="protocol-step__body">{step.body}</p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

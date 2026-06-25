@@ -1,0 +1,25 @@
+---
+import ContactSearch from '../components/ContactSearch';
+import contacts from '../data/emergency-contacts.json';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Contactos | Protocolo Sismo VE"
+  description="Contactos de emergencia organizados para Venezuela, Caracas, Miranda, La Guaira y Valencia."
+  activeNav="contactos"
+  pageTitle="Contactos"
+  pageIntro="Números organizados por emergencias, ambulancias, bomberos, Protección Civil, seguridad, rescate, Cruz Roja y hospitales. En una urgencia, usa primero el número de tu operadora."
+>
+  <section class="panel">
+    <p class="eyebrow">SIN DEPENDER DE LINKS</p>
+    <p class="source-note">
+      Quitamos enlaces externos porque pueden estar caídos o no abrir durante una emergencia. Esta
+      pantalla conserva números marcables y una nota corta de uso.
+    </p>
+  </section>
+
+  <div class="contacts-toolbar">
+    <ContactSearch client:load contacts={contacts} />
+  </div>
+</Layout>

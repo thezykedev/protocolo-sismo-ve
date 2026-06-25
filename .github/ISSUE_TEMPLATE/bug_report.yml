@@ -1,0 +1,41 @@
+name: Bug report
+description: Reporta un problema funcional o de datos verificable.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Resumen
+      description: Explica el problema y su impacto.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducir
+      description: Lista exacta de pasos.
+      placeholder: |
+        1. Ir a...
+        2. Tocar...
+        3. Ver...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Resultado esperado
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Resultado actual
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Entorno
+      description: Dispositivo, navegador, SO y si estaba instalada la PWA.

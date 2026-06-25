@@ -1,0 +1,58 @@
+---
+import protocols from '../data/earthquake-protocols.json';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Durante el Sismo | Protocolo Sismo VE"
+  description="Pasos inmediatos para actuar durante un sismo."
+  activeNav="protocolos"
+  pageTitle="Durante el sismo"
+  pageIntro="Concéntrate en estas acciones mientras dura el movimiento."
+>
+  <section class="protocol-section protocol-accent--orange">
+    <img class="protocol-image protocol-image--wide" src="/graphics/durante-sismo.png" alt="Persona cubierta bajo una mesa resistente durante un sismo" />
+    <p class="eyebrow">{protocols.during.keyword}</p>
+    <h2 class="seismic-command">
+      <span>AGÁCHATE</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>CÚBRETE</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>SUJÉTATE</span>
+    </h2>
+    <p class="phase-summary">{protocols.during.summary}</p>
+    <div class="protocol-steps">
+      {
+        protocols.during.steps.map((step, index) => (
+          <article class="protocol-step">
+            <div class="protocol-step__index">{String(index + 1).padStart(2, '0')}</div>
+            <div>
+              <h3 class="protocol-step__title">{step.title}</h3>
+              <p class="protocol-step__body">{step.body}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="cards-grid">
+    <article class="panel">
+      <p class="eyebrow">SI ESTÁS DENTRO</p>
+      <p>Quédate en el lugar, protege cabeza y cuello, y evita correr hacia salidas mientras el piso se mueve.</p>
+    </article>
+    <article class="panel">
+      <p class="eyebrow">SI ESTÁS AFUERA</p>
+      <p>Aléjate de fachadas, postes, cables, puentes y vidrios. Busca un espacio abierto y permanece alerta.</p>
+    </article>
+    <article class="panel">
+      <p class="eyebrow">SI VAS EN VEHÍCULO</p>
+      <p>Detente en un sitio seguro, lejos de puentes y tendidos eléctricos. Permanece dentro hasta que pase la sacudida.</p>
+    </article>
+  </section>
+
+  <div class="inline-actions">
+    <a class="button-brutal" href="/protocolos#despues">VER DESPUÉS DEL SISMO</a>
+    <a class="button-brutal" href="/contactos">ABRIR CONTACTOS</a>
+  </div>
+</Layout>

@@ -1,0 +1,280 @@
+<!DOCTYPE html><html class="dark" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Kit Sísmico - Sismo VE</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#686800",
+                        "surface-container-high": "#2a2a2a",
+                        "on-background": "#e4e2e1",
+                        "secondary-fixed-dim": "#ffb596",
+                        "secondary-container": "#fe6500",
+                        "on-primary-fixed": "#1d1d00",
+                        "inverse-on-surface": "#303030",
+                        "primary-container": "#eaea00",
+                        "on-secondary-fixed": "#360f00",
+                        "on-tertiary-container": "#636565",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "error-container": "#93000a",
+                        "on-surface": "#e4e2e1",
+                        "surface": "#131313",
+                        "on-tertiary": "#2f3131",
+                        "outline-variant": "#484831",
+                        "outline": "#939277",
+                        "on-secondary-fixed-variant": "#7c2e00",
+                        "secondary-fixed": "#ffdbcd",
+                        "surface-container": "#1f2020",
+                        "on-primary": "#323200",
+                        "inverse-surface": "#e4e2e1",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "primary-fixed-dim": "#cdcd00",
+                        "primary": "#ffffff",
+                        "tertiary": "#ffffff",
+                        "secondary": "#ffb596",
+                        "primary-fixed": "#eaea00",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-secondary": "#581e00",
+                        "surface-dim": "#131313",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container-highest": "#353535",
+                        "tertiary-container": "#e2e2e2",
+                        "surface-tint": "#cdcd00",
+                        "surface-bright": "#393939",
+                        "surface-container-low": "#1b1c1c",
+                        "surface-variant": "#353535",
+                        "on-surface-variant": "#cac8aa",
+                        "on-secondary-container": "#541d00",
+                        "on-primary-fixed-variant": "#494900",
+                        "background": "#131313",
+                        "inverse-primary": "#626200",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "border-width-thick": "4px",
+                        "border-width": "2px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-lg": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "headline-sm": ["JetBrains Mono"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "button": ["JetBrains Mono"],
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.2", "letterSpacing": "0em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "button": ["16px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Base Brutalism adjustments overrides */
+        * { border-radius: 0 !important; } /* Enforce sharp edges globally */
+        
+        /* Custom Checkbox Hide */
+        input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Material icon configuration */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface border-b-border-width border-outline text-primary"><div class="flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">signal_cellular_connected_no_internet_4_bar</span>
+<h1 class="font-headline-md text-headline-md uppercase tracking-tighter text-on-surface dark:text-on-surface">SISMO VE</h1>
+</div>
+<div class="border-border-width border-primary px-2 py-1 flex items-center">
+<span class="font-label-md text-label-md text-primary-fixed uppercase">MODO OFFLINE LISTO</span>
+</div></header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 px-gutter max-w-3xl mx-auto flex flex-col gap-8">
+<!-- Header & Progress Module -->
+<section class="border-border-width border-outline p-6 bg-surface-container relative overflow-hidden">
+<!-- Decorative background pattern (Brutalist dots) -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#939277 1px, transparent 1px); background-size: 16px 16px;"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-end mb-6 border-b-border-width border-outline pb-4">
+<h2 class="font-headline-lg text-headline-lg uppercase text-primary tracking-tight">Tu mochila<br>de 72 horas</h2>
+<div class="text-right">
+<span class="font-label-lg text-label-lg text-outline block mb-1">PROGRESO</span>
+<span class="font-headline-md text-headline-md text-primary" id="progress-text">0/5</span>
+</div>
+</div>
+<!-- Brutalist Progress Bar -->
+<div class="w-full h-8 border-border-width border-outline bg-surface relative">
+<div class="h-full bg-primary-container transition-all duration-300 ease-out border-r-border-width border-outline w-0" id="progress-bar"></div>
+</div>
+</div>
+</section>
+<!-- Interactive Checklist -->
+<section class="flex flex-col gap-4" id="checklist-container">
+<!-- Item 1: Agua -->
+<label class="kit-item flex items-center p-5 border-border-width border-outline bg-surface cursor-pointer hover:border-primary-fixed transition-colors select-none group">
+<input class="peer hidden" type="checkbox" value="1">
+<div class="w-8 h-8 border-border-width border-outline flex items-center justify-center mr-6 group-[.active]:bg-surface group-[.active]:border-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-primary-container opacity-0 group-[.active]:opacity-100 font-bold" style="font-size: 20px;">check</span>
+</div>
+<span class="material-symbols-outlined text-outline text-3xl mr-4 group-[.active]:text-on-primary-container group-[.active]:icon-fill transition-colors">water_drop</span>
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface group-[.active]:text-on-primary-container group-[.active]:line-through transition-all flex-grow">Agua potable</span>
+</label>
+<!-- Item 2: Linterna -->
+<label class="kit-item flex items-center p-5 border-border-width border-outline bg-surface cursor-pointer hover:border-primary-fixed transition-colors select-none group">
+<input class="peer hidden" type="checkbox" value="1">
+<div class="w-8 h-8 border-border-width border-outline flex items-center justify-center mr-6 group-[.active]:bg-surface group-[.active]:border-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-primary-container opacity-0 group-[.active]:opacity-100 font-bold" style="font-size: 20px;">check</span>
+</div>
+<span class="material-symbols-outlined text-outline text-3xl mr-4 group-[.active]:text-on-primary-container group-[.active]:icon-fill transition-colors">flashlight_on</span>
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface group-[.active]:text-on-primary-container group-[.active]:line-through transition-all flex-grow">Linterna</span>
+</label>
+<!-- Item 3: Silbato -->
+<label class="kit-item flex items-center p-5 border-border-width border-outline bg-surface cursor-pointer hover:border-primary-fixed transition-colors select-none group">
+<input class="peer hidden" type="checkbox" value="1">
+<div class="w-8 h-8 border-border-width border-outline flex items-center justify-center mr-6 group-[.active]:bg-surface group-[.active]:border-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-primary-container opacity-0 group-[.active]:opacity-100 font-bold" style="font-size: 20px;">check</span>
+</div>
+<span class="material-symbols-outlined text-outline text-3xl mr-4 group-[.active]:text-on-primary-container group-[.active]:icon-fill transition-colors">volume_up</span>
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface group-[.active]:text-on-primary-container group-[.active]:line-through transition-all flex-grow">Silbato</span>
+</label>
+<!-- Item 4: Botiquín -->
+<label class="kit-item flex items-center p-5 border-border-width border-outline bg-surface cursor-pointer hover:border-primary-fixed transition-colors select-none group">
+<input class="peer hidden" type="checkbox" value="1">
+<div class="w-8 h-8 border-border-width border-outline flex items-center justify-center mr-6 group-[.active]:bg-surface group-[.active]:border-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-primary-container opacity-0 group-[.active]:opacity-100 font-bold" style="font-size: 20px;">check</span>
+</div>
+<span class="material-symbols-outlined text-outline text-3xl mr-4 group-[.active]:text-on-primary-container group-[.active]:icon-fill transition-colors">medical_services</span>
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface group-[.active]:text-on-primary-container group-[.active]:line-through transition-all flex-grow">Botiquín</span>
+</label>
+<!-- Item 5: Documentos -->
+<label class="kit-item flex items-center p-5 border-border-width border-outline bg-surface cursor-pointer hover:border-primary-fixed transition-colors select-none group">
+<input class="peer hidden" type="checkbox" value="1">
+<div class="w-8 h-8 border-border-width border-outline flex items-center justify-center mr-6 group-[.active]:bg-surface group-[.active]:border-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-primary-container opacity-0 group-[.active]:opacity-100 font-bold" style="font-size: 20px;">check</span>
+</div>
+<span class="material-symbols-outlined text-outline text-3xl mr-4 group-[.active]:text-on-primary-container group-[.active]:icon-fill transition-colors">folder</span>
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface group-[.active]:text-on-primary-container group-[.active]:line-through transition-all flex-grow">Documentos en bolsa</span>
+</label>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface border-t-border-width border-outline md:hidden">
+<!-- INICIO (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-primary-fixed-dim hover:text-on-primary-fixed active:invert transition-colors duration-100" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md uppercase mt-1">INICIO</span>
+</a>
+<!-- PROTOCOLOS (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-primary-fixed-dim hover:text-on-primary-fixed active:invert transition-colors duration-100" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md uppercase mt-1">PROTOCOLOS</span>
+</a>
+<!-- CONTACTOS (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-primary-fixed-dim hover:text-on-primary-fixed active:invert transition-colors duration-100" href="#">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-md text-label-md uppercase mt-1">CONTACTOS</span>
+</a>
+<!-- KIT (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container h-full w-full active:invert transition-colors duration-100" href="#">
+<span class="material-symbols-outlined icon-fill">backpack</span>
+<span class="font-label-md text-label-md uppercase mt-1">KIT</span>
+</a>
+</nav>
+<!-- Interaction Logic -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const items = document.querySelectorAll('.kit-item');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const totalItems = items.length;
+
+            function updateProgress() {
+                const checkedCount = document.querySelectorAll('.kit-item input:checked').length;
+                const percentage = (checkedCount / totalItems) * 100;
+                
+                progressBar.style.width = `${percentage}%`;
+                progressText.textContent = `${checkedCount}/${totalItems}`;
+
+                // Brutalist feedback on completion
+                if (checkedCount === totalItems) {
+                    progressBar.classList.add('bg-secondary-container');
+                    progressBar.classList.remove('bg-primary-container');
+                } else {
+                    progressBar.classList.remove('bg-secondary-container');
+                    progressBar.classList.add('bg-primary-container');
+                }
+            }
+
+            items.forEach(item => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                
+                // Click handler for the whole label container
+                item.addEventListener('click', (e) => {
+                    // Prevent double triggering if they click exactly on the hidden checkbox
+                    if(e.target !== checkbox) {
+                        checkbox.checked = !checkbox.checked;
+                    }
+                    
+                    // Toggle Brutalist active styling classes
+                    if (checkbox.checked) {
+                        item.classList.add('active', 'bg-primary-container', 'border-primary-container');
+                        item.classList.remove('bg-surface', 'border-outline');
+                    } else {
+                        item.classList.remove('active', 'bg-primary-container', 'border-primary-container');
+                        item.classList.add('bg-surface', 'border-outline');
+                    }
+                    
+                    updateProgress();
+                });
+            });
+        });
+    </script>
+
+
+</body></html>

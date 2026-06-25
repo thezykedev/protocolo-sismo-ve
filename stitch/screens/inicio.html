@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sismo VE - Inicio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#686800",
+                        "surface-container-high": "#2a2a2a",
+                        "on-background": "#e4e2e1",
+                        "secondary-fixed-dim": "#ffb596",
+                        "secondary-container": "#fe6500",
+                        "on-primary-fixed": "#1d1d00",
+                        "inverse-on-surface": "#303030",
+                        "primary-container": "#eaea00",
+                        "on-secondary-fixed": "#360f00",
+                        "on-tertiary-container": "#636565",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "error-container": "#93000a",
+                        "on-surface": "#e4e2e1",
+                        "surface": "#131313",
+                        "on-tertiary": "#2f3131",
+                        "outline-variant": "#484831",
+                        "outline": "#939277",
+                        "on-secondary-fixed-variant": "#7c2e00",
+                        "secondary-fixed": "#ffdbcd",
+                        "surface-container": "#1f2020",
+                        "on-primary": "#323200",
+                        "inverse-surface": "#e4e2e1",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "primary-fixed-dim": "#cdcd00",
+                        "primary": "#ffffff",
+                        "tertiary": "#ffffff",
+                        "secondary": "#ffb596",
+                        "primary-fixed": "#eaea00",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-secondary": "#581e00",
+                        "surface-dim": "#131313",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container-highest": "#353535",
+                        "tertiary-container": "#e2e2e2",
+                        "surface-tint": "#cdcd00",
+                        "surface-bright": "#393939",
+                        "surface-container-low": "#1b1c1c",
+                        "surface-variant": "#353535",
+                        "on-surface-variant": "#cac8aa",
+                        "on-secondary-container": "#541d00",
+                        "on-primary-fixed-variant": "#494900",
+                        "background": "#131313",
+                        "inverse-primary": "#626200",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "border-width-thick": "4px",
+                        "border-width": "2px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-lg": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "headline-sm": ["JetBrains Mono"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "button": ["JetBrains Mono"],
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.2", "letterSpacing": "0em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "button": ["16px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "700" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md antialiased min-h-screen flex flex-col pt-16 pb-20">
+<!-- TopAppBar JSON -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface dark:bg-surface border-b-border-width border-outline dark:border-outline text-primary dark:text-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">signal_cellular_connected_no_internet_4_bar</span>
+<h1 class="font-headline-md text-headline-md uppercase tracking-tighter text-on-surface dark:text-on-surface">SISMO VE</h1>
+</div>
+<div class="border-border-width border-primary px-2 py-1 flex items-center">
+<span class="font-label-md text-label-md text-primary-fixed uppercase">MODO OFFLINE LISTO</span>
+</div>
+</header>
+<main class="flex-grow flex flex-col p-4 md:p-8 gap-6 max-w-4xl mx-auto w-full relative z-10">
+<!-- Destacado Central -->
+<section class="bg-primary-fixed text-on-primary-fixed border-border-width border-primary-fixed p-6 md:p-12 flex flex-col items-center justify-center text-center">
+<span class="font-label-lg text-label-lg uppercase mb-4 tracking-widest">SI ESTÁ TEMBLANDO:</span>
+<h2 class="font-headline-lg text-headline-lg uppercase leading-tight">AGÁCHATE · CÚBRETE · SUJÉTATE</h2>
+</section>
+<!-- Grid de Botones (Brutalista) -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-grow content-start">
+<a class="group relative flex flex-col border-border-width border-primary bg-background text-primary hover:bg-primary-fixed hover:text-on-primary-fixed hover:border-primary-fixed transition-colors p-6 min-h-[160px] justify-between" href="#">
+<span class="material-symbols-outlined text-4xl mb-4 group-hover:text-on-primary-fixed" style="font-variation-settings: 'FILL' 0;">warning</span>
+<span class="font-button text-button uppercase text-left group-hover:text-on-primary-fixed">DURANTE UN SISMO</span>
+</a>
+<a class="group relative flex flex-col border-border-width border-primary bg-background text-primary hover:bg-primary-fixed hover:text-on-primary-fixed hover:border-primary-fixed transition-colors p-6 min-h-[160px] justify-between" href="#">
+<span class="material-symbols-outlined text-4xl mb-4 group-hover:text-on-primary-fixed" style="font-variation-settings: 'FILL' 0;">health_and_safety</span>
+<span class="font-button text-button uppercase text-left group-hover:text-on-primary-fixed">DESPUÉS DEL SISMO</span>
+</a>
+<a class="group relative flex flex-col border-border-width border-primary bg-background text-primary hover:bg-primary-fixed hover:text-on-primary-fixed hover:border-primary-fixed transition-colors p-6 min-h-[160px] justify-between" href="#">
+<span class="material-symbols-outlined text-4xl mb-4 group-hover:text-on-primary-fixed" style="font-variation-settings: 'FILL' 0;">contact_phone</span>
+<span class="font-button text-button uppercase text-left group-hover:text-on-primary-fixed">CONTACTOS ÚTILES</span>
+</a>
+<a class="group relative flex flex-col border-border-width border-primary bg-background text-primary hover:bg-primary-fixed hover:text-on-primary-fixed hover:border-primary-fixed transition-colors p-6 min-h-[160px] justify-between" href="#">
+<span class="material-symbols-outlined text-4xl mb-4 group-hover:text-on-primary-fixed" style="font-variation-settings: 'FILL' 0;">medical_services</span>
+<span class="font-button text-button uppercase text-left group-hover:text-on-primary-fixed">KIT DE EMERGENCIA</span>
+</a>
+</section>
+<!-- Footer -->
+<footer class="mt-auto pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left border-t-border-width border-outline opacity-80 pb-4">
+<p class="font-label-md text-label-md uppercase text-on-surface-variant max-w-md">Información comunitaria. Verifica los números cuando sea posible.</p>
+<span class="font-label-lg text-label-lg text-outline-variant">v1.0.0</span>
+</footer>
+</main>
+<!-- BottomNavBar JSON - Solo visible en movil -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface dark:bg-surface border-t-border-width border-outline dark:border-outline text-primary dark:text-primary">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container h-full w-full active:invert" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-label-md uppercase">INICIO</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-primary-fixed-dim hover:text-on-primary-fixed active:invert" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+<span class="font-label-md text-label-md uppercase">PROTOCOLOS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-primary-fixed-dim hover:text-on-primary-fixed active:invert" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">call</span>
+<span class="font-label-md text-label-md uppercase">CONTACTOS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-primary-fixed-dim hover:text-on-primary-fixed active:invert" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">backpack</span>
+<span class="font-label-md text-label-md uppercase">KIT</span>
+</a>
+</nav>
+</body></html>

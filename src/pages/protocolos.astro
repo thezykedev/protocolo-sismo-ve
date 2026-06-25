@@ -1,0 +1,79 @@
+---
+import protocols from '../data/earthquake-protocols.json';
+import Layout from '../layouts/Layout.astro';
+import ProtocolSection from '../components/ProtocolSection.astro';
+---
+
+<Layout
+  title="Protocolos | Protocolo Sismo VE"
+  description="Protocolos antes, durante y después de un sismo."
+  activeNav="protocolos"
+  pageTitle="Protocolos"
+  pageIntro="Guía rápida para prepararte, protegerte y responder después de un movimiento sísmico."
+>
+  <section class="panel">
+    <p class="eyebrow">ACCESO RÁPIDO</p>
+    <div class="jump-row">
+      <a class="jump-link" href="#antes">ANTES</a>
+      <a class="jump-link" href="#durante">DURANTE</a>
+      <a class="jump-link" href="#despues">DESPUÉS</a>
+    </div>
+  </section>
+
+  <section class="protocol-grid">
+    <ProtocolSection
+      id="antes"
+      title={protocols.before.title}
+      keyword={protocols.before.keyword}
+      summary={protocols.before.summary}
+      intro={protocols.before.intro}
+      imageSrc="/graphics/antes-sismo.png"
+      imageAlt="Morral de emergencia, suministros y salida despejada antes del sismo"
+      steps={protocols.before.steps}
+    />
+    <ProtocolSection
+      id="durante"
+      title={protocols.during.title}
+      keyword={protocols.during.keyword}
+      summary={protocols.during.summary}
+      intro={protocols.during.intro}
+      imageSrc="/graphics/durante-sismo.png"
+      imageAlt="Persona cubierta bajo una mesa resistente durante un sismo"
+      steps={protocols.during.steps}
+      accent="orange"
+    />
+    <ProtocolSection
+      id="despues"
+      title={protocols.after.title}
+      keyword={protocols.after.keyword}
+      summary={protocols.after.summary}
+      intro={protocols.after.intro}
+      imageSrc="/graphics/despues-sismo.png"
+      imageAlt="Persona evacuando con linterna y evitando escombros después del sismo"
+      steps={protocols.after.steps}
+      accent="yellow"
+    />
+  </section>
+
+  <section class="bibliography-section" aria-labelledby="bibliografia">
+    <div class="bibliography-header">
+      <h2 id="bibliografia">Fuentes</h2>
+    </div>
+    <div class="bibliography-grid">
+      <article class="bibliography-card">
+        <h3>{protocols.sources[0].title}</h3>
+      <p>
+          {protocols.sources[0].institution}. {protocols.sources[0].notes}
+      </p>
+        <a class="source-link" href={protocols.sources[0].url}>Abrir PDF</a>
+      </article>
+      <article class="bibliography-card">
+        <h3>{protocols.sources[1].title}</h3>
+      <p>
+          {protocols.sources[1].institution}. {protocols.sources[1].notes}
+      </p>
+        <a class="source-link" href={protocols.sources[1].url}>Abrir PDF</a>
+      </article>
+    </div>
+  </section>
+</Layout>

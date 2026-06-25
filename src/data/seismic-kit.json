@@ -1,0 +1,42 @@
+[
+  {
+    "id": "agua",
+    "title": "Agua potable",
+    "note": "Reserva suficiente para varios días y prioriza envases fáciles de transportar."
+  },
+  {
+    "id": "alimentos",
+    "title": "Alimentos no perecederos",
+    "note": "Incluye opciones listas para consumir y considera necesidades dietéticas del grupo."
+  },
+  {
+    "id": "linterna",
+    "title": "Linterna y baterías",
+    "note": "Prefiere linterna dedicada; evita depender solo del teléfono móvil."
+  },
+  {
+    "id": "radio",
+    "title": "Radio o power bank",
+    "note": "Sirve para recibir avisos y conservar energía en comunicaciones esenciales."
+  },
+  {
+    "id": "silbato",
+    "title": "Silbato",
+    "note": "Útil para pedir ayuda si quedas aislado o sin voz."
+  },
+  {
+    "id": "botiquin",
+    "title": "Botiquín y medicinas",
+    "note": "Añade analgésicos, curas básicas y tratamientos personales vigentes."
+  },
+  {
+    "id": "documentos",
+    "title": "Documentos protegidos",
+    "note": "Guarda copias de identidad, pólizas y contactos en bolsa impermeable."
+  },
+  {
+    "id": "higiene",
+    "title": "Ropa y artículos de higiene",
+    "note": "Incluye abrigo liviano, mascarillas, toallas sanitarias y artículos para bebés si aplica."
+  }
+]

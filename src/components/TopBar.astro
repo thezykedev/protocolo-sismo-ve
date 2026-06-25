@@ -1,0 +1,40 @@
+---
+import { navigationItems } from '../lib/navigation';
+
+interface Props {
+  active: string;
+  statusText: string;
+}
+
+const { active, statusText } = Astro.props;
+---
+
+<header class="topbar">
+  <a class="brand" href="/" aria-label="Ir al inicio">
+    <span class="brand__signal" aria-hidden="true"></span>
+    <span>SISMO VE</span>
+  </a>
+  <div class="status-chip">
+    <span class="status-chip__icon" aria-hidden="true"></span>
+    <span>{statusText}</span>
+  </div>
+  <details class="desktop-menu">
+    <summary aria-label="Abrir navegación">
+      <span class="desktop-menu__label">MENU</span>
+      <span class="desktop-menu__mark" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </summary>
+    <nav class="desktop-menu__panel" aria-label="Navegación principal">
+      {
+        navigationItems.map((item) => (
+          <a class:list={[active === item.id && 'nav-active']} href={item.href}>
+            <span class="nav-label">{item.label}</span>
+          </a>
+        ))
+      }
+    </nav>
+  </details>
+</header>

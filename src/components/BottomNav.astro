@@ -1,0 +1,19 @@
+---
+import { navigationItems } from '../lib/navigation';
+
+interface Props {
+  active: string;
+}
+
+const { active } = Astro.props;
+---
+
+<nav class="bottom-nav" aria-label="Navegación principal">
+  {
+    navigationItems.map((item) => (
+      <a class:list={[active === item.id && 'nav-active']} href={item.href}>
+        <span class="nav-label">{item.label}</span>
+      </a>
+    ))
+  }
+</nav>

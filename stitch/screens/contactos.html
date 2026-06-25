@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contactos de Emergencia - SISMO VE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#686800",
+                    "surface-container-high": "#2a2a2a",
+                    "on-background": "#e4e2e1",
+                    "secondary-fixed-dim": "#ffb596",
+                    "secondary-container": "#fe6500",
+                    "on-primary-fixed": "#1d1d00",
+                    "inverse-on-surface": "#303030",
+                    "primary-container": "#eaea00",
+                    "on-secondary-fixed": "#360f00",
+                    "on-tertiary-container": "#636565",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "error-container": "#93000a",
+                    "on-surface": "#e4e2e1",
+                    "surface": "#131313",
+                    "on-tertiary": "#2f3131",
+                    "outline-variant": "#484831",
+                    "outline": "#939277",
+                    "on-secondary-fixed-variant": "#7c2e00",
+                    "secondary-fixed": "#ffdbcd",
+                    "surface-container": "#1f2020",
+                    "on-primary": "#323200",
+                    "inverse-surface": "#e4e2e1",
+                    "error": "#ffb4ab",
+                    "on-error": "#690005",
+                    "primary-fixed-dim": "#cdcd00",
+                    "primary": "#ffffff",
+                    "tertiary": "#ffffff",
+                    "secondary": "#ffb596",
+                    "primary-fixed": "#eaea00",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-secondary": "#581e00",
+                    "surface-dim": "#131313",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-container-highest": "#353535",
+                    "tertiary-container": "#e2e2e2",
+                    "surface-tint": "#cdcd00",
+                    "surface-bright": "#393939",
+                    "surface-container-low": "#1b1c1c",
+                    "surface-variant": "#353535",
+                    "on-surface-variant": "#cac8aa",
+                    "on-secondary-container": "#541d00",
+                    "on-primary-fixed-variant": "#494900",
+                    "background": "#131313",
+                    "inverse-primary": "#626200",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "border-width-thick": "4px",
+                    "border-width": "2px",
+                    "unit": "4px",
+                    "gutter": "16px",
+                    "margin-desktop": "32px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-lg": ["JetBrains Mono"],
+                    "headline-md": ["JetBrains Mono"],
+                    "headline-sm": ["JetBrains Mono"],
+                    "headline-lg": ["JetBrains Mono"],
+                    "button": ["JetBrains Mono"],
+                    "label-md": ["JetBrains Mono"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "1.2", "letterSpacing": "0em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #131313; color: #e4e2e1; }
+        .font-mono-brand { font-family: 'JetBrains Mono', monospace; }
+        /* Focus Utilities for Brutalist Style */
+        .brutalist-input:focus { outline: none; border-color: #FFFF00; }
+        .brutalist-button:hover { background-color: #FFFF00; color: #000; border-color: #FFFF00; }
+        /* Hide scrollbar for a cleaner look if needed */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #131313; border-left: 2px solid #333333; }
+        ::-webkit-scrollbar-thumb { background: #333333; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col pt-16 pb-20">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface text-primary dark:text-primary fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 border-b-border-width border-outline dark:border-outline">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface" data-icon="signal_cellular_connected_no_internet_4_bar">signal_cellular_connected_no_internet_4_bar</span>
+<span class="font-headline-md text-headline-md uppercase tracking-tighter text-on-surface dark:text-on-surface">SISMO VE</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow p-margin-mobile flex flex-col gap-6 max-w-3xl mx-auto w-full">
+<!-- Page Title -->
+<div class="border-b-[2px] border-[#333333] pb-4 pt-4">
+<h1 class="font-headline-lg text-headline-lg text-primary uppercase">Contactos</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Directorio de emergencias verificados.</p>
+</div>
+<!-- Search Input -->
+<div class="w-full flex flex-col gap-2">
+<label class="font-label-md text-label-md uppercase text-on-surface" for="search">Buscar Contacto</label>
+<div class="relative flex w-full">
+<input class="brutalist-input w-full bg-surface-container border-[2px] border-[#FFFF00] text-on-surface p-4 font-body-md text-body-md rounded-none placeholder:text-on-surface-variant focus:ring-0" id="search" placeholder="Ej. Bomberos, Paramédicos..." type="text"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#FFFF00]">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</div>
+</div>
+</div>
+<!-- Contacts Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Contact Card 1 (High Priority) -->
+<article class="bg-surface border-[2px] border-primary p-4 flex flex-col gap-4">
+<div class="flex justify-between items-start w-full">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary uppercase bg-[#FF6600] text-black px-2 py-1 w-fit border-[1px] border-primary mb-2">VERIFICADO</span>
+<h2 class="font-headline-sm text-headline-sm text-primary uppercase">911 Emergencias</h2>
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase mt-1">Nacional • Central</span>
+</div>
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="emergency">emergency</span>
+</div>
+<div class="flex-grow flex items-center justify-center border-y-[2px] border-[#333333] py-6 my-2">
+<span class="font-headline-lg text-headline-lg text-primary font-mono-brand">911</span>
+</div>
+<button class="brutalist-button w-full bg-primary border-[2px] border-primary text-surface p-4 font-button text-button uppercase transition-colors duration-100 ease-linear flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:text-black" data-icon="call">call</span>
+                    LLAMAR
+                </button>
+</article>
+<!-- Contact Card 2 -->
+<article class="bg-surface border-[2px] border-primary p-4 flex flex-col gap-4">
+<div class="flex justify-between items-start w-full">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary uppercase bg-[#FF6600] text-black px-2 py-1 w-fit border-[1px] border-primary mb-2">VERIFICADO</span>
+<h2 class="font-headline-sm text-headline-sm text-primary uppercase">Protección Civil</h2>
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase mt-1">Nacional • Rescate</span>
+</div>
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="local_fire_department">local_fire_department</span>
+</div>
+<div class="flex-grow flex items-center justify-center border-y-[2px] border-[#333333] py-6 my-2">
+<span class="font-headline-lg text-headline-lg text-primary font-mono-brand">0800-PCIVIL1</span>
+</div>
+<button class="brutalist-button w-full bg-primary border-[2px] border-primary text-surface p-4 font-button text-button uppercase transition-colors duration-100 ease-linear flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:text-black" data-icon="call">call</span>
+                    LLAMAR
+                </button>
+</article>
+<!-- Contact Card 3 -->
+<article class="bg-surface border-[2px] border-primary p-4 flex flex-col gap-4 opacity-90">
+<div class="flex justify-between items-start w-full">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary uppercase bg-surface-container-highest text-on-surface px-2 py-1 w-fit border-[1px] border-outline mb-2">POR VERIFICAR</span>
+<h2 class="font-headline-sm text-headline-sm text-primary uppercase">Bomberos Dto. Capital</h2>
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase mt-1">Caracas • Incendios</span>
+</div>
+<span class="material-symbols-outlined text-4xl text-outline" data-icon="fire_truck">fire_truck</span>
+</div>
+<div class="flex-grow flex items-center justify-center border-y-[2px] border-[#333333] py-6 my-2">
+<span class="font-headline-md text-headline-md text-primary font-mono-brand">0212-545-4545</span>
+</div>
+<button class="brutalist-button w-full bg-primary border-[2px] border-primary text-surface p-4 font-button text-button uppercase transition-colors duration-100 ease-linear flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:text-black" data-icon="call">call</span>
+                    LLAMAR
+                </button>
+</article>
+<!-- Contact Card 4 -->
+<article class="bg-surface border-[2px] border-primary p-4 flex flex-col gap-4 opacity-90">
+<div class="flex justify-between items-start w-full">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary uppercase bg-surface-container-highest text-on-surface px-2 py-1 w-fit border-[1px] border-outline mb-2">POR VERIFICAR</span>
+<h2 class="font-headline-sm text-headline-sm text-primary uppercase">Cruz Roja Venezolana</h2>
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase mt-1">Nacional • Salud</span>
+</div>
+<span class="material-symbols-outlined text-4xl text-outline" data-icon="medical_services">medical_services</span>
+</div>
+<div class="flex-grow flex items-center justify-center border-y-[2px] border-[#333333] py-6 my-2">
+<span class="font-headline-md text-headline-md text-primary font-mono-brand">0212-571-4380</span>
+</div>
+<button class="brutalist-button w-full bg-primary border-[2px] border-primary text-surface p-4 font-button text-button uppercase transition-colors duration-100 ease-linear flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:text-black" data-icon="call">call</span>
+                    LLAMAR
+                </button>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface dark:bg-surface border-t-border-width border-outline dark:border-outline fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-primary-fixed-dim hover:text-on-primary-fixed active:invert transition-colors duration-100 ease-linear font-label-md text-label-md uppercase">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+            INICIO
+        </button>
+<button class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-primary-fixed-dim hover:text-on-primary-fixed active:invert transition-colors duration-100 ease-linear font-label-md text-label-md uppercase">
+<span class="material-symbols-outlined mb-1" data-icon="menu_book">menu_book</span>
+            PROTOCOLOS
+        </button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container h-full w-full font-label-md text-label-md uppercase">
+<span class="material-symbols-outlined mb-1" data-icon="call" data-weight="fill" style="font-variation-settings: 'FILL' 1;">call</span>
+            CONTACTOS
+        </button>
+<button class="flex flex-col items-center justify-center text-on-surface h-full w-full hover:bg-primary-fixed-dim hover:text-on-primary-fixed active:invert transition-colors duration-100 ease-linear font-label-md text-label-md uppercase">
+<span class="material-symbols-outlined mb-1" data-icon="backpack">backpack</span>
+            KIT
+        </button>
+</nav>
+<!-- Desktop SideNav Placeholder (Hidden on Mobile) -->
+<nav class="hidden md:flex fixed left-0 top-16 bottom-0 w-64 bg-surface border-r-[2px] border-[#333333] flex-col p-4 gap-2 z-40">
+<div class="font-label-lg text-label-lg uppercase text-on-surface-variant mb-4 px-2 tracking-widest">Navegación</div>
+<button class="flex items-center gap-4 text-on-surface p-4 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors border-[2px] border-transparent font-label-md text-label-md uppercase text-left w-full justify-start">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+            INICIO
+        </button>
+<button class="flex items-center gap-4 text-on-surface p-4 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors border-[2px] border-transparent font-label-md text-label-md uppercase text-left w-full justify-start">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+            PROTOCOLOS
+        </button>
+<button class="flex items-center gap-4 bg-primary-container text-on-primary-container p-4 border-[2px] border-[#FFFF00] font-label-md text-label-md uppercase text-left w-full justify-start font-bold">
+<span class="material-symbols-outlined" data-icon="call" data-weight="fill" style="font-variation-settings: 'FILL' 1;">call</span>
+            CONTACTOS
+        </button>
+<button class="flex items-center gap-4 text-on-surface p-4 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors border-[2px] border-transparent font-label-md text-label-md uppercase text-left w-full justify-start">
+<span class="material-symbols-outlined" data-icon="backpack">backpack</span>
+            KIT
+        </button>
+</nav>
+<style>
+        @media (min-width: 768px) {
+            main {
+                padding-left: calc(16rem + 2rem); /* 64 w-64 + padding */
+                max-width: 100%;
+            }
+        }
+    </style>
+</body></html>

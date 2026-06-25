@@ -1,0 +1,1117 @@
+[
+  {
+    "id": "emergencias-operadora",
+    "name": "Emergencias por operadora",
+    "area": "Venezuela",
+    "category": "Números de emergencia",
+    "kind": "emergency",
+    "note": "Usa el número que corresponda a tu línea telefónica.",
+    "phones": [
+      { "label": "CANTV fijo", "value": "171", "dial": "171" },
+      { "label": "Movilnet", "value": "*1", "dial": "*1" },
+      { "label": "Digitel", "value": "112", "dial": "112" },
+      { "label": "Movistar", "value": "911", "dial": "911" }
+    ]
+  },
+  {
+    "id": "angeles-autopista",
+    "name": "Angeles de la Autopista",
+    "area": "Vialidad nacional",
+    "category": "Atencion vial",
+    "kind": "rescue",
+    "note": "Paramedicos viales, ambulancias y rescate en autopistas. Referencias: @paramedicosmtt y @paramedicosviales.",
+    "phones": [
+      { "label": "Movil", "value": "0416-5285727", "dial": "04165285727" },
+      { "label": "0800", "value": "0800-6888425", "dial": "08006888425" }
+    ]
+  },
+  {
+    "id": "ambulancias-aeroambulancias",
+    "name": "Aeroambulancias",
+    "area": "Caracas",
+    "category": "Ambulancias",
+    "kind": "ambulance",
+    "note": "Servicio privado de ambulancias.",
+    "phones": [
+      { "label": "Central", "value": "0212-9932541", "dial": "02129932541" },
+      { "label": "Alterno", "value": "0212-9928980", "dial": "02129928980" },
+      { "label": "Alterno", "value": "0212-9928990", "dial": "02129928990" },
+      { "label": "Alterno", "value": "0212-9917940", "dial": "02129917940" }
+    ]
+  },
+  {
+    "id": "ambulancias-rescarven",
+    "name": "Rescarven",
+    "area": "Caracas",
+    "category": "Ambulancias",
+    "kind": "ambulance",
+    "note": "Servicio privado de ambulancias.",
+    "phones": [
+      { "label": "Central", "value": "0212-9936911", "dial": "02129936911" },
+      { "label": "Alterno", "value": "0212-9936991", "dial": "02129936991" },
+      { "label": "Alterno", "value": "0212-9931310", "dial": "02129931310" },
+      { "label": "Alterno", "value": "0212-9933367", "dial": "02129933367" },
+      { "label": "Clinica", "value": "0212-2395686", "dial": "02122395686" }
+    ]
+  },
+  {
+    "id": "ambulancia-metropolitana",
+    "name": "Servicio de Ambulancia Metropolitano",
+    "area": "Caracas",
+    "category": "Ambulancias",
+    "kind": "ambulance",
+    "note": "Servicio de ambulancia para el Area Metropolitana.",
+    "phones": [
+      { "label": "Central", "value": "0212-5454545", "dial": "02125454545" },
+      { "label": "Alterno", "value": "0212-5454655", "dial": "02125454655" },
+      { "label": "Alterno", "value": "0212-5779209", "dial": "02125779209" }
+    ]
+  },
+  {
+    "id": "bomberos-caracas-central",
+    "name": "Bomberos Metropolitanos / Caracas",
+    "area": "Caracas",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Central de bomberos para Caracas y Area Metropolitana.",
+    "phones": [
+      { "label": "Central", "value": "0212-5454545", "dial": "02125454545" }
+    ]
+  },
+  {
+    "id": "bomberos-antimano",
+    "name": "Bomberos Antimano",
+    "area": "Caracas",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Estacion de Bomberos de Caracas.",
+    "phones": [
+      { "label": "Estacion", "value": "0212-4722054", "dial": "02124722054" }
+    ]
+  },
+  {
+    "id": "bomberos-catia-la-mar",
+    "name": "Bomberos Catia La Mar",
+    "area": "La Guaira",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Atencion de bomberos en Catia La Mar.",
+    "phones": [
+      { "label": "Estacion", "value": "0212-3519966", "dial": "02123519966" }
+    ]
+  },
+  {
+    "id": "bomberos-chacao",
+    "name": "Bomberos Chacao",
+    "area": "Chacao",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Atencion municipal de bomberos.",
+    "phones": [
+      { "label": "Estacion", "value": "0212-2653261", "dial": "02122653261" }
+    ]
+  },
+  {
+    "id": "bomberos-este-cafetal",
+    "name": "Bomberos del Este / El Cafetal",
+    "area": "Caracas",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Estaciones del Este de Caracas y El Cafetal.",
+    "phones": [
+      { "label": "Cafetal", "value": "0212-9874334", "dial": "02129874334" },
+      { "label": "Alterno", "value": "0212-9855060", "dial": "02129855060" },
+      { "label": "Sucre", "value": "0212-9853640", "dial": "02129853640" },
+      { "label": "Alterno", "value": "0212-9852977", "dial": "02129852977" }
+    ]
+  },
+  {
+    "id": "bomberos-el-paraiso",
+    "name": "Bomberos El Paraiso",
+    "area": "Caracas",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Estacion de Bomberos de Caracas.",
+    "phones": [
+      { "label": "Estacion", "value": "0212-4810961", "dial": "02124810961" }
+    ]
+  },
+  {
+    "id": "bomberos-el-valle",
+    "name": "Bomberos El Valle",
+    "area": "Caracas",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Estacion de Bomberos de Caracas.",
+    "phones": [
+      { "label": "Estacion", "value": "0212-6720175", "dial": "02126720175" },
+      { "label": "Alterno", "value": "0212-6720636", "dial": "02126720636" }
+    ]
+  },
+  {
+    "id": "bomberos-la-guaira",
+    "name": "Bomberos La Guaira",
+    "area": "La Guaira",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Bomberos estadales para incendios o rescates en La Guaira.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-3322165", "dial": "02123322165" },
+      { "label": "Central", "value": "0212-3327620", "dial": "02123327620" },
+      { "label": "Alterno", "value": "0212-3310445", "dial": "02123310445" }
+    ]
+  },
+  {
+    "id": "bomberos-la-trinidad",
+    "name": "Bomberos La Trinidad",
+    "area": "Baruta",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Atencion de bomberos en La Trinidad.",
+    "phones": [
+      { "label": "Estacion", "value": "0212-9434361", "dial": "02129434361" }
+    ]
+  },
+  {
+    "id": "bomberos-la-urbina",
+    "name": "Bomberos La Urbina",
+    "area": "Caracas",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Atencion de bomberos en La Urbina.",
+    "phones": [
+      { "label": "Estacion", "value": "0212-2416641", "dial": "02122416641" }
+    ]
+  },
+  {
+    "id": "bomberos-miranda",
+    "name": "Bomberos Miranda",
+    "area": "Miranda",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Atencion estadal de bomberos.",
+    "phones": [
+      { "label": "Central", "value": "0212-2356967", "dial": "02122356967" }
+    ]
+  },
+  {
+    "id": "bomberos-plaza-venezuela",
+    "name": "Bomberos Plaza Venezuela",
+    "area": "Caracas",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Estacion de Bomberos de Caracas.",
+    "phones": [
+      { "label": "Estacion", "value": "0212-7930039", "dial": "02127930039" },
+      { "label": "Alterno", "value": "0212-7936457", "dial": "02127936457" }
+    ]
+  },
+  {
+    "id": "bomberos-san-bernardino",
+    "name": "Bomberos San Bernardino",
+    "area": "Caracas",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Estacion de Bomberos de Caracas.",
+    "phones": [
+      { "label": "Estacion", "value": "0212-5779209", "dial": "02125779209" }
+    ]
+  },
+  {
+    "id": "bomberos-el-hatillo",
+    "name": "Estacion El Hatillo",
+    "area": "El Hatillo",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Estacion de bomberos municipal.",
+    "phones": [
+      { "label": "Estacion", "value": "0212-9637776", "dial": "02129637776" }
+    ]
+  },
+  {
+    "id": "bomberos-brigada-motorizada",
+    "name": "Brigada Motorizada",
+    "area": "Caracas",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Bomberos de Caracas.",
+    "phones": [
+      { "label": "Brigada", "value": "0212-6815402", "dial": "02126815402" }
+    ]
+  },
+  {
+    "id": "pc-nacional",
+    "name": "Proteccion Civil",
+    "area": "Venezuela",
+    "category": "Proteccion Civil",
+    "kind": "civil",
+    "note": "Lineas nacionales de Proteccion Civil y Defensa Civil.",
+    "phones": [
+      { "label": "0800-LLUVIAS", "value": "0800-5588427", "dial": "08005588427" },
+      { "label": "0800-COU-1", "value": "0800-2668446", "dial": "08002668446" },
+      { "label": "0800-COCHEN", "value": "0800-2624368", "dial": "08002624368" }
+    ]
+  },
+  {
+    "id": "pc-instituto",
+    "name": "Instituto de Proteccion Civil",
+    "area": "Caracas",
+    "category": "Proteccion Civil",
+    "kind": "civil",
+    "note": "Lineas institucionales de Proteccion Civil.",
+    "phones": [
+      { "label": "Central", "value": "0212-6318662", "dial": "02126318662" },
+      { "label": "Alterno", "value": "0212-6319058", "dial": "02126319058" },
+      { "label": "Alterno", "value": "0212-6628476", "dial": "02126628476" },
+      { "label": "Alterno", "value": "0212-6623205", "dial": "02126623205" },
+      { "label": "Alterno", "value": "0212-5459391", "dial": "02125459391" }
+    ]
+  },
+  {
+    "id": "pc-la-guaira",
+    "name": "Proteccion Civil La Guaira",
+    "area": "La Guaira",
+    "category": "Proteccion Civil",
+    "kind": "civil",
+    "note": "Para desastres, riesgos y emergencias en La Guaira.",
+    "phones": [
+      { "label": "Emergencia", "value": "0424-2075335", "dial": "04242075335" }
+    ]
+  },
+  {
+    "id": "defensa-civil-alcaldia-mayor",
+    "name": "Defensa Civil Alcaldia Mayor",
+    "area": "Caracas",
+    "category": "Proteccion Civil",
+    "kind": "civil",
+    "note": "Atencion de Defensa Civil para el Area Metropolitana.",
+    "phones": [
+      { "label": "Central", "value": "0212-6626759", "dial": "02126626759" },
+      { "label": "Alterno", "value": "0212-6623205", "dial": "02126623205" }
+    ]
+  },
+  {
+    "id": "defensa-civil-nacional",
+    "name": "Defensa Civil Nacional",
+    "area": "Venezuela",
+    "category": "Proteccion Civil",
+    "kind": "civil",
+    "note": "Lineas nacionales de Defensa Civil.",
+    "phones": [
+      { "label": "0800", "value": "0800-28326", "dial": "080028326" },
+      { "label": "0800", "value": "0800-24845", "dial": "080024845" },
+      { "label": "Central", "value": "0212-4839805", "dial": "02124839805" },
+      { "label": "Alterno", "value": "0212-6622252", "dial": "02126622252" },
+      { "label": "Alterno", "value": "0212-6626619", "dial": "02126626619" }
+    ]
+  },
+  {
+    "id": "pc-distrito-capital",
+    "name": "Proteccion Civil Distrito Capital",
+    "area": "Caracas",
+    "category": "Proteccion Civil",
+    "kind": "civil",
+    "note": "Lineas de Proteccion Civil del Distrito Capital.",
+    "phones": [
+      { "label": "0800-LLUVIAS", "value": "0800-5588427", "dial": "08005588427" },
+      { "label": "0800-PCIVIL-1", "value": "0800-7248451", "dial": "08007248451" },
+      { "label": "Central", "value": "0212-5751829", "dial": "02125751829" },
+      { "label": "Alterno", "value": "0212-5753332", "dial": "02125753332" },
+      { "label": "Alterno", "value": "0212-5751823", "dial": "02125751823" },
+      { "label": "Alterno", "value": "0212-3774019", "dial": "02123774019" }
+    ]
+  },
+  {
+    "id": "pc-carabobo",
+    "name": "Proteccion Civil Carabobo",
+    "area": "Valencia / Carabobo",
+    "category": "Proteccion Civil",
+    "kind": "civil",
+    "note": "Lineas de Proteccion Civil en Carabobo.",
+    "phones": [
+      { "label": "Central", "value": "0241-8593969", "dial": "02418593969" },
+      { "label": "Alterno", "value": "0241-8592171", "dial": "02418592171" },
+      { "label": "Alterno", "value": "0241-8593801", "dial": "02418593801" }
+    ]
+  },
+  {
+    "id": "pc-valencia",
+    "name": "Proteccion Civil Valencia",
+    "area": "Valencia",
+    "category": "Proteccion Civil",
+    "kind": "civil",
+    "note": "Atencion municipal en Valencia.",
+    "phones": [
+      { "label": "Central", "value": "0412-8274252", "dial": "04128274252" }
+    ]
+  },
+  {
+    "id": "seguridad-la-guaira",
+    "name": "Seguridad y denuncias La Guaira",
+    "area": "La Guaira",
+    "category": "Seguridad y denuncias",
+    "kind": "security",
+    "note": "Canal de WhatsApp para seguridad y denuncias en La Guaira.",
+    "phones": [
+      { "label": "WhatsApp", "value": "0412-9994426", "dial": "04129994426" }
+    ]
+  },
+  {
+    "id": "cicpc",
+    "name": "CICPC",
+    "area": "Caracas",
+    "category": "Policia",
+    "kind": "police",
+    "note": "Cuerpo de Investigaciones Cientificas, Penales y Criminalisticas.",
+    "phones": [
+      { "label": "Central", "value": "0212-5713533", "dial": "02125713533" },
+      { "label": "Alterno", "value": "0212-5713844", "dial": "02125713844" },
+      { "label": "Alterno", "value": "0212-5713266", "dial": "02125713266" }
+    ]
+  },
+  {
+    "id": "policia-metropolitana",
+    "name": "Policia Metropolitana",
+    "area": "Caracas",
+    "category": "Policia",
+    "kind": "police",
+    "note": "Atencion policial metropolitana.",
+    "phones": [
+      { "label": "Central", "value": "0212-8625871", "dial": "02128625871" },
+      { "label": "Alterno", "value": "0212-8625872", "dial": "02128625872" }
+    ]
+  },
+  {
+    "id": "policia-chacao",
+    "name": "Policia Municipal de Chacao",
+    "area": "Chacao",
+    "category": "Policia",
+    "kind": "police",
+    "note": "Atencion policial municipal.",
+    "phones": [
+      { "label": "Central", "value": "0212-2641256", "dial": "02122641256" },
+      { "label": "Alterno", "value": "0212-2640050", "dial": "02122640050" }
+    ]
+  },
+  {
+    "id": "policia-baruta",
+    "name": "Policia Municipal de Baruta",
+    "area": "Baruta",
+    "category": "Policia",
+    "kind": "police",
+    "note": "Atencion policial municipal.",
+    "phones": [
+      { "label": "Central", "value": "0212-9432855", "dial": "02129432855" },
+      { "label": "Alterno", "value": "0212-9436277", "dial": "02129436277" }
+    ]
+  },
+  {
+    "id": "policia-sucre",
+    "name": "Policia Municipal de Sucre",
+    "area": "Sucre",
+    "category": "Policia",
+    "kind": "police",
+    "note": "Atencion policial municipal.",
+    "phones": [
+      { "label": "Central", "value": "0212-2422111", "dial": "02122422111" },
+      { "label": "Alterno", "value": "0212-2422211", "dial": "02122422211" }
+    ]
+  },
+  {
+    "id": "policia-el-hatillo",
+    "name": "Policia Municipal de El Hatillo",
+    "area": "El Hatillo",
+    "category": "Policia",
+    "kind": "police",
+    "note": "Atencion policial municipal.",
+    "phones": [
+      { "label": "Central", "value": "0212-9611682", "dial": "02129611682" }
+    ]
+  },
+  {
+    "id": "rescate-transmisiones",
+    "name": "Cuerpo de Emergencias Rescate y Transmisiones",
+    "area": "Caracas",
+    "category": "Rescate",
+    "kind": "rescue",
+    "note": "Cuerpo de emergencias, rescate y transmisiones.",
+    "phones": [
+      { "label": "Central", "value": "0212-5454747", "dial": "02125454747" }
+    ]
+  },
+  {
+    "id": "rescate-grupo-caracas",
+    "name": "Grupo de Rescate Caracas",
+    "area": "El Avila / Caracas",
+    "category": "Rescate",
+    "kind": "rescue",
+    "note": "Grupo de rescate para zonas de montana y Caracas.",
+    "phones": [
+      { "label": "Central", "value": "0212-6156386", "dial": "02126156386" },
+      { "label": "Alterno", "value": "0212-4154661", "dial": "02124154661" }
+    ]
+  },
+  {
+    "id": "rescate-venezuela",
+    "name": "Grupo de Rescate Venezuela",
+    "area": "Caracas",
+    "category": "Rescate",
+    "kind": "rescue",
+    "note": "Grupo de rescate.",
+    "phones": [
+      { "label": "Central", "value": "0212-9774710", "dial": "02129774710" }
+    ]
+  },
+  {
+    "id": "rescate-humboldt",
+    "name": "Organizacion de Rescate Humboldt",
+    "area": "Caracas",
+    "category": "Rescate",
+    "kind": "rescue",
+    "note": "Organizacion de rescate.",
+    "phones": [
+      { "label": "Central", "value": "0212-2342234", "dial": "02122342234" },
+      { "label": "Movil", "value": "0414-9262139", "dial": "04149262139" },
+      { "label": "Movil", "value": "0414-3056868", "dial": "04143056868" }
+    ]
+  },
+  {
+    "id": "cruz-roja-contacto-familiar",
+    "name": "Cruz Roja Venezolana - Contacto entre familiares",
+    "area": "Venezuela",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Restablecimiento del Contacto entre Familiares: servicio para reportar perdida de comunicacion con familiares y solicitar apoyo para reconectar.",
+    "phones": [
+      { "label": "Familiares", "value": "0422-7994880", "dial": "04227994880" }
+    ]
+  },
+  {
+    "id": "cruz-roja-caracas",
+    "name": "Cruz Roja Caracas",
+    "area": "Caracas, Distrito Capital",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Avenida Andres Bello, edificio Cruz Roja Venezolana N 4. Urb. San Bernardino, C.P. 6301. Correo: caracas@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0212-5714380", "dial": "02125714380" },
+      { "label": "Socorristas", "value": "0212-5714713", "dial": "02125714713" }
+    ]
+  },
+  {
+    "id": "cruz-roja-puerto-ayacucho",
+    "name": "Cruz Roja Puerto Ayacucho",
+    "area": "Puerto Ayacucho, Amazonas",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Avenida Constitucion, cruce con la Calle Principal de Barrio Cataniapo. C.P. 2312. Correo: puerto.ayacucho@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0416-4520708", "dial": "04164520708" }
+    ]
+  },
+  {
+    "id": "cruz-roja-anaco",
+    "name": "Cruz Roja Anaco",
+    "area": "Anaco, Anzoategui",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Entre Avenida Francisco de Miranda y Avenida Boyaca, detras del SENIAT. C.P. 2001. Correo: anaco@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0282-4245157", "dial": "02824245157" }
+    ]
+  },
+  {
+    "id": "cruz-roja-guasdualito",
+    "name": "Cruz Roja Guasdualito",
+    "area": "Guasdualito, Apure",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Carretera Nacional via Elorza, troncal 19, sector La Coromoto, cerca del Hospital General Jose Antonio Paez. C.P. 6401. Correo: guasdualito@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0247-3411564", "dial": "02473411564" }
+    ]
+  },
+  {
+    "id": "cruz-roja-maracay",
+    "name": "Cruz Roja Maracay",
+    "area": "Maracay, Aragua",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Avenida Principal de la Coromoto, entrando por el peaje de Tapa via Avenida Bolivar, primer semaforo cruce a la izquierda. C.P. 8001. Correo: maracay@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0243-5532629", "dial": "02435532629" }
+    ]
+  },
+  {
+    "id": "cruz-roja-barinas",
+    "name": "Cruz Roja Barinas",
+    "area": "Barinas, Barinas",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Final de la calle Camejo, edificio Cruz Roja frente al Parque La Carolina, sector La Carolina. C.P. 2201. Correo: barinas@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0273-5332187", "dial": "02735332187" }
+    ]
+  },
+  {
+    "id": "cruz-roja-ciudad-bolivar",
+    "name": "Cruz Roja Ciudad Bolivar",
+    "area": "Ciudad Bolivar, Bolivar",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Centro Materno Infantil Bicentenario Ing. Lino Bossio P. C.P. 4001. Correo: ciudad.bolivar@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0285-6547001", "dial": "02856547001" }
+    ]
+  },
+  {
+    "id": "cruz-roja-puerto-cabello",
+    "name": "Cruz Roja Puerto Cabello",
+    "area": "Puerto Cabello, Carabobo",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Avenida Jose Antonio Paez, entre Avenida Bolivar y Avenida Juan Jose Flores, diagonal al Zoom. C.P. 4122. Correo: puerto.cabello@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0423-616144", "dial": "0423616144" }
+    ]
+  },
+  {
+    "id": "cruz-roja-san-carlos",
+    "name": "Cruz Roja San Carlos",
+    "area": "San Carlos, Cojedes",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Calle Paez, frente a la Plaza Bolivar. C.P. 8050. Correo: san.carlos@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0414-9585729", "dial": "04149585729" }
+    ]
+  },
+  {
+    "id": "cruz-roja-tucupita",
+    "name": "Cruz Roja Tucupita",
+    "area": "Tucupita, Delta Amacuro",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Calle Principal Casa 127, diagonal al Jardin de Infancia Bachiller J. Vidal Marcano, urbanizacion Negro Primero. C.P. 1210. Correo: tucupita@cruzroja.ve. En la fuente local no aparece telefono visible.",
+    "phones": []
+  },
+  {
+    "id": "cruz-roja-coro",
+    "name": "Cruz Roja Coro",
+    "area": "Coro, Falcon",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Calle Buchivacoa, entre Calle Federacion y Colon, edificio Centro Clinico Solidario, al lado de la Heladeria La Banana, Mercado Viejo. C.P. 5101. Correo: coro@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0268-2523427", "dial": "02682523427" }
+    ]
+  },
+  {
+    "id": "cruz-roja-calabozo",
+    "name": "Cruz Roja Calabozo",
+    "area": "Calabozo, Guarico",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Calle 3 entre carreras 13 y 14, una cuadra despues de la Plaza Bolivar. C.P. 3201. Correo: calabozo@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0246-8712971", "dial": "02468712971" }
+    ]
+  },
+  {
+    "id": "cruz-roja-la-guaira",
+    "name": "Cruz Roja La Guaira",
+    "area": "La Guaira, La Guaira",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Antiguo Aeropuerto Internacional de Maiquetia, rampa 4. Sede Cruz Roja. C.P. 5201. Correo: la.guaira@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0412-5928735", "dial": "04125928735" }
+    ]
+  },
+  {
+    "id": "cruz-roja-barquisimeto",
+    "name": "Cruz Roja Barquisimeto",
+    "area": "Barquisimeto, Lara",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Urb. Patarata, Avenida Andres Eloy Blanco con transversal 1, calle Guri. C.P. 6101. Correo: barquisimeto@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0251-8089694", "dial": "02518089694" }
+    ]
+  },
+  {
+    "id": "cruz-roja-merida",
+    "name": "Cruz Roja Merida",
+    "area": "Merida, Merida",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Avenida Primero de Mayo, Edificio Cruz Roja, Santa Juana. C.P. 6217. Correo: merida@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0274-2632219", "dial": "02742632219" }
+    ]
+  },
+  {
+    "id": "cruz-roja-charallave",
+    "name": "Cruz Roja Charallave",
+    "area": "Charallave, Miranda",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Avenida 3 T. Garcia, entre calle 14 Rivas y calle 15. C.P. 7001. Correo: charallave@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0414-2766421", "dial": "04142766421" }
+    ]
+  },
+  {
+    "id": "cruz-roja-punta-de-mata",
+    "name": "Cruz Roja Punta de Mata",
+    "area": "Punta de Mata, Monagas",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Calle Carabobo, sector Las Viviendas, a dos cuadras de la Universidad Abierta. C.P. 4132. Correo: punta.de.mata@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0292-4140268", "dial": "02924140268" }
+    ]
+  },
+  {
+    "id": "cruz-roja-porlamar",
+    "name": "Cruz Roja Porlamar",
+    "area": "Porlamar, Nueva Esparta",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Urb. Conuco Viejo, sector Sabana Grande, frente a Villa Rosa. C.P. 3202. Correo: porlamar@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0295-4175560", "dial": "02954175560" }
+    ]
+  },
+  {
+    "id": "cruz-roja-acarigua",
+    "name": "Cruz Roja Acarigua",
+    "area": "Acarigua, Portuguesa",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Avenida Circunvalacion Sur, diagonal a la Universidad Territorial J.J. Montilla, sector Bellas Artes. C.P. 2103. Correo: acarigua@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0255-6239779", "dial": "02556239779" }
+    ]
+  },
+  {
+    "id": "cruz-roja-cumana",
+    "name": "Cruz Roja Cumana",
+    "area": "Cumana, Sucre",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Calle Marino, detras del CC. Humboldt, frente a MRW. C.P. 5101. Correo: cumana@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0293-4410464", "dial": "02934410464" }
+    ]
+  },
+  {
+    "id": "cruz-roja-san-antonio-tachira",
+    "name": "Cruz Roja San Antonio del Tachira",
+    "area": "San Antonio del Tachira, Tachira",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Carrera 7, San Antonio del Tachira. C.P. 3210. Correo: san.antonio.tachira@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0414-3799592", "dial": "04143799592" }
+    ]
+  },
+  {
+    "id": "cruz-roja-trujillo",
+    "name": "Cruz Roja Trujillo",
+    "area": "Trujillo, Trujillo",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Avenida Cuatricentenario, sector Los Lavaderos, frente al Country Club, Edificio Cruz Roja. C.P. 1201. Correo: trujillo@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0416-4721852", "dial": "04164721852" }
+    ]
+  },
+  {
+    "id": "cruz-roja-aroa",
+    "name": "Cruz Roja Aroa",
+    "area": "Aroa, Yaracuy",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Vereda A transversal E, entre Calle Bolivar y Sucre, sector Centro Aroa, cerca del Hospital viejo. C.P. 2050. Correo: aroa@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0251-7144895", "dial": "02517144895" }
+    ]
+  },
+  {
+    "id": "cruz-roja-maracaibo",
+    "name": "Cruz Roja Maracaibo",
+    "area": "Maracaibo, Zulia",
+    "category": "Cruz Roja",
+    "kind": "redcross",
+    "note": "Avenida 11, esquina con Calle 83, sector Veritas. C.P. 5001. Correo: maracaibo@cruzroja.ve.",
+    "phones": [
+      { "label": "Central", "value": "0261-7986455", "dial": "02617986455" }
+    ]
+  },
+  {
+    "id": "transito-intt",
+    "name": "Inspectoria Nacional de Transito",
+    "area": "Venezuela",
+    "category": "Transito",
+    "kind": "security",
+    "note": "Atencion nacional de transito.",
+    "phones": [
+      { "label": "Central", "value": "167", "dial": "167" }
+    ]
+  },
+  {
+    "id": "vivex",
+    "name": "Vivex",
+    "area": "Vias expresas",
+    "category": "Transito",
+    "kind": "security",
+    "note": "Vigilancia de vias expresas.",
+    "phones": [
+      { "label": "Central", "value": "0212-4716001", "dial": "02124716001" },
+      { "label": "Alterno", "value": "0212-4711481", "dial": "02124711481" }
+    ]
+  },
+  {
+    "id": "brigada-vias-mtt",
+    "name": "Brigada de Restablecimiento de Vias",
+    "area": "Venezuela",
+    "category": "Transito",
+    "kind": "rescue",
+    "note": "Brigada de Restablecimiento de vias y Atencion de Emergencias del Ministerio de Transporte Terrestre.",
+    "phones": [
+      { "label": "Central", "value": "0212-5372677", "dial": "02125372677" }
+    ]
+  },
+  {
+    "id": "rescate-baruta",
+    "name": "Rescate Baruta",
+    "area": "Area Metropolitana de Caracas",
+    "category": "Grupos de rescate y atencion municipal",
+    "kind": "rescue",
+    "note": "Atencion municipal y grupos de rescate.",
+    "phones": [
+      { "label": "Central", "value": "0212-9444411", "dial": "02129444411" }
+    ]
+  },
+  {
+    "id": "rescate-sucre",
+    "name": "Rescate Sucre",
+    "area": "Area Metropolitana de Caracas",
+    "category": "Grupos de rescate y atencion municipal",
+    "kind": "rescue",
+    "note": "Atencion municipal y grupos de rescate.",
+    "phones": [
+      { "label": "Central", "value": "0212-2718190", "dial": "02122718190" }
+    ]
+  },
+  {
+    "id": "rescate-chacao",
+    "name": "Rescate Chacao",
+    "area": "Area Metropolitana de Caracas",
+    "category": "Grupos de rescate y atencion municipal",
+    "kind": "rescue",
+    "note": "Atencion municipal y grupos de rescate.",
+    "phones": [
+      { "label": "Central", "value": "0212-2679917", "dial": "02122679917" }
+    ]
+  },
+  {
+    "id": "rescate-el-hatillo",
+    "name": "Rescate El Hatillo",
+    "area": "Area Metropolitana de Caracas",
+    "category": "Grupos de rescate y atencion municipal",
+    "kind": "rescue",
+    "note": "Atencion municipal y grupos de rescate.",
+    "phones": [
+      { "label": "Central", "value": "0212-9632211", "dial": "02129632211" }
+    ]
+  },
+  {
+    "id": "rescate-miranda",
+    "name": "Rescate Miranda",
+    "area": "Miranda",
+    "category": "Grupos de rescate y atencion municipal",
+    "kind": "rescue",
+    "note": "Atencion estadal y grupos de rescate.",
+    "phones": [
+      { "label": "Central", "value": "0212-3836152", "dial": "02123836152" },
+      { "label": "Alterno", "value": "0212-3837849", "dial": "02123837849" }
+    ]
+  },
+  {
+    "id": "rescate-libertador",
+    "name": "Rescate Libertador",
+    "area": "Caracas",
+    "category": "Grupos de rescate y atencion municipal",
+    "kind": "rescue",
+    "note": "Atencion municipal y grupos de rescate.",
+    "phones": [
+      { "label": "Central", "value": "0212-6313989", "dial": "02126313989" }
+    ]
+  },
+  {
+    "id": "rescate-distrito-capital",
+    "name": "Rescate Distrito Capital",
+    "area": "Caracas",
+    "category": "Grupos de rescate y atencion municipal",
+    "kind": "rescue",
+    "note": "Atencion del Distrito Capital.",
+    "phones": [
+      { "label": "Central", "value": "0800-2274825", "dial": "08002274825" }
+    ]
+  },
+  {
+    "id": "hospital-andres-herrera-vegas",
+    "name": "Hospital Andres Herrera Vegas",
+    "area": "El Algodonal, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-4723138", "dial": "02124723138" }
+    ]
+  },
+  {
+    "id": "hospital-centro-medico-ivss",
+    "name": "Hospital Centro Medico IVSS",
+    "area": "Caricuao, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-4325511", "dial": "02124325511" }
+    ]
+  },
+  {
+    "id": "hospital-clinico-universitario",
+    "name": "Hospital Clinico Universitario",
+    "area": "Chaguaramos, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-6067111", "dial": "02126067111" }
+    ]
+  },
+  {
+    "id": "hospital-clinicas-caracas",
+    "name": "Hospital de Clinicas Caracas",
+    "area": "San Bernardino, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-5086111", "dial": "02125086111" }
+    ]
+  },
+  {
+    "id": "hospital-ninos-jm-rios",
+    "name": "Hospital de Ninos J.M. de Los Rios",
+    "area": "San Bernardino, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia pediatrica.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-5743511", "dial": "02125743511" }
+    ]
+  },
+  {
+    "id": "hospital-domingo-luciani",
+    "name": "Hospital Dr. Domingo Luciani",
+    "area": "El Llanito, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-2578712", "dial": "02122578712" }
+    ]
+  },
+  {
+    "id": "hospital-el-algodonal",
+    "name": "Hospital El Algodonal",
+    "area": "Antimano, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-4725410", "dial": "02124725410" }
+    ]
+  },
+  {
+    "id": "hospital-el-manicomio",
+    "name": "Hospital El Manicomio",
+    "area": "Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-8601313", "dial": "02128601313" }
+    ]
+  },
+  {
+    "id": "hospital-jose-gregorio-hernandez",
+    "name": "Hospital Jose Gregorio Hernandez",
+    "area": "Los Magallanes, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-8707897", "dial": "02128707897" }
+    ]
+  },
+  {
+    "id": "hospital-miguel-perez-carreno",
+    "name": "Hospital Miguel Perez Carreno",
+    "area": "Bella Vista, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-4728472", "dial": "02124728472" }
+    ]
+  },
+  {
+    "id": "hospital-militar",
+    "name": "Hospital Militar",
+    "area": "San Martin, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-4061241", "dial": "02124061241" }
+    ]
+  },
+  {
+    "id": "hospital-periferico-catia",
+    "name": "Hospital Periferico de Catia",
+    "area": "Catia, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-8702771", "dial": "02128702771" }
+    ]
+  },
+  {
+    "id": "hospital-periferico-coche",
+    "name": "Hospital Periferico de Coche",
+    "area": "Coche, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia hospitalaria.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-6811133", "dial": "02126811133" }
+    ]
+  },
+  {
+    "id": "policlinica-david-lobo",
+    "name": "Policlinica David Lobo",
+    "area": "Santa Rosalia, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia clinica.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-5415465", "dial": "02125415465" }
+    ]
+  },
+  {
+    "id": "policlinica-la-arboleda",
+    "name": "Policlinica La Arboleda",
+    "area": "San Bernardino, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia clinica.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-5501811", "dial": "02125501811" }
+    ]
+  },
+  {
+    "id": "policlinica-las-mercedes",
+    "name": "Policlinica Las Mercedes",
+    "area": "Las Mercedes, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia clinica.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-9932323", "dial": "02129932323" }
+    ]
+  },
+  {
+    "id": "policlinica-santiago-leon",
+    "name": "Policlinica Santiago de Leon",
+    "area": "Sabana Grande, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia clinica.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-7629025", "dial": "02127629025" }
+    ]
+  },
+  {
+    "id": "clinica-razetti",
+    "name": "Centro Clinico / Anexo Clinica Razetti",
+    "area": "La Candelaria, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia clinica.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-5970248", "dial": "02125970248" }
+    ]
+  },
+  {
+    "id": "centro-medico-caracas",
+    "name": "Centro Medico de Caracas",
+    "area": "San Bernardino, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia clinica.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-5559111", "dial": "02125559111" }
+    ]
+  },
+  {
+    "id": "clinica-la-floresta",
+    "name": "Clinica La Floresta",
+    "area": "Los Palos Grandes, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia clinica.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-2856058", "dial": "02122856058" }
+    ]
+  },
+  {
+    "id": "clinica-leopoldo-aguerrevere",
+    "name": "Clinica Leopoldo Aguerrevere",
+    "area": "Prados del Este, Caracas",
+    "category": "Hospitales y clinicas",
+    "kind": "hospital",
+    "note": "Servicio de emergencia clinica.",
+    "phones": [
+      { "label": "Emergencia", "value": "0212-9070811", "dial": "02129070811" }
+    ]
+  },
+  {
+    "id": "bomberos-valencia",
+    "name": "Bomberos de Valencia",
+    "area": "Valencia",
+    "category": "Bomberos",
+    "kind": "fire",
+    "note": "Bomberos de Valencia.",
+    "phones": [
+      { "label": "Central", "value": "0414-4333952", "dial": "04144333952" }
+    ]
+  },
+  {
+    "id": "funvisis-temblor",
+    "name": "FUNVISIS 0800-TEMBLOR",
+    "area": "Venezuela",
+    "category": "Informacion sismica",
+    "kind": "seismic",
+    "note": "Numero citado en el Manual de Autoproteccion de FUNVISIS para informacion sismica.",
+    "phones": [
+      { "label": "Central", "value": "0800-8362567", "dial": "08008362567" }
+    ]
+  }
+]
