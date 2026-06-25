@@ -43,7 +43,7 @@ const {
     <TopBar active={activeNav} statusText={statusText} />
     <div class="mobile-offline-banner" data-offline-banner aria-live="polite">
       <span class="mobile-offline-banner__dot" data-offline-dot aria-hidden="true"></span>
-      <span data-offline-text>{statusText}</span>
+      <span data-offline-banner-text>{statusText}</span>
     </div>
     <main class="page-shell">
       {
@@ -62,7 +62,7 @@ const {
       (() => {
         const chips = Array.from(document.querySelectorAll('[data-offline-chip]'));
         const banner = document.querySelector('[data-offline-banner]');
-        const bannerText = document.querySelector('[data-offline-text]');
+        const bannerText = document.querySelector('[data-offline-banner-text]');
         const bannerDot = document.querySelector('[data-offline-dot]');
         const storageKey = 'sismo-ve-offline-ready';
 
@@ -143,7 +143,7 @@ const {
           const next = states[state] ?? states.loading;
           chips.forEach((chip) => {
             chip.dataset.offlineState = state;
-            const text = chip.querySelector('[data-offline-text]');
+            const text = chip.querySelector('[data-offline-chip-text]');
             if (text) text.textContent = next.text;
           });
 

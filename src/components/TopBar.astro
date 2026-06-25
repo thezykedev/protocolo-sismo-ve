@@ -16,7 +16,7 @@ const { active, statusText } = Astro.props;
   </a>
   <div class="status-chip" data-offline-chip data-offline-state="loading">
     <span class="status-chip__icon" aria-hidden="true"></span>
-    <span data-offline-text>{statusText}</span>
+    <span data-offline-chip-text>{statusText}</span>
   </div>
   <details class="desktop-menu">
     <summary aria-label="Abrir navegación">
