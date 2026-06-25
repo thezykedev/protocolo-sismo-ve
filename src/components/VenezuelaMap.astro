@@ -1,0 +1,185 @@
+---
+import branches from '../data/red-cross-branches.json';
+
+const dots = branches.map((b) => {
+  const lng = b.coords.lng;
+  const lat = b.coords.lat;
+  const x = 24 + ((lng - -73.6) / (-59.7 - -73.6)) * (800 - 48);
+  const y = 24 + ((12.6 - lat) / (12.6 - 0.6)) * (460 - 48);
+  return { id: b.id, name: b.name, state: b.state, x, y, phone: b.phones.length > 0 };
+});
+---
+
+<div class="map-card" aria-label="Mapa de filiales de la Cruz Roja Venezolana">
+  <svg class="map-svg" viewBox="0 0 800 460" role="img" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1f2020" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <rect width="800" height="460" fill="#131313"/>
+    <rect width="800" height="460" fill="url(#grid)"/>
+    <g class="map-dots">
+      <a href="#filial-01" class="map-dot map-dot--phone">
+        <circle cx="349.54" cy="262.22" r="6" />
+        <title>Filial Puerto Ayacucho — Amazonas</title>
+      </a>
+      <a href="#filial-02" class="map-dot map-dot--phone">
+        <circle cx="517.21" cy="132.78" r="6" />
+        <title>Filial Anaco — Anzoátegui</title>
+      </a>
+      <a href="#filial-03" class="map-dot">
+        <circle cx="507.35" cy="107.98" r="6" />
+        <title>Filial Barcelona — Anzoátegui</title>
+      </a>
+      <a href="#filial-04" class="map-dot">
+        <circle cx="529.24" cy="151.67" r="6" />
+        <title>Filial El Tigre — Anzoátegui</title>
+      </a>
+      <a href="#filial-05" class="map-dot">
+        <circle cx="487.13" cy="111.32" r="6" />
+        <title>Filial Puerto Píritu — Anzoátegui</title>
+      </a>
+      <a href="#filial-06" class="map-dot map-dot--phone">
+        <circle cx="246.01" cy="214.09" r="6" />
+        <title>Filial Guasdualito — Apure</title>
+      </a>
+      <a href="#filial-07" class="map-dot">
+        <circle cx="354.82" cy="186.55" r="6" />
+        <title>Filial San Fernando de Apure — Apure</title>
+      </a>
+      <a href="#filial-08" class="map-dot map-dot--phone">
+        <circle cx="348.25" cy="104.88" r="6" />
+        <title>Filial Maracay — Aragua</title>
+      </a>
+      <a href="#filial-09" class="map-dot map-dot--phone">
+        <circle cx="207.58" cy="160.57" r="6" />
+        <title>Filial Barinas — Barinas</title>
+      </a>
+      <a href="#filial-10" class="map-dot">
+        <circle cx="207.81" cy="161.12" r="6" />
+        <title>Filial Barinitas — Barinas</title>
+      </a>
+      <a href="#filial-11" class="map-dot map-dot--phone">
+        <circle cx="567.42" cy="178.69" r="6" />
+        <title>Filial Ciudad Bolívar — Bolívar</title>
+      </a>
+      <a href="#filial-12" class="map-dot">
+        <circle cx="616.42" cy="169.36" r="6" />
+        <title>Filial Ciudad Guayana — Bolívar</title>
+      </a>
+      <a href="#filial-13" class="map-dot map-dot--phone">
+        <circle cx="384.66" cy="96.55" r="6" />
+        <title>Filial Puerto Cabello — Carabobo</title>
+      </a>
+      <a href="#filial-14" class="map-dot">
+        <circle cx="326.32" cy="106.2" r="6" />
+        <title>Filial Valencia — Carabobo</title>
+      </a>
+      <a href="#filial-15" class="map-dot map-dot--phone">
+        <circle cx="295.23" cy="124.8" r="6" />
+        <title>Filial San Carlos — Cojedes</title>
+      </a>
+      <a href="#filial-16" class="map-dot">
+        <circle cx="649.09" cy="145.22" r="6" />
+        <title>Filial Tucupita — Delta Amacuro</title>
+      </a>
+      <a href="#filial-17" class="map-dot map-dot--phone">
+        <circle cx="386.76" cy="95.94" r="6" />
+        <title>Filial Caracas — Distrito Capital</title>
+      </a>
+      <a href="#filial-18" class="map-dot map-dot--phone">
+        <circle cx="236.18" cy="65.02" r="6" />
+        <title>Filial Coro — Falcón</title>
+      </a>
+      <a href="#filial-19" class="map-dot">
+        <circle cx="242.3" cy="63.18" r="6" />
+        <title>Filial La Vela de Coro — Falcón</title>
+      </a>
+      <a href="#filial-20" class="map-dot">
+        <circle cx="207.97" cy="54.43" r="6" />
+        <title>Filial Punto Fijo — Falcón</title>
+      </a>
+      <a href="#filial-21" class="map-dot map-dot--phone">
+        <circle cx="357.9" cy="149.86" r="6" />
+        <title>Filial Calabozo — Guárico</title>
+      </a>
+      <a href="#filial-22" class="map-dot">
+        <circle cx="361.51" cy="116.26" r="6" />
+        <title>Filial San Juan de los Morros — Guárico</title>
+      </a>
+      <a href="#filial-23" class="map-dot">
+        <circle cx="434.08" cy="140.09" r="6" />
+        <title>Filial Valle de la Pascua — Guárico</title>
+      </a>
+      <a href="#filial-24" class="map-dot map-dot--phone">
+        <circle cx="380.98" cy="92.7" r="6" />
+        <title>Filial La Guaira — La Guaira</title>
+      </a>
+      <a href="#filial-25" class="map-dot map-dot--phone">
+        <circle cx="259.94" cy="112.09" r="6" />
+        <title>Filial Barquisimeto — Lara</title>
+      </a>
+      <a href="#filial-26" class="map-dot map-dot--phone">
+        <circle cx="388.65" cy="104.83" r="6" />
+        <title>Filial Charallave — Miranda</title>
+      </a>
+      <a href="#filial-27" class="map-dot map-dot--phone">
+        <circle cx="564.06" cy="123.9" r="6" />
+        <title>Filial Punta de Mata — Monagas</title>
+      </a>
+      <a href="#filial-28" class="map-dot map-dot--phone">
+        <circle cx="155.78" cy="162.27" r="6" />
+        <title>Filial Mérida — Mérida</title>
+      </a>
+      <a href="#filial-29" class="map-dot map-dot--phone">
+        <circle cx="547.04" cy="80.84" r="6" />
+        <title>Filial Porlamar — Nueva Esparta</title>
+      </a>
+      <a href="#filial-30" class="map-dot map-dot--phone">
+        <circle cx="263.1" cy="128.7" r="6" />
+        <title>Filial Acarigua — Portuguesa</title>
+      </a>
+      <a href="#filial-31" class="map-dot">
+        <circle cx="232.45" cy="145.96" r="6" />
+        <title>Filial Guanare — Portuguesa</title>
+      </a>
+      <a href="#filial-32" class="map-dot map-dot--phone">
+        <circle cx="533.45" cy="98.44" r="6" />
+        <title>Filial Cumana — Sucre</title>
+      </a>
+      <a href="#filial-33" class="map-dot map-dot--phone">
+        <circle cx="195.11" cy="135.36" r="6" />
+        <title>Filial Trujillo — Trujillo</title>
+      </a>
+      <a href="#filial-34" class="map-dot map-dot--phone">
+        <circle cx="86.53" cy="188.26" r="6" />
+        <title>Filial San Antonio del Táchira — Táchira</title>
+      </a>
+      <a href="#filial-35" class="map-dot">
+        <circle cx="98.56" cy="189.46" r="6" />
+        <title>Filial San Cristóbal — Táchira</title>
+      </a>
+      <a href="#filial-36" class="map-dot map-dot--phone">
+        <circle cx="278.66" cy="98.37" r="6" />
+        <title>Filial Aroa — Yaracuy</title>
+      </a>
+      <a href="#filial-37" class="map-dot">
+        <circle cx="278.42" cy="107.87" r="6" />
+        <title>Filial Chivacoa — Yaracuy</title>
+      </a>
+      <a href="#filial-38" class="map-dot">
+        <circle cx="297.54" cy="98.07" r="6" />
+        <title>Filial San Felipe — Yaracuy</title>
+      </a>
+      <a href="#filial-39" class="map-dot map-dot--phone">
+        <circle cx="131.55" cy="90.65" r="6" />
+        <title>Filial Maracaibo — Zulia</title>
+      </a>
+    </g>
+  </svg>
+  <div class="map-legend">
+    <span><span class="legend-dot legend-dot--phone"></span> Con teléfono verificado</span>
+    <span><span class="legend-dot"></span> En mapa (verifica localmente)</span>
+  </div>
+</div>
