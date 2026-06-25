@@ -47,15 +47,17 @@ La información principal vive en `src/data/`:
 
 ## Despliegue
 
-El proyecto está listo para [Cloudflare Pages](https://pages.cloudflare.com/).
+La ruta recomendada para producción es un VPS con [Coolify](https://coolify.io/) usando el `Dockerfile` del repo.
 
-1. Crea el proyecto en Cloudflare Pages apuntando a este repositorio.
-2. Configura el build command: `pnpm install --frozen-lockfile && pnpm build`.
-3. Output directory: `dist`.
-4. Variables de entorno en GitHub: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`.
-5. El workflow en `.github/workflows/deploy.yml` publica automáticamente en cada push a `main` cuando esos secretos están configurados.
+1. En Coolify crea una nueva aplicación desde este repositorio.
+2. Selecciona `Dockerfile` como build pack.
+3. Usa el `Dockerfile` raíz del proyecto.
+4. Asigna tu dominio `sismo-ve.xyz`.
+5. Si vas a poner Cloudflare delante, usa `Full (strict)` y un Origin CA en el servidor.
 
-Alternativa: `wrangler pages deploy dist --project-name protocolo-sismo-ve` desde local con `CLOUDFLARE_API_TOKEN`.
+El contenedor construye la app estática con `pnpm build` y sirve `dist/` con Nginx.
+
+La publicación en Cloudflare Pages sigue disponible como alternativa técnica, pero no es la vía principal del proyecto.
 
 ## Open source
 

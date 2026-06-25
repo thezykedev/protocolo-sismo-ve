@@ -1,0 +1,9 @@
+.git
+.astro
+dist
+node_modules
+docs
+.mcp.json
+.wrangler
+.vercel
+*.log
