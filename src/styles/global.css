@@ -146,8 +146,8 @@ button {
 }
 
 .status-chip[data-offline-state='ready'] {
-  border-color: var(--yellow);
-  color: var(--yellow);
+  border-color: var(--ready);
+  color: var(--ready);
 }
 
 .status-chip[data-offline-state='registering'],
@@ -189,8 +189,8 @@ button {
 }
 
 .status-chip[data-offline-state='ready'] .status-chip__icon {
-  border-color: var(--yellow);
-  background: var(--yellow);
+  border-color: var(--ready);
+  background: var(--ready);
 }
 
 .status-chip[data-offline-state='registering'] .status-chip__icon,
@@ -206,7 +206,7 @@ button {
 }
 
 .status-chip[data-offline-state='ready'] .status-chip__icon::after {
-  border-color: var(--yellow-ink);
+  border-color: var(--ready-ink);
 }
 
 .status-chip[data-offline-state='registering'] .status-chip__icon::after,
@@ -265,7 +265,7 @@ button {
 }
 
 .mobile-offline-banner[data-offline-state='ready'] {
-  color: var(--yellow);
+  color: var(--ready);
 }
 
 .mobile-offline-banner[data-offline-state='registering'],
@@ -289,8 +289,20 @@ button {
 }
 
 .mobile-offline-banner__dot[data-offline-tone='ready'] {
-  background: var(--yellow);
-  box-shadow: 0 0 0 2px rgba(255, 255, 0, 0.14);
+  background: var(--ready);
+  box-shadow: 0 0 0 2px rgba(40, 209, 124, 0.18);
+}
+
+.mobile-offline-banner__dot[data-offline-tone='ready']::after {
+  content: "";
+  position: absolute;
+  left: 0.21rem;
+  top: 0.08rem;
+  width: 0.16rem;
+  height: 0.32rem;
+  border-right: 2px solid var(--ready-ink);
+  border-bottom: 2px solid var(--ready-ink);
+  transform: rotate(45deg);
 }
 
 .mobile-offline-banner__dot[data-offline-tone='loading'] {
