@@ -1,0 +1,10 @@
+name = "protocolo-sismo-ve"
+compatibility_date = "2025-01-15"
+pages_build_output_dir = "./dist"
+
+[build]
+command = "pnpm install --frozen-lockfile && pnpm build"
+
+[build.environment]
+NODE_VERSION = "22"
+PNPM_VERSION = "11.1.1"
