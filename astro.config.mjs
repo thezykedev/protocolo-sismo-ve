@@ -20,49 +20,32 @@ const walk = async (dir) => {
   return files.flat();
 };
 
-const isCacheableAsset = (filePath) =>
-  /\.(?:html|js|css|svg|png|ico|json|webmanifest|woff2?)$/i.test(filePath);
+const isRuntimeAsset = (filePath) =>
+  /\.(?:js|css|svg|png|ico|json|webmanifest)$/i.test(filePath);
 
-const buildServiceWorker = (assets, version) => {
-  const assetList = JSON.stringify(assets, null, 2);
-  const routeAliases = JSON.stringify(
-    assets
-      .filter((asset) => asset.endsWith('/index.html') || asset === '/index.html')
-      .map((asset) => {
-        if (asset === '/index.html') {
-          return { source: '/index.html', aliases: ['/', '/index.html'] };
-        }
+const buildRouteEntries = (assets) =>
+  assets
+    .filter((asset) => asset.endsWith('/index.html') || asset === '/index.html')
+    .map((asset) => {
+      if (asset === '/index.html') {
+        return { source: '/index.html', aliases: ['/', '/index.html'] };
+      }
 
-        const routePath = asset.slice(0, -'/index.html'.length);
-        return {
-          source: asset,
-          aliases: [routePath, `${routePath}/`, asset]
-        };
-      }),
-    null,
-    2
-  );
+      const routePath = asset.slice(0, -'/index.html'.length);
+      return {
+        source: asset,
+        aliases: [routePath, `${routePath}/`, asset]
+      };
+    });
 
-  return `const CACHE_NAME = 'sismo-ve-${version}';
-const PRECACHE_URLS = ${assetList};
+const buildServiceWorker = (cacheName, routeEntries) => {
+  const routeAliases = JSON.stringify(routeEntries, null, 2);
+
+  return `const CACHE_NAME = '${cacheName}';
 const ROUTE_ALIASES = ${routeAliases};
 
 self.addEventListener('install', (event) => {
-  event.waitUntil((async () => {
-    const cache = await caches.open(CACHE_NAME);
-    await cache.addAll(PRECACHE_URLS);
-
-    for (const entry of ROUTE_ALIASES) {
-      const response = await cache.match(entry.source);
-      if (!response) continue;
-
-      await Promise.all(
-        entry.aliases.map((alias) => cache.put(alias, response.clone()))
-      );
-    }
-
-    await self.skipWaiting();
-  })());
+  event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('activate', (event) => {
@@ -107,7 +90,7 @@ self.addEventListener('fetch', (event) => {
         }
         return response;
       } catch {
-        const fallback = await cache.match('/index.html');
+        const fallback = await cache.match('/') || await cache.match('/index.html');
         if (fallback) return fallback;
         throw new Error('Offline navigation failed');
       }
@@ -142,21 +125,35 @@ export default defineConfig({
       hooks: {
         'astro:build:done': async ({ logger }) => {
           const outDir = resolve(process.cwd(), 'dist');
+          const packageInfo = JSON.parse(
+            await readFile(resolve(process.cwd(), 'package.json'), 'utf8')
+          );
+          const shortCommit = (process.env.SOURCE_COMMIT ?? 'local').trim().slice(0, 7) || 'local';
+          const cacheVersion = `${packageInfo.version}-${shortCommit}`.replace(/[^a-zA-Z0-9.-]/g, '-');
+          const cacheName = `sismo-ve-${cacheVersion}`;
           const allFiles = await walk(outDir);
           const assets = allFiles
-            .filter((filePath) => isCacheableAsset(filePath))
+            .filter((filePath) => /\.(?:html|js|css|svg|png|ico|json|webmanifest)$/i.test(filePath))
             .map((filePath) => `/${posix.relative(outDir, filePath)}`.replaceAll('//', '/'))
             .sort();
+          const routeEntries = buildRouteEntries(assets);
+          const routeSources = routeEntries.map((entry) => entry.source);
+          const runtimeAssets = assets.filter(
+            (asset) => isRuntimeAsset(asset) && !routeSources.includes(asset)
+          );
+          const offlineManifest = {
+            version: cacheVersion,
+            cacheName,
+            routes: routeEntries,
+            assets: runtimeAssets
+          };
           const swPath = resolve(outDir, 'sw.js');
-          const indexHtml = await readFile(resolve(outDir, 'index.html'), 'utf8');
-          const version = Date.now().toString(36);
+          const manifestPath = resolve(outDir, 'offline-manifest.json');
 
-          await writeFile(swPath, buildServiceWorker(assets, version), 'utf8');
+          await writeFile(swPath, buildServiceWorker(cacheName, routeEntries), 'utf8');
+          await writeFile(manifestPath, JSON.stringify(offlineManifest, null, 2), 'utf8');
           logger.info(`[static-pwa-sw] SW generado: ${swPath}`);
-
-          if (!indexHtml.includes('/manifest.webmanifest')) {
-            logger.warn('[static-pwa-sw] manifest.webmanifest no esta referenciado en index.html');
-          }
+          logger.info(`[static-pwa-sw] Manifest generado: ${manifestPath}`);
         }
       }
     }
