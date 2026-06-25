@@ -140,9 +140,14 @@ button {
   color: var(--yellow);
 }
 
+.status-chip[data-offline-state='ready'] {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
 .status-chip[data-offline-state='offline'] {
-  border-color: var(--orange);
-  color: #ffb980;
+  border-color: var(--ready);
+  color: var(--ready);
 }
 
 .status-chip__icon {
@@ -170,17 +175,26 @@ button {
   background: var(--yellow);
 }
 
+.status-chip[data-offline-state='ready'] .status-chip__icon {
+  border-color: var(--yellow);
+  background: var(--yellow);
+}
+
 .status-chip[data-offline-state='loading'] .status-chip__icon::after {
   border-color: var(--yellow-ink);
 }
 
+.status-chip[data-offline-state='ready'] .status-chip__icon::after {
+  border-color: var(--yellow-ink);
+}
+
 .status-chip[data-offline-state='offline'] .status-chip__icon {
-  border-color: var(--orange);
-  background: var(--orange);
+  border-color: var(--ready);
+  background: var(--ready);
 }
 
 .status-chip[data-offline-state='offline'] .status-chip__icon::after {
-  border-color: #231200;
+  border-color: var(--ready-ink);
 }
 
 .mobile-offline-banner {
@@ -199,7 +213,7 @@ button {
 }
 
 .mobile-offline-banner[data-offline-state='ready'] {
-  color: var(--ready);
+  color: var(--yellow);
 }
 
 .mobile-offline-banner[data-offline-state='offline'] {
@@ -207,6 +221,7 @@ button {
 }
 
 .mobile-offline-banner__dot {
+  position: relative;
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 50%;
@@ -215,13 +230,25 @@ button {
 }
 
 .mobile-offline-banner__dot[data-offline-tone='ready'] {
-  background: var(--ready);
-  box-shadow: 0 0 0 2px rgba(40, 209, 124, 0.18);
+  background: var(--yellow);
+  box-shadow: 0 0 0 2px rgba(255, 255, 0, 0.14);
 }
 
 .mobile-offline-banner__dot[data-offline-tone='offline'] {
   background: var(--ready);
   box-shadow: 0 0 0 2px rgba(40, 209, 124, 0.18);
+}
+
+.mobile-offline-banner__dot[data-offline-tone='offline']::after {
+  content: "";
+  position: absolute;
+  left: 0.21rem;
+  top: 0.08rem;
+  width: 0.16rem;
+  height: 0.32rem;
+  border-right: 2px solid var(--ready-ink);
+  border-bottom: 2px solid var(--ready-ink);
+  transform: rotate(45deg);
 }
 
 .page-shell {

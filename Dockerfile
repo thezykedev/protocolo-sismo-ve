@@ -2,6 +2,9 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
+ARG SOURCE_COMMIT=local
+ENV SOURCE_COMMIT=$SOURCE_COMMIT
+
 RUN npm i -g pnpm@11.1.1
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
