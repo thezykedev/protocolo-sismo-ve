@@ -42,6 +42,8 @@ const STATE_ORDER = [
   'Zulia'
 ];
 
+const STATE_RANK = new Map(STATE_ORDER.map((state, index) => [state, index]));
+
 function normalize(value: string): string {
   return value
     .toLowerCase()
@@ -85,7 +87,12 @@ export default function BranchSearch({ branches }: Props) {
       list.push(branch);
       map.set(key, list);
     }
-    return [...map.entries()].sort(([a], [b]) => a.localeCompare(b, 'es'));
+    return [...map.entries()].sort(([a], [b]) => {
+      const rankA = STATE_RANK.get(a) ?? Number.MAX_SAFE_INTEGER;
+      const rankB = STATE_RANK.get(b) ?? Number.MAX_SAFE_INTEGER;
+      if (rankA !== rankB) return rankA - rankB;
+      return a.localeCompare(b, 'es');
+    });
   }, [filtered]);
 
   return (

@@ -87,6 +87,143 @@ const STATE_ORDER = [
   'Nacional'
 ];
 
+const STATE_BY_KEY: Record<string, string> = {
+  amazonas: 'Amazonas',
+  anzoategui: 'Anzoátegui',
+  apure: 'Apure',
+  aragua: 'Aragua',
+  barinas: 'Barinas',
+  bolivar: 'Bolívar',
+  carabobo: 'Carabobo',
+  cojedes: 'Cojedes',
+  'delta amacuro': 'Delta Amacuro',
+  'distrito capital': 'Distrito Capital',
+  falcon: 'Falcón',
+  guarico: 'Guárico',
+  'la guaira': 'La Guaira',
+  lara: 'Lara',
+  merida: 'Mérida',
+  miranda: 'Miranda',
+  monagas: 'Monagas',
+  'nueva esparta': 'Nueva Esparta',
+  portuguesa: 'Portuguesa',
+  sucre: 'Sucre',
+  tachira: 'Táchira',
+  trujillo: 'Trujillo',
+  yaracuy: 'Yaracuy',
+  zulia: 'Zulia',
+  nacional: 'Nacional'
+};
+
+const EXACT_AREA_STATES: Record<string, string> = {
+  'area metropolitana de caracas': 'Distrito Capital',
+  antimano: 'Distrito Capital',
+  'bella vista': 'Distrito Capital',
+  caricuao: 'Distrito Capital',
+  catia: 'Distrito Capital',
+  chaguaramos: 'Distrito Capital',
+  coche: 'Distrito Capital',
+  'el algodon': 'Distrito Capital',
+  'el avila': 'Distrito Capital',
+  'el llanito': 'Distrito Capital',
+  'el paraiso': 'Distrito Capital',
+  'el valle': 'Distrito Capital',
+  'la candelaria': 'Distrito Capital',
+  'las mercedes': 'Distrito Capital',
+  'los magallanes': 'Distrito Capital',
+  'los palos grandes': 'Distrito Capital',
+  'prados del este': 'Distrito Capital',
+  'sabana grande': 'Distrito Capital',
+  'san bernardino': 'Distrito Capital',
+  'san martin': 'Distrito Capital',
+  'santa rosalia': 'Distrito Capital',
+  baruta: 'Miranda',
+  chacao: 'Miranda',
+  'el hatillo': 'Miranda',
+  charallave: 'Miranda',
+  sucre: 'Miranda',
+  'catia la mar': 'La Guaira',
+  'la guaira': 'La Guaira',
+  valencia: 'Carabobo',
+  'puerto cabello': 'Carabobo',
+  anaco: 'Anzoátegui',
+  guasdualito: 'Apure',
+  maracay: 'Aragua',
+  barinas: 'Barinas',
+  'ciudad bolivar': 'Bolívar',
+  coro: 'Falcón',
+  calabozo: 'Guárico',
+  barquisimeto: 'Lara',
+  merida: 'Mérida',
+  'punta de mata': 'Monagas',
+  porlamar: 'Nueva Esparta',
+  acarigua: 'Portuguesa',
+  cumana: 'Sucre',
+  'san antonio del tachira': 'Táchira',
+  trujillo: 'Trujillo',
+  aroa: 'Yaracuy',
+  maracaibo: 'Zulia',
+  'puerto ayacucho': 'Amazonas',
+  'san carlos': 'Cojedes',
+  tucupita: 'Delta Amacuro'
+};
+
+const AREA_STATE_MATCHERS: Array<[string, string]> = [
+  ['area metropolitana de caracas', 'Distrito Capital'],
+  ['vialidad nacional', 'Nacional'],
+  ['vias expresas', 'Nacional'],
+  ['venezuela', 'Nacional'],
+  ['caracas', 'Distrito Capital'],
+  ['antimano', 'Distrito Capital'],
+  ['bella vista', 'Distrito Capital'],
+  ['caricuao', 'Distrito Capital'],
+  ['catia', 'Distrito Capital'],
+  ['chaguaramos', 'Distrito Capital'],
+  ['coche', 'Distrito Capital'],
+  ['el algodon', 'Distrito Capital'],
+  ['el avila', 'Distrito Capital'],
+  ['el llanito', 'Distrito Capital'],
+  ['el paraiso', 'Distrito Capital'],
+  ['el valle', 'Distrito Capital'],
+  ['la candelaria', 'Distrito Capital'],
+  ['las mercedes', 'Distrito Capital'],
+  ['los magallanes', 'Distrito Capital'],
+  ['los palos grandes', 'Distrito Capital'],
+  ['prados del este', 'Distrito Capital'],
+  ['sabana grande', 'Distrito Capital'],
+  ['san bernardino', 'Distrito Capital'],
+  ['san martin', 'Distrito Capital'],
+  ['santa rosalia', 'Distrito Capital'],
+  ['baruta', 'Miranda'],
+  ['chacao', 'Miranda'],
+  ['el hatillo', 'Miranda'],
+  ['charallave', 'Miranda'],
+  ['catia la mar', 'La Guaira'],
+  ['la guaira', 'La Guaira'],
+  ['valencia', 'Carabobo'],
+  ['puerto cabello', 'Carabobo'],
+  ['anaco', 'Anzoátegui'],
+  ['guasdualito', 'Apure'],
+  ['maracay', 'Aragua'],
+  ['barinas', 'Barinas'],
+  ['ciudad bolivar', 'Bolívar'],
+  ['coro', 'Falcón'],
+  ['calabozo', 'Guárico'],
+  ['barquisimeto', 'Lara'],
+  ['merida', 'Mérida'],
+  ['punta de mata', 'Monagas'],
+  ['porlamar', 'Nueva Esparta'],
+  ['acarigua', 'Portuguesa'],
+  ['cumana', 'Sucre'],
+  ['san antonio del tachira', 'Táchira'],
+  ['trujillo', 'Trujillo'],
+  ['aroa', 'Yaracuy'],
+  ['maracaibo', 'Zulia'],
+  ['puerto ayacucho', 'Amazonas'],
+  ['san carlos', 'Cojedes'],
+  ['tucupita', 'Delta Amacuro']
+];
+
 function normalize(value: string): string {
   return value
     .toLowerCase()
@@ -96,15 +233,26 @@ function normalize(value: string): string {
 }
 
 function inferState(area: string): string {
-  if (!area) return 'Nacional';
-  if (area.includes(',')) {
-    return area.split(',').pop()!.trim();
-  }
-  if (area.toLowerCase() === 'caracas') return 'Distrito Capital';
-  if (area.toLowerCase() === 'venezuela' || area.toLowerCase() === 'vialidad nacional') {
+  const normalizedArea = normalize(area);
+  if (!normalizedArea) return 'Nacional';
+  if (EXACT_AREA_STATES[normalizedArea]) return EXACT_AREA_STATES[normalizedArea];
+  if (STATE_BY_KEY[normalizedArea]) return STATE_BY_KEY[normalizedArea];
+  if (normalizedArea.includes('venezuela') || normalizedArea === 'vialidad nacional') {
     return 'Nacional';
   }
-  return area;
+
+  const rawParts = area.split(/[,/]/).map((part) => part.trim()).filter(Boolean);
+  const tail = rawParts.at(-1);
+  if (tail) {
+    const canonicalTail = STATE_BY_KEY[normalize(tail)];
+    if (canonicalTail) return canonicalTail;
+  }
+
+  for (const [needle, state] of AREA_STATE_MATCHERS) {
+    if (normalizedArea.includes(needle)) return state;
+  }
+
+  return tail ?? area;
 }
 
 export default function ContactSearch({ contacts }: Props) {
@@ -121,10 +269,18 @@ export default function ContactSearch({ contacts }: Props) {
     [contacts]
   );
 
-  const availableStates = useMemo(() => {
-    const present = new Set(enriched.map((c) => c.state ?? '').filter(Boolean));
-    return STATE_ORDER.filter((state) => present.has(state));
+  const stateCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const contact of enriched) {
+      const state = contact.state ?? 'Nacional';
+      counts.set(state, (counts.get(state) ?? 0) + 1);
+    }
+    return counts;
   }, [enriched]);
+
+  const availableStates = useMemo(() => {
+    return STATE_ORDER.filter((state) => stateCounts.has(state));
+  }, [stateCounts]);
 
   const normalizedQuery = normalize(query);
 
@@ -198,7 +354,7 @@ export default function ContactSearch({ contacts }: Props) {
           >
             <option value="">Todos ({enriched.length})</option>
             {availableStates.map((state) => {
-              const count = enriched.filter((c) => c.state === state).length;
+              const count = stateCounts.get(state) ?? 0;
               return (
                 <option value={state} key={state}>
                   {state} ({count})
@@ -252,7 +408,9 @@ export default function ContactSearch({ contacts }: Props) {
                       <h3>{contact.name}</h3>
                       <p class="contact-meta">
                         {contact.area}
-                        {contact.state && contact.state !== 'Nacional' && contact.state !== contact.area
+                        {contact.state &&
+                        contact.state !== 'Nacional' &&
+                        !normalize(contact.area).includes(normalize(contact.state))
                           ? ` · ${contact.state}`
                           : ''}
                       </p>
