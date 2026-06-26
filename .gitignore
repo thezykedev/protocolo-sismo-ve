@@ -1,5 +1,7 @@
 # build output
 dist/
+build/
+.svelte-kit/
 
 # generated types
 .astro/
@@ -29,7 +31,7 @@ pnpm-debug.log*
 .idea/
 
 # local research and source captures
-docs/
+docs/research/
 
 # local MCP server config (may contain credentials)
 .mcp.json

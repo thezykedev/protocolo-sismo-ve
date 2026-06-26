@@ -1,5 +1,5 @@
 ---
-import { navigationItems } from '../lib/navigation';
+import { desktopNavigationItems } from '../lib/navigation';
 
 interface Props {
   active: string;
@@ -34,8 +34,8 @@ const { active, statusText } = Astro.props;
     </summary>
     <nav class="desktop-menu__panel" aria-label="Navegación principal">
       {
-        navigationItems.map((item) => (
-          <a class:list={[active === item.id && 'nav-active']} href={item.href}>
+        desktopNavigationItems.map((item) => (
+          <a class:list={[active === item.id && 'nav-active']} href={item.href} key={item.id}>
             <span class="nav-label">
               {item.icon === 'phone' && (
                 <svg

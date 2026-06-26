@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const onlineHospitalUrl = 'https://ayuda.sismo-ve.xyz/hospitales';
+const correctionsUrl = 'https://ayuda.sismo-ve.xyz/correcciones';
+---
+
+<Layout
+  title="Hospitales | Sismo VE"
+  description="Puente a la coordinación hospitalaria online y a las solicitudes de corrección."
+  activeNav="hospitales"
+>
+  <section class="hero-panel">
+    <p class="eyebrow">COORDINACIÓN HOSPITALARIA</p>
+    <h1 class="seismic-command">
+      <span>CONSULTAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>REVISAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>ACTUALIZAR</span>
+    </h1>
+    <p class="hero-copy">
+      Los datos vivos de hospitales y las solicitudes de corrección se revisan en la plataforma
+      online. La PWA offline no guarda registros de pacientes ni capacidad en tiempo real.
+    </p>
+  </section>
+
+  <section class="grid-panel">
+    <div class="info-block">
+      <p class="eyebrow">PLATAFORMA ONLINE</p>
+      <p>Hospitales, disponibilidad y coordinación operativa viven en la versión online.</p>
+      <a class="button-brutal" href={onlineHospitalUrl} target="_blank" rel="noreferrer">
+        Abrir hospitales
+      </a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">CORRECCIONES</p>
+      <p>Solicita cambio o retiro cuando un dato deba revisarse.</p>
+      <a class="button-brutal" href={correctionsUrl} target="_blank" rel="noreferrer">
+        Pedir revisión
+      </a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">ALCANCE OFFLINE</p>
+      <p>
+        Esta página solo orienta. Los registros sensibles se revisan en la plataforma online y no
+        se exponen en la versión offline.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">QUÉ SÍ HAY</p>
+    <div class="grid-panel">
+      <div class="info-block">
+        <p>Coordinación hospitalaria, enlaces de contacto y revisión de cambios.</p>
+      </div>
+      <div class="info-block">
+        <p>Flujos de corrección, moderación y respuesta a reportes.</p>
+      </div>
+      <div class="info-block">
+        <p>Acceso online prioritario; la PWA solo mantiene lo esencial sin señal.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

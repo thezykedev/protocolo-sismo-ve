@@ -1,74 +1,44 @@
 # Sismo VE
 
-App offline de protocolos sísmicos para Venezuela. Construida con Astro, Tailwind CSS y Preact, con foco en carga rápida, instalación como app y consulta sin conexión.
+Monorepo de Sismo VE para el sitio esencial offline y la plataforma online de coordinación.
 
-## Qué incluye
+## Apps
 
-- `/` acciones rápidas para antes, durante y después del sismo
-- `/protocolos` guía completa por fases
-- `/contactos` directorio buscable con emergencias, Cruz Roja integrada, hospitales y apoyo vial
-- `/mochila` checklist persistente de 72 horas
-- `/instalar` guía para agregar la PWA a la pantalla de inicio
+- `apps/pwa`: app esencial offline para protocolos, contactos, mochila e instalación.
+- `apps/ayuda`: plataforma online-first para pacientes, hospitales, centros, aliados, sismos, correcciones y moderación.
+- `infra/pocketbase`: despliegue de la API y del panel de administración.
+- `packages/ui`: tokens y estilos compartidos.
+- `packages/schemas`: tipos y validaciones compartidas.
 
-## Stack
+## Qué incluye el PWA
 
-- [Astro 7](https://astro.build/) con output estático
-- [Preact](https://preactjs.com/) para los componentes interactivos (`ContactSearch`, `BranchSearch`)
-- [Tailwind CSS 4](https://tailwindcss.com/) vía `@tailwindcss/vite`
-- Service worker propio generado en build, con navegación offline y precache de rutas y assets críticos
-- Datos estructurados en `src/data/*.json` para que todo el contenido sea auditable
+- `/` resumen rápido de acción.
+- `/protocolos` guía por fases.
+- `/contactos` directorio de emergencias.
+- `/mochila` checklist persistente de 72 horas.
+- `/instalar` guía de instalación.
+- `/ayuda` puente a la plataforma online.
 
-## Desarrollo
+## Comandos
 
 ```bash
 pnpm install
-pnpm astro dev --background
-pnpm astro dev status
-```
-
-## Build
-
-```bash
 pnpm build
-pnpm preview
+pnpm dev
+pnpm --dir apps/ayuda dev
+pnpm test:offline
 ```
 
-## Datos editables
+## Stack
 
-La información principal vive en `src/data/`:
-
-- `emergency-contacts.json` — números de emergencia por estado, ciudad y servicio
-- `earthquake-protocols.json` — fases antes, durante y después
-- `seismic-kit.json` — checklist de mochila
-- `red-cross-branches.json` — filiales de la Cruz Roja Venezolana con coordenadas
-- `metadata.json` — versión, fecha de actualización y claves de almacenamiento local
-
-## Despliegue
-
-La ruta recomendada para producción es un VPS con [Coolify](https://coolify.io/) usando el `Dockerfile` del repo.
-
-1. En Coolify crea una nueva aplicación desde este repositorio.
-2. Selecciona `Dockerfile` como build pack.
-3. Usa el `Dockerfile` raíz del proyecto.
-4. Asigna tu dominio `sismo-ve.xyz`.
-5. Si vas a poner Cloudflare delante, usa `Full (strict)` y un Origin CA en el servidor.
-
-El contenedor construye la app estática con `pnpm build` y sirve `dist/` con Nginx.
-
-La publicación en Cloudflare Pages sigue disponible como alternativa técnica, pero no es la vía principal del proyecto.
-
-## Open source
-
-Se aceptan `issues` y `pull requests`, pero la dirección del proyecto, la curaduría del contenido y las decisiones de inclusión final están bajo supervisión exclusiva de [thezykedev](https://github.com/thezykedev).
-
-Lee [CONTRIBUTING.md](./CONTRIBUTING.md) antes de proponer cambios.
-
-## Licencia
-
-[MIT](./LICENSE) © thezykedev
+- Astro 7 para `apps/pwa`
+- SvelteKit para `apps/ayuda`
+- Preact donde hace falta interactividad en el PWA
+- Leaflet para mapas en la plataforma online
+- Tailwind CSS 4 y CSS global compartido
+- `pnpm@11.1.1`, Node `>=22.12.0`
 
 ## Notas
 
-- `stitch/` conserva material de referencia de diseño.
-- `docs/` es una carpeta local de investigación; está ignorada por git y nunca se publica.
+- `docs/research/` es local-only y no se commitea.
 - Los contactos y protocolos deben revisarse periódicamente contra fuentes oficiales y locales.

@@ -17,6 +17,9 @@ test.describe('offline navigation', () => {
     await page.goto('/contactos');
     await expect(page.locator('h1')).toHaveText('Números de emergencia');
 
+    await page.goto('/ayuda');
+    await expect(page.locator('.hero-panel h1')).toContainText('CONSULTAR');
+
     await page.goto('/protocolos');
     await expect(page.locator('h1')).toHaveText('Protocolos');
 
@@ -28,6 +31,9 @@ test.describe('offline navigation', () => {
 
     await page.goto('/protocolos', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('h1')).toHaveText('Protocolos');
+
+    await page.goto('/ayuda', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('.hero-panel h1')).toContainText('CONSULTAR');
 
     await page.goto('/protocolos#durante', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#durante h2')).toHaveText('Durante el sismo');

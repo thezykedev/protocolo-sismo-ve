@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Sismo VE"
-  description="App de emergencias para sismos en Venezuela, con números clave y guía que sigue disponible después de la primera carga."
+  description="App de emergencias para sismos en Venezuela. La guía esencial queda offline y la coordinación viva se abre en la plataforma online."
   activeNav="inicio"
 >
   <section class="hero-panel">
@@ -19,7 +19,8 @@ import Layout from '../layouts/Layout.astro';
     </h1>
     <p class="hero-copy">
       Guía rápida para protegerte antes, durante y después de un sismo. Guarda esta app en tu
-      teléfono: después de abrirla una vez, podrás consultar los protocolos aunque falle internet.
+      teléfono: después de abrirla una vez, podrás consultar los protocolos aunque falle
+      internet. La coordinación viva queda en la plataforma online.
     </p>
   </section>
 
@@ -71,6 +72,30 @@ import Layout from '../layouts/Layout.astro';
       <strong>KIT DE EMERGENCIA</strong>
       <p>Checklist editable para preparar tu mochila de 72 horas.</p>
     </a>
+
+    <a class="action-card" href="/centros-acopio">
+      <span class="action-card__index">[05]</span>
+      <strong>CENTROS DE ACOPIO</strong>
+      <p>Abre la plataforma online para registros vivos, mapa y revisión editorial.</p>
+    </a>
+
+    <a class="action-card" href="/colaborar">
+      <span class="action-card__index">[06]</span>
+      <strong>COLABORAR</strong>
+      <p>Puente al flujo online para propuestas, apoyo y publicación revisada.</p>
+    </a>
+
+    <a class="action-card" href="/links-utiles">
+      <span class="action-card__index">[07]</span>
+      <strong>LINKS ÚTILES</strong>
+      <p>Recursos vivos y enlaces validados en la plataforma online.</p>
+    </a>
+
+    <a class="action-card" href="/ayuda">
+      <span class="action-card__index">[08]</span>
+      <strong>AYUDA ONLINE</strong>
+      <p>Acceso directo a pacientes, hospitales, sismos y correcciones.</p>
+    </a>
   </section>
 
   <section class="grid-panel">
@@ -79,12 +104,20 @@ import Layout from '../layouts/Layout.astro';
       <p>
         Abre la app una vez con conexión para que el teléfono guarde las páginas esenciales. Luego
         puedes consultarla sin señal desde el navegador o desde el acceso instalado.
+        Los módulos vivos se mantienen fuera de la caché offline.
       </p>
     </div>
     <div class="info-block">
       <p class="eyebrow">ACCESO RÁPIDO</p>
       <p>
         <a class="inline-text-link" href="/instalar">Ver cómo instalarla en Android o iPhone</a>.
+      </p>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">CONTACTO EDITORIAL</p>
+      <p>
+        <a class="inline-text-link" href="mailto:info@sismo-ve.xyz">info@sismo-ve.xyz</a> para
+        propuestas, centros y aliados.
       </p>
     </div>
   </section>

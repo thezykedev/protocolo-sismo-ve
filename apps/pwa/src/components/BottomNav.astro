@@ -1,0 +1,205 @@
+---
+import { primaryNavigationItems, secondaryNavigationItems } from '../lib/navigation';
+
+interface Props {
+  active: string;
+}
+
+const { active } = Astro.props;
+const moreIsActive = secondaryNavigationItems.some((item) => item.id === active);
+const operationalItems = secondaryNavigationItems.filter((item) =>
+  ['acopio', 'hospitales'].includes(item.id)
+);
+const networkItems = secondaryNavigationItems.filter((item) =>
+  ['colaborar', 'aliados'].includes(item.id)
+);
+const appItems = secondaryNavigationItems.filter((item) =>
+  ['links', 'instalar', 'ayuda'].includes(item.id)
+);
+const mobileMoreLabels: Partial<Record<(typeof secondaryNavigationItems)[number]['id'], string>> = {
+  acopio: 'Centros de acopio',
+  ayuda: 'Plataforma online',
+  hospitales: 'Hospitales',
+  colaborar: 'Colaborar',
+  aliados: 'Sitios aliados',
+  links: 'Links útiles',
+  instalar: 'Instalar app'
+};
+---
+
+<nav
+  class="bottom-nav"
+  aria-label="Navegación principal"
+  style={`--nav-columns: ${primaryNavigationItems.length + 1}`}
+>
+  {
+    primaryNavigationItems.map((item) => (
+      <a class:list={[active === item.id && 'nav-active']} href={item.href} key={item.id}>
+        <span class="nav-label">
+          <span
+            class:list={['nav-label__icon-slot', `nav-label__icon-slot--${item.id}`]}
+            aria-hidden="true"
+          >
+            {item.icon === 'phone' && (
+              <svg
+                class="nav-label__icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M6.5 4.5h2.8l1.2 4.1-1.8 1.4c1 1.9 2.6 3.5 4.5 4.5l1.4-1.8 4.1 1.2v2.8c0 1.2-1 2.2-2.2 2.2C10.3 19 5 13.7 5 7.1c0-1.2 1-2.2 1.5-2.6z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            )}
+          </span>
+          <span>{item.id === 'emergencias' ? 'NÚMEROS' : item.label}</span>
+        </span>
+      </a>
+    ))
+  }
+  <details class="bottom-nav__more">
+    <summary
+      class:list={[moreIsActive && 'nav-active']}
+      aria-label="Abrir más secciones"
+      aria-controls="mobile-more-panel"
+      aria-expanded="false"
+    >
+      <span class="nav-label">
+        <span class="nav-label__icon-slot nav-label__icon-slot--more" aria-hidden="true">
+          <span class="nav-label__more-mark">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </span>
+        <span>MÁS</span>
+      </span>
+    </summary>
+    <div class="bottom-nav__more-backdrop" data-more-backdrop></div>
+    <div
+      class="bottom-nav__more-sheet"
+      id="mobile-more-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="mobile-more-title"
+    >
+      <div class="bottom-nav__more-panel">
+        <div class="bottom-nav__more-header">
+          <div>
+            <span class="bottom-nav__more-title" id="mobile-more-title">Más</span>
+          </div>
+          <button class="bottom-nav__more-close" type="button" aria-label="Cerrar panel">
+            Cerrar
+          </button>
+        </div>
+        <div class="bottom-nav__more-stack">
+          <section class="bottom-nav__more-section" aria-labelledby="more-directorios">
+            <h2 class="bottom-nav__more-section-title" id="more-directorios">Directorios</h2>
+            <div class="bottom-nav__more-list">
+              {operationalItems.map((item) => (
+                <a
+                  href={item.href}
+                  key={item.id}
+                  class:list={['bottom-nav__more-link', active === item.id && 'nav-active']}
+                >
+                  <span class="bottom-nav__more-link-main">
+                    <span class="bottom-nav__more-link-title">
+                      {mobileMoreLabels[item.id] ?? item.label}
+                    </span>
+                  </span>
+                  <span class="bottom-nav__more-link-arrow" aria-hidden="true">&gt;</span>
+                </a>
+              ))}
+            </div>
+          </section>
+          <section class="bottom-nav__more-section" aria-labelledby="more-comunidad">
+            <h2 class="bottom-nav__more-section-title" id="more-comunidad">Comunidad</h2>
+            <div class="bottom-nav__more-list">
+              {networkItems.map((item) => (
+                <a
+                  href={item.href}
+                  key={item.id}
+                  class:list={['bottom-nav__more-link', active === item.id && 'nav-active']}
+                >
+                  <span class="bottom-nav__more-link-main">
+                    <span class="bottom-nav__more-link-title">
+                      {mobileMoreLabels[item.id] ?? item.label}
+                    </span>
+                  </span>
+                  <span class="bottom-nav__more-link-arrow" aria-hidden="true">&gt;</span>
+                </a>
+              ))}
+            </div>
+          </section>
+          <section class="bottom-nav__more-section" aria-labelledby="more-herramientas">
+            <h2 class="bottom-nav__more-section-title" id="more-herramientas">Herramientas</h2>
+            <div class="bottom-nav__more-list">
+              {appItems.map((item) => (
+                <a
+                  href={item.href}
+                  key={item.id}
+                  class:list={['bottom-nav__more-link', active === item.id && 'nav-active']}
+                >
+                  <span class="bottom-nav__more-link-main">
+                    <span class="bottom-nav__more-link-title">
+                      {mobileMoreLabels[item.id] ?? item.label}
+                    </span>
+                  </span>
+                  <span class="bottom-nav__more-link-arrow" aria-hidden="true">&gt;</span>
+                </a>
+              ))}
+            </div>
+          </section>
+        </div>
+        <a class="bottom-nav__more-contact" href="mailto:info@sismo-ve.xyz">
+          info@sismo-ve.xyz
+        </a>
+      </div>
+    </div>
+  </details>
+</nav>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('.bottom-nav__more');
+    if (!root) return;
+
+    const summary = root.querySelector('summary');
+    const backdrop = root.querySelector('[data-more-backdrop]');
+    const closeButton = root.querySelector('.bottom-nav__more-close');
+    const links = Array.from(root.querySelectorAll('.bottom-nav__more-link, .bottom-nav__more-contact'));
+    let lastTrigger = null;
+
+    const close = (restoreFocus = true) => {
+      root.removeAttribute('open');
+      document.body.classList.remove('mobile-more-open');
+      summary?.setAttribute('aria-expanded', 'false');
+      if (restoreFocus && lastTrigger instanceof HTMLElement) lastTrigger.focus();
+    };
+
+    const sync = () => {
+      const open = root.hasAttribute('open');
+      document.body.classList.toggle('mobile-more-open', open);
+      summary?.setAttribute('aria-expanded', String(open));
+      if (open) {
+        lastTrigger = document.activeElement;
+        window.requestAnimationFrame(() => closeButton?.focus());
+      }
+    };
+
+    root.addEventListener('toggle', sync);
+    backdrop?.addEventListener('click', () => close());
+    closeButton?.addEventListener('click', () => close());
+    links.forEach((link) => link.addEventListener('click', () => close(false)));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && root.hasAttribute('open')) close();
+    });
+  })();
+</script>

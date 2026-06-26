@@ -6,13 +6,15 @@ import '@fontsource/jetbrains-mono/700.css';
 import metadata from '../data/metadata.json';
 import BottomNav from '../components/BottomNav.astro';
 import TopBar from '../components/TopBar.astro';
+import type { NavigationId } from '../lib/navigation';
 import packageInfo from '../../package.json';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
-  activeNav?: 'inicio' | 'protocolos' | 'emergencias' | 'mochila' | 'instalar';
+  activeNav?:
+    | NavigationId;
   pageTitle?: string;
   pageIntro?: string;
   statusText?: string;
@@ -85,9 +87,10 @@ const socialImageUrl = `${siteUrl}${socialImagePath}`;
       <slot />
       <footer class="site-footer">
         <p>
-          Contenido resumido a partir de los documentos de autoprotección y mejores prácticas de
-          FUNVISIS. Diseñado para lectura rápida, no para sustituir capacitación formal.
+          Contenido resumido a partir de documentos de autoprotección y fuentes operativas
+          verificables. Los directorios colaborativos se publican solo después de revisión manual.
         </p>
+        <p>Contacto editorial: <a href="mailto:info@sismo-ve.xyz">info@sismo-ve.xyz</a></p>
         <p>Actualizado: {metadata.updatedAt}</p>
         <p>Build: {buildLabel}</p>
       </footer>
