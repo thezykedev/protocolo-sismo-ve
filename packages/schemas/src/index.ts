@@ -1,0 +1,247 @@
+export type ModerationStatus = 'approved' | 'pending' | 'rejected' | 'archived';
+
+export type PublicVisibilityStatus = 'public_unverified' | 'verified' | 'pending' | 'archived' | 'rejected';
+
+export type PatientSex = 'female' | 'male' | 'unknown' | 'other';
+export type PatientCondition =
+  | 'stable'
+  | 'observation'
+  | 'hospitalized'
+  | 'discharged'
+  | 'unknown'
+  | 'deceased_unconfirmed'
+  | 'deceased_verified';
+export type VerificationStatus = 'unverified' | 'source_confirmed' | 'hospital_confirmed' | 'moderator_confirmed';
+export type SourceType = 'family' | 'hospital_staff' | 'volunteer' | 'public_reporter' | 'moderator';
+export type PatientImportSource = 'public_render' | 'manual_html' | 'private_api';
+export type PatientImportTarget = 'patients_public' | 'patient_private_notes';
+export type CollectionType = 'acopio' | 'shelter' | 'logistics' | 'medical_support' | 'water' | 'food' | 'other';
+export type AllyCategory = string;
+export type SeismicSource = 'funvisis' | 'usgs' | 'emsc' | 'gdacs' | 'manual';
+export type SeismicStatus = 'active' | 'superseded' | 'hidden';
+export type AlertLevel = 'none' | 'green' | 'yellow' | 'orange' | 'red' | 'unknown';
+export type EventClass = 'micro' | 'minor' | 'light' | 'moderate' | 'strong' | 'major' | 'unknown';
+export type SyncSourceType = 'patients' | 'hospitals' | 'seismic';
+export type SyncStatus = 'success' | 'partial' | 'failed';
+
+export interface Coordinates {
+  lat: number;
+  lng: number;
+}
+
+export interface DateRange {
+  from?: string;
+  to?: string;
+}
+
+export interface HospitalRecord {
+  id: string;
+  status: ModerationStatus;
+  name: string;
+  city: string;
+  state: string;
+  address?: string;
+  coords_lat?: number;
+  coords_lng?: number;
+  phones?: string[];
+  services?: string[];
+  capacity_note?: string;
+  source_type?: SourceType;
+  verification_status?: VerificationStatus;
+  source_name?: string;
+  source_url?: string;
+  source_record_id?: string;
+  source_updated_at?: string;
+  imported_at?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface CommunityCenter {
+  id: string;
+  status: ModerationStatus;
+  name: string;
+  type: CollectionType;
+  city: string;
+  state: string;
+  address?: string;
+  coords_lat?: number;
+  coords_lng?: number;
+  needs?: string;
+  schedule?: string;
+  contact_public?: string;
+  source_type?: SourceType;
+  verification_status?: VerificationStatus;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface AlliedSite {
+  id: string;
+  status: ModerationStatus;
+  name: string;
+  category: AllyCategory;
+  city?: string;
+  state?: string;
+  website?: string;
+  contact_public?: string;
+  notes_public?: string;
+  verification_status?: VerificationStatus;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface UsefulLink {
+  id: string;
+  status: ModerationStatus;
+  title: string;
+  category: string;
+  url: string;
+  description: string;
+}
+
+export interface PatientPublicRecord {
+  id: string;
+  status: PublicVisibilityStatus;
+  patient_name: string;
+  age?: number;
+  age_is_estimated?: boolean;
+  sex?: PatientSex;
+  cedula_last3: string;
+  hospital?: string;
+  location_note?: string;
+  condition_public?: PatientCondition;
+  last_seen_at?: string;
+  source_type?: SourceType;
+  verification_status?: VerificationStatus;
+  source_name?: string;
+  source_url?: string;
+  source_record_id?: string;
+  source_updated_at?: string;
+  imported_at?: string;
+  public_notes?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface PatientPrivateNote {
+  id: string;
+  patient: string;
+  cedula_hash?: string;
+  contact_name?: string;
+  contact_phone?: string;
+  reporter_relationship?: string;
+  internal_notes?: string;
+  source_evidence_files?: string[];
+  moderation_status?: ModerationStatus;
+  created_by?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface UpdateQueueEntry {
+  id: string;
+  target_collection: string;
+  target_record: string;
+  payload_json: string;
+  submitted_by_name?: string;
+  submitted_by_contact?: string;
+  status: 'pending' | 'accepted' | 'rejected';
+  moderator_notes?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface RemovalRequest {
+  id: string;
+  target_collection: string;
+  target_record: string;
+  requester_name: string;
+  requester_contact?: string;
+  relationship?: string;
+  reason: string;
+  status: 'pending' | 'accepted' | 'rejected';
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface ModerationLog {
+  id: string;
+  target_collection: string;
+  target_record: string;
+  action: 'create' | 'approve' | 'reject' | 'update' | 'archive' | 'restore' | 'remove_public_field';
+  moderator: string;
+  notes?: string;
+  created_at?: string;
+}
+
+export interface DonationRecord {
+  id: string;
+  provider: 'paypal' | 'crypto' | 'manual';
+  amount?: number;
+  currency?: string;
+  transaction_id?: string;
+  wallet_network?: string;
+  public_name?: string;
+  status: 'pending' | 'confirmed' | 'failed' | 'refunded';
+  created_at?: string;
+}
+
+export interface SeismicEvent {
+  id: string;
+  status: SeismicStatus;
+  source: SeismicSource;
+  source_event_id: string;
+  source_url: string;
+  title: string;
+  place: string;
+  state_region?: string;
+  event_time: string;
+  updated_at_source?: string;
+  magnitude: number;
+  magnitude_type?: string;
+  depth_km?: number;
+  coords_lat: number;
+  coords_lng: number;
+  felt_reports_count?: number;
+  alert_level?: AlertLevel;
+  event_class?: EventClass;
+  mainshock_candidate?: boolean;
+  review_status?: 'automatic' | 'reviewed' | 'manual';
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface SourceSyncRun {
+  id: string;
+  source_name: string;
+  source_url?: string;
+  source_type: SyncSourceType;
+  status: SyncStatus;
+  started_at: string;
+  finished_at?: string;
+  records_seen?: number;
+  records_created?: number;
+  records_updated?: number;
+  records_skipped?: number;
+  error_message?: string;
+}
+
+export function normalizeWhitespace(value: string): string {
+  return value.replace(/\s+/g, ' ').trim();
+}
+
+export function cedulaLast3(value: string): string {
+  const digits = value.replace(/\D/g, '');
+  return digits.slice(-3).padStart(3, '0');
+}
+
+export function eventClassFromMagnitude(magnitude: number): EventClass {
+  if (!Number.isFinite(magnitude)) return 'unknown';
+  if (magnitude < 2) return 'micro';
+  if (magnitude < 3) return 'minor';
+  if (magnitude < 4) return 'light';
+  if (magnitude < 5) return 'moderate';
+  if (magnitude < 6) return 'strong';
+  return 'major';
+}

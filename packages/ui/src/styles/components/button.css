@@ -1,0 +1,38 @@
+.button-brutal,
+.button-brutal:link,
+.button-brutal:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.85rem 1rem;
+  border: 2px solid var(--yellow);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease,
+    transform 150ms ease;
+}
+
+.button-brutal:hover,
+.button-brutal:focus-visible {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--yellow-ink);
+  transform: translateY(-1px);
+}
+
+.button-brutal--ghost {
+  border-color: var(--line-soft);
+  color: var(--text-dim);
+}
+
+.button-brutal--ghost:hover,
+.button-brutal--ghost:focus-visible {
+  border-color: var(--yellow);
+}
