@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+const onlinePlatformUrl = 'https://ayuda.sismo-ve.xyz/aliados';
+const correctionsUrl = 'https://ayuda.sismo-ve.xyz/correcciones';
+---
+
+<Layout
+  title="Sitios aliados | Sismo VE"
+  description="Puente a la red de aliados y a la revisión editorial online."
+  activeNav="aliados"
+>
+  <section class="hero-panel">
+    <p class="eyebrow">RED DE APOYO</p>
+    <h1 class="seismic-command">
+      <span>CONSULTAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>REVISAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>PUBLICAR</span>
+    </h1>
+    <p class="hero-copy">
+      Los aliados vivos se revisan y publican en la plataforma online. La versión offline conserva
+      solo la guía esencial.
+    </p>
+  </section>
+
+  <section class="grid-panel">
+    <div class="info-block">
+      <p class="eyebrow">PLATAFORMA ONLINE</p>
+      <p>Red de apoyo, validación editorial y publicación visible.</p>
+      <a class="button-brutal" href={onlinePlatformUrl} target="_blank" rel="noreferrer">
+        Abrir aliados
+      </a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">CORRECCIONES</p>
+      <p>Si un dato cambia, se solicita revisión antes de volver a publicar.</p>
+      <a class="button-brutal" href={correctionsUrl} target="_blank" rel="noreferrer">
+        Pedir revisión
+      </a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">ALCANCE OFFLINE</p>
+      <p>La versión instalada no guarda directorios vivos ni estados de moderación.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">QUÉ ENTRA</p>
+    <div class="grid-panel">
+      <div class="info-block">
+        <p>ONG, radios, farmacias, transporte, laboratorios y albergues.</p>
+      </div>
+      <div class="info-block">
+        <p>Nombre real, contacto verificable y ubicación confirmada antes de publicar.</p>
+      </div>
+      <div class="info-block">
+        <p>Todo se muestra solo después de la revisión editorial en la plataforma online.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

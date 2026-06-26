@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+const onlinePlatformUrl = 'https://ayuda.sismo-ve.xyz/links-utiles';
+const correctionsUrl = 'https://ayuda.sismo-ve.xyz/correcciones';
+---
+
+<Layout
+  title="Links útiles | Sismo VE"
+  description="Puente a recursos vivos y enlaces validados en la plataforma online."
+  activeNav="links"
+>
+  <section class="hero-panel">
+    <p class="eyebrow">HERRAMIENTAS</p>
+    <h1 class="seismic-command">
+      <span>CONSULTAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>VALIDAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>ABRIR</span>
+    </h1>
+    <p class="hero-copy">
+      Los recursos vivos se revisan en la plataforma online. La app instalada conserva solo la
+      guía esencial y los números críticos.
+    </p>
+  </section>
+
+  <section class="grid-panel">
+    <div class="info-block">
+      <p class="eyebrow">PLATAFORMA ONLINE</p>
+      <p>Directorio curado de enlaces prácticos, con revisión editorial antes de publicar.</p>
+      <a class="button-brutal" href={onlinePlatformUrl} target="_blank" rel="noreferrer">
+        Abrir links útiles
+      </a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">CORRECCIONES</p>
+      <p>Si un enlace cambia o deja de funcionar, se solicita revisión desde la plataforma online.</p>
+      <a class="button-brutal" href={correctionsUrl} target="_blank" rel="noreferrer">
+        Reportar enlace
+      </a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">ALCANCE OFFLINE</p>
+      <p>La versión instalada no almacena directorios vivos ni depende de ellos para funcionar.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">USO RECOMENDADO</p>
+    <div class="grid-panel">
+      <div class="info-block">
+        <p>Abre el directorio online cuando tengas conexión estable.</p>
+      </div>
+      <div class="info-block">
+        <p>No dependas de un solo enlace para comunicarte o coordinar una respuesta.</p>
+      </div>
+      <div class="info-block">
+        <p>En la app offline siguen disponibles protocolos, contactos y mochila.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
