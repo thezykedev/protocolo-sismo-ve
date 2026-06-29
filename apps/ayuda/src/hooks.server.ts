@@ -1,7 +1,7 @@
 import PocketBase from 'pocketbase';
-import type { Handle } from '@sveltejs/kit';
+import { error, redirect, type Handle } from '@sveltejs/kit';
 import { resolveBaseUrl } from '$lib/pocketbase/server';
-import type { AuthUser } from '$lib/server/auth';
+import { isStaff, type AuthUser } from '$lib/server/auth';
 
 // Refresca el token solo cuando le queda poco de vida, no en cada request: mantiene la
 // sesión "deslizante" para usuarios activos sin golpear PocketBase (ni su rate limit) de más.
@@ -42,6 +42,20 @@ export const handle: Handle = async ({ event, resolve }) => {
         active: record.active
       } as AuthUser)
     : null;
+
+  // Control de acceso al panel en un solo seam: toda request a /admin (excepto el login)
+  // debe ser de un curador. Las acciones de formulario NO atraviesan +layout.server.ts, así
+  // que enforzar aquí cierra el hueco de una mutación sin guardia. Las rutas conservan su
+  // requireStaff/requireAdmin como defensa en profundidad (y usuarios sigue exigiendo admin).
+  const path = event.url.pathname;
+  if (path.startsWith('/admin') && !path.startsWith('/admin/login')) {
+    if (!event.locals.user) {
+      throw redirect(303, `/admin/login?next=${encodeURIComponent(path)}`);
+    }
+    if (!isStaff(event.locals.user)) {
+      throw error(403, 'Tu cuenta no tiene permisos de curaduría.');
+    }
+  }
 
   const response = await resolve(event);
 
