@@ -3,21 +3,25 @@ export type ModerationStatus = 'approved' | 'pending' | 'rejected' | 'archived';
 export type PublicVisibilityStatus = 'public_unverified' | 'verified' | 'pending' | 'archived' | 'rejected';
 
 export type PatientSex = 'female' | 'male' | 'unknown' | 'other';
-export type PatientCondition =
-  | 'stable'
-  | 'observation'
-  | 'hospitalized'
-  | 'discharged'
-  | 'unknown'
-  | 'deceased_unconfirmed'
-  | 'deceased_verified';
+// Único origen de los estados clínicos públicos: el tipo se deriva del arreglo, así que la
+// validación en runtime y el tipo no pueden divergir.
+export const PATIENT_CONDITIONS = [
+  'stable',
+  'observation',
+  'hospitalized',
+  'discharged',
+  'unknown',
+  'deceased_unconfirmed',
+  'deceased_verified'
+] as const;
+export type PatientCondition = (typeof PATIENT_CONDITIONS)[number];
 export type VerificationStatus = 'unverified' | 'source_confirmed' | 'hospital_confirmed' | 'moderator_confirmed';
 export type SourceType = 'family' | 'hospital_staff' | 'volunteer' | 'public_reporter' | 'moderator';
 export type PatientImportSource = 'public_render' | 'manual_html' | 'private_api';
 export type PatientImportTarget = 'patients_public' | 'patient_private_notes';
 export type CollectionType = 'acopio' | 'shelter' | 'logistics' | 'medical_support' | 'water' | 'food' | 'other';
 export type AllyCategory = string;
-export type SeismicSource = 'funvisis' | 'usgs' | 'emsc' | 'gdacs' | 'manual';
+export type SeismicSource = 'funvisis' | 'usgs' | 'emsc' | 'geofon' | 'gdacs' | 'manual' | 'sgc';
 export type SeismicStatus = 'active' | 'superseded' | 'hidden';
 export type AlertLevel = 'none' | 'green' | 'yellow' | 'orange' | 'red' | 'unknown';
 export type EventClass = 'micro' | 'minor' | 'light' | 'moderate' | 'strong' | 'major' | 'unknown';
@@ -234,6 +238,46 @@ export function normalizeWhitespace(value: string): string {
 export function cedulaLast3(value: string): string {
   const digits = value.replace(/\D/g, '');
   return digits.slice(-3).padStart(3, '0');
+}
+
+// Campos públicos que un cambio sugerido por la comunidad puede tocar, por colección.
+// Cualquier otra clave del payload se descarta: un envío público no puede cambiar status,
+// fuentes, ni filtrar campos privados. Esta es la regla de privacidad como dato, en un solo
+// lugar, junto a los tipos que gobierna.
+export const PUBLIC_PATCH_FIELDS: Record<string, string[]> = {
+  patients_public: [
+    'patient_name',
+    'age',
+    'cedula_last3',
+    'condition_public',
+    'public_notes',
+    'hospital',
+    'location_note',
+    'sex',
+    'last_seen_at'
+  ],
+  hospitals: ['name', 'city', 'state', 'address', 'capacity_note', 'phones', 'services'],
+  collection_centers: ['name', 'city', 'state', 'address', 'needs', 'schedule', 'contact_public'],
+  allied_sites: ['name', 'category', 'city', 'state', 'website', 'contact_public', 'notes_public'],
+  useful_links: ['title', 'category', 'url', 'description']
+};
+
+// Proyecta un payload arbitrario a solo los campos publicables de la colección y reduce la
+// cédula a sus 3 últimos dígitos. Único punto que decide qué se publica: úsalo en toda ruta
+// que aplique un cambio sugerido a un registro público.
+export function sanitizePublicPatch(
+  collection: string,
+  payload: Record<string, unknown>
+): Record<string, unknown> {
+  const allowed = PUBLIC_PATCH_FIELDS[collection] ?? [];
+  const out: Record<string, unknown> = {};
+  for (const key of allowed) {
+    if (key in payload) out[key] = payload[key];
+  }
+  if (typeof out.cedula_last3 === 'string') {
+    out.cedula_last3 = cedulaLast3(out.cedula_last3);
+  }
+  return out;
 }
 
 export function eventClassFromMagnitude(magnitude: number): EventClass {
