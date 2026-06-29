@@ -236,7 +236,7 @@ async function fetchEMSC(hours: number, minMagnitude: number): Promise<SeismicEv
   return features.map(mapEMSCFeature).filter(Boolean) as SeismicEvent[];
 }
 
-function mapGEOFONRow(row: string): SeismicEvent | null {
+export function mapGEOFONRow(row: string): SeismicEvent | null {
   const columns = row.split('|').map((column) => column.trim());
   // La salida FDSN-text de GEOFON encabeza con "#EventID|Time|..."; descartar la
   // cabecera y comentarios evita parsear "Time" como fecha (RangeError) y tumbar la fuente.
@@ -416,13 +416,30 @@ function isForeignEvent(place: string): boolean {
   return foreignTerms.some((term) => p.includes(term));
 }
 
-export async function loadSeismicSnapshot(hours: number, minMagnitude: number): Promise<SeismicSnapshot> {
-  const sources: Array<{ source: SeismicSource; fetcher: () => Promise<SeismicEvent[]> }> = [
+export interface SeismicSourceAdapter {
+  source: SeismicSource;
+  fetcher: () => Promise<SeismicEvent[]>;
+}
+
+// Fuentes por defecto en producción. SGC (fetchSGC/mapSGCFeature) está implementado pero NO
+// se cablea aquí: cablearlo + ajustar isForeignEvent para la frontera es una decisión de
+// producto pendiente sobre la cobertura de eventos fronterizos (ver review, candidato #4).
+function defaultSeismicSources(hours: number, minMagnitude: number): SeismicSourceAdapter[] {
+  return [
     { source: 'emsc', fetcher: () => fetchEMSC(hours, minMagnitude) },
     { source: 'usgs', fetcher: () => fetchUSGS(hours, minMagnitude) },
     { source: 'geofon', fetcher: () => fetchGEOFON(hours, minMagnitude) }
   ];
+}
 
+// `sources` es inyectable: en producción usa las fuentes reales (red); en pruebas se pasan
+// adaptadores de fixtures, de modo que la dedupe/normalización/filtro fronterizo se ejercitan
+// a través de la interfaz, sin mockear fetch global.
+export async function loadSeismicSnapshot(
+  hours: number,
+  minMagnitude: number,
+  sources: SeismicSourceAdapter[] = defaultSeismicSources(hours, minMagnitude)
+): Promise<SeismicSnapshot> {
   const settled = await Promise.allSettled(sources.map((source) => source.fetcher()));
   const sourcesChecked = settled.map((result, index) => ({
     source: sources[index].source,
