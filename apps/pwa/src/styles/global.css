@@ -92,33 +92,13 @@ button {
   outline: none;
 }
 
-.brand__signal {
-  position: relative;
+.brand__logo {
+  display: block;
   flex: 0 0 auto;
   width: 2rem;
   height: 2rem;
-  border: 2px solid var(--yellow);
-  background:
-    linear-gradient(90deg, transparent 0 18%, var(--orange) 18% 38%, transparent 38% 62%, var(--orange) 62% 82%, transparent 82%) 50% 1.38rem / 100% 0.22rem no-repeat,
-    var(--bg);
-}
-
-.brand__signal::before {
-  content: "";
-  position: absolute;
-  inset: 0.22rem;
-  background: var(--yellow);
-  clip-path: polygon(50% 0, 76% 0, 58% 34%, 78% 44%, 39% 100%, 47% 61%, 24% 50%, 43% 33%);
-}
-
-.brand__signal::after {
-  content: "";
-  position: absolute;
-  right: -0.45rem;
-  top: 0.35rem;
-  width: 2px;
-  height: 1.25rem;
-  background: var(--line);
+  border: 2px solid var(--line);
+  background: var(--bg);
 }
 
 .status-chip {
