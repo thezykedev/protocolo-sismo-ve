@@ -63,6 +63,46 @@ Branch and commit policy:
   secrets, env files, or unrelated user-staged files never ride along.
 - End commit messages with a `Co-Authored-By:` trailer identifying the agent.
 
+## Git Worktrees
+
+Use worktrees to run several feature branches at once (e.g. one per agent) without re-cloning. The
+cost is one `node_modules` per worktree — but with pnpm those are mostly hardlinks into a shared
+store, not real copies, so disk stays small. Do not let the repo balloon to gigabytes.
+
+Keep the pnpm store global so every worktree reuses it:
+
+```sh
+pnpm store path                                  # should be ONE global path, e.g. ~/.local/share/pnpm/store/v3
+pnpm config set store-dir ~/.pnpm-store          # only if a worktree resolves a separate store
+pnpm config set package-import-method hardlink   # link packages in, don't copy them
+```
+
+Create worktrees with scoped branch names (see Git Workflow) and install per worktree:
+
+```sh
+git worktree add ../sismo-nav  -b feature/mobile-more-menu
+git worktree add ../sismo-copy -b fix/public-copy
+cd ../sismo-nav && pnpm install --frozen-lockfile --prefer-offline
+```
+
+The first install populates the store; later worktrees reuse it and are fast.
+
+Rules:
+
+- Each worktree gets its OWN `node_modules`. Do NOT symlink one worktree's `node_modules` to another
+  (`ln -s ../main/node_modules node_modules`): it breaks when a branch changes deps or the lockfile,
+  when a script writes into it, or when two agents install at once.
+- Install only where you build/dev/test. Docs- or copy-only branches need no `pnpm install`.
+- Measure size honestly: `du -sh node_modules` counts hardlinked files repeatedly and looks huge.
+  Compare against the real footprint instead:
+
+```sh
+du -sh "$(pnpm store path)"          # the actual shared bytes on disk
+du -sh --apparent-size node_modules  # logical size, not deduplicated reality
+```
+
+- Clean up finished worktrees: `git worktree remove ../sismo-nav` (then `git worktree prune`).
+
 ## Secrets And PocketBase
 
 Tight control over secrets is a hard requirement.
