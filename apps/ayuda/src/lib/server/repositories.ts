@@ -69,7 +69,12 @@ export async function loadCenters(): Promise<CommunityCenter[]> {
 }
 
 export async function loadPatients(): Promise<PatientPublicRecord[]> {
-  const { ok, items } = await pbList<PatientPublicRecord>('patients_public', 'status != "archived"');
+  // Ocultar tanto archivados como rechazados: rechazar en moderación debe sacar el registro de
+  // lo público, no solo archivar (status 'rejected' es distinto de 'archived').
+  const { ok, items } = await pbList<PatientPublicRecord>(
+    'patients_public',
+    'status != "archived" && status != "rejected"'
+  );
   return ok ? items : fallbackList<PatientPublicRecord>('patients_public');
 }
 
