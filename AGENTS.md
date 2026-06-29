@@ -101,7 +101,10 @@ du -sh "$(pnpm store path)"          # the actual shared bytes on disk
 du -sh --apparent-size node_modules  # logical size, not deduplicated reality
 ```
 
-- Clean up finished worktrees: `git worktree remove ../sismo-nav` (then `git worktree prune`).
+- Do NOT remove a worktree until its branch is saved on the git remote — a worktree-only branch is
+  lost when the worktree is deleted. The only exception: if a feature turns out unwanted, ASK the
+  user first and remove the worktree only after they explicitly confirm they do not want it. Then:
+  `git worktree remove ../sismo-nav && git worktree prune`.
 
 ## Secrets And PocketBase
 
