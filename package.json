@@ -9,7 +9,12 @@
   "scripts": {
     "build": "pnpm -r --if-present build",
     "dev": "pnpm --dir apps/pwa dev",
+    "dev:ayuda": "pnpm --dir apps/ayuda dev",
     "preview": "pnpm --dir apps/pwa preview",
-    "test:offline": "pnpm --dir apps/pwa test:offline"
+    "test:offline": "pnpm --dir apps/pwa test:offline",
+    "pb:dev": "bash scripts/pocketbase-dev.sh",
+    "fallback:snapshot": "pnpm --dir apps/ayuda snapshot",
+    "pb:import": "pnpm --dir apps/ayuda import:pb",
+    "secrets:push": "bash scripts/push-secrets.sh"
   }
 }

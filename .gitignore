@@ -23,6 +23,16 @@ pnpm-debug.log*
 .env
 .env.local
 .env.production
+.env.ci
+
+# pocketbase local runtime (binario descargado + datos locales)
+infra/pocketbase/bin/
+infra/pocketbase/pb_data/
+infra/pocketbase/pb_public/
+
+# snapshot SQLite de respaldo (generado) + staging de ingestión (datos sensibles)
+apps/ayuda/.fallback/
+data/ingest/staging.db
 
 # macOS-specific files
 .DS_Store
@@ -35,3 +45,6 @@ docs/research/
 
 # local MCP server config (may contain credentials)
 .mcp.json
+data/drive_data/
+# ingest ledger + transcribed patient data (sensitive, local-only)
+data/ingest/
