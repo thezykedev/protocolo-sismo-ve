@@ -55,9 +55,10 @@ export const POST: RequestHandler = async ({ request }) => {
 
   try {
     const pb = await authenticateAdmin();
+    // pb.filter() escapa el valor: evita inyección en el filtro (corre como superuser).
     const record = await pb
       .collection('patients_public')
-      .getFirstListItem(`source_record_id = "${id}"`);
+      .getFirstListItem(pb.filter('source_record_id = {:id}', { id }));
     const saved = await pb.collection('patients_public').update(record.id, update);
     return json({ ok: true, record: saved });
   } catch (err) {
