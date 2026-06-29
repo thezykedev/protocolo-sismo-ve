@@ -1,4 +1,4 @@
-import { fail, redirect } from '@sveltejs/kit';
+import { fail, redirect, isRedirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { submitQueuedRecord } from '$lib/server/repositories';
 
@@ -36,7 +36,7 @@ export const actions: Actions = {
 
       throw redirect(303, '/colaborar?sent=1');
     } catch (error) {
-      if (error instanceof Response) throw error;
+      if (isRedirect(error)) throw error;
       return fail(503, {
         message: 'La propuesta no se pudo guardar. La revisión queda pendiente de conexión.'
       });
