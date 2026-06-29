@@ -280,6 +280,53 @@ export function sanitizePublicPatch(
   return out;
 }
 
+// Seam de ENTRADA de formularios de admisión: coerción + trim + reglas de campos requeridos en
+// un solo lugar, en vez de re-escribir String(get()??'').trim() y chequeos sueltos en cada ruta.
+// Hace par con sanitizePublicPatch (el seam de salida). Devuelve el valor limpio o los errores.
+export interface ParseResult<T> {
+  ok: boolean;
+  value: T;
+  errors: string[];
+}
+
+export interface PatientSubmission {
+  patient_name: string;
+  cedula_last3: string;
+  hospital?: string;
+  condition_public: string;
+  source_name: string;
+  source_url?: string;
+  public_notes?: string;
+}
+
+export function parsePatientSubmission(form: FormData): ParseResult<PatientSubmission> {
+  const errors: string[] = [];
+  const patient_name = String(form.get('patient_name') ?? '').trim();
+  const cedulaDigits = String(form.get('cedula') ?? '').replace(/\D/g, '');
+  const hospital = String(form.get('hospital') ?? '').trim();
+  const condition_public = String(form.get('condition_public') ?? '').trim() || 'unknown';
+  const source_name = String(form.get('source_name') ?? '').trim();
+  const source_url = String(form.get('source_url') ?? '').trim();
+  const public_notes = String(form.get('public_notes') ?? '').trim();
+
+  if (!patient_name) errors.push('Completa el nombre del paciente.');
+  if (cedulaDigits.length < 3) errors.push('La cédula debe tener al menos 3 dígitos.');
+
+  return {
+    ok: errors.length === 0,
+    value: {
+      patient_name,
+      cedula_last3: cedulaLast3(cedulaDigits),
+      hospital: hospital || undefined,
+      condition_public,
+      source_name: source_name || 'Formulario público',
+      source_url: source_url || undefined,
+      public_notes: public_notes || undefined
+    },
+    errors
+  };
+}
+
 export function eventClassFromMagnitude(magnitude: number): EventClass {
   if (!Number.isFinite(magnitude)) return 'unknown';
   if (magnitude < 2) return 'micro';
