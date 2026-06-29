@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ayudaUrl } from '../config/platform';
+
+const onlinePlatformUrl = ayudaUrl();
+const supportLinks = [
+  {
+    title: 'Pacientes',
+    href: `${onlinePlatformUrl}/pacientes`,
+    description: 'Registros vivos, datos comunitarios y corrección.'
+  },
+  {
+    title: 'Hospitales',
+    href: `${onlinePlatformUrl}/hospitales`,
+    description: 'Coordinación hospitalaria y actualización operativa.'
+  },
+  {
+    title: 'Centros',
+    href: `${onlinePlatformUrl}/centros`,
+    description: 'Puntos de ayuda, albergues y logística.'
+  },
+  {
+    title: 'Sismos',
+    href: `${onlinePlatformUrl}/sismos`,
+    description: 'Mapa y listado de eventos recientes.'
+  },
+  {
+    title: 'Aliados',
+    href: `${onlinePlatformUrl}/aliados`,
+    description: 'Red de apoyo y coordinación comunitaria.'
+  },
+  {
+    title: 'Correcciones',
+    href: `${onlinePlatformUrl}/correcciones`,
+    description: 'Solicitudes de cambio, retiro o revisión.'
+  }
+] as const;
+---
+
+<Layout
+  title="Ayuda online | Sismo VE"
+  description="Puente a la plataforma online para pacientes, hospitales, centros, aliados, sismos y correcciones."
+  activeNav="ayuda"
+>
+  <section class="hero-panel">
+    <p class="eyebrow">PLATAFORMA ONLINE</p>
+    <h1 class="seismic-command">
+      <span>CONSULTAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>REVISAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>ACTUALIZAR</span>
+    </h1>
+    <p class="hero-copy">
+      Esta página abre la versión online para datos que cambian con frecuencia. El sitio offline
+      conserva protocolos, contactos, mochila e instalación.
+    </p>
+  </section>
+
+  <section class="grid-panel">
+    <div class="info-block">
+      <p class="eyebrow">ABRIR PLATAFORMA</p>
+      <p>
+        La información viva se publica en la versión online para mantener revisión, filtros y
+        moderación al día.
+      </p>
+      <a class="button-brutal" href={onlinePlatformUrl} target="_blank" rel="noreferrer">
+        Abrir ayuda
+      </a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">CANALES</p>
+      <p>
+        Pacientes, hospitales, centros, aliados, sismos, apoyos y correcciones siguen sus propios
+        flujos dentro de la plataforma.
+      </p>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">CONTACTO EDITORIAL</p>
+      <p>
+        <a class="inline-text-link" href="mailto:info@sismo-ve.xyz">info@sismo-ve.xyz</a> para
+        observaciones y coordinación.
+      </p>
+    </div>
+  </section>
+
+  <section class="contacts-grid" aria-label="Accesos directos a la plataforma online">
+    {supportLinks.map((link) => (
+      <article class="directory-card" key={link.title}>
+        <span class="pill pill--verified">Online</span>
+        <h3>{link.title}</h3>
+        <p class="source-note">{link.description}</p>
+        <a class="button-brutal" href={link.href} target="_blank" rel="noreferrer">
+          Abrir
+        </a>
+      </article>
+    ))}
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">ALCANCE</p>
+    <div class="grid-panel">
+      <div class="info-block">
+        <p>La PWA offline no guarda registros vivos ni datos de moderación.</p>
+      </div>
+      <div class="info-block">
+        <p>Las correcciones y solicitudes de retiro se revisan en la plataforma online.</p>
+      </div>
+      <div class="info-block">
+        <p>Si la conexión falla, siguen disponibles protocolos, contactos y kit de emergencia.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

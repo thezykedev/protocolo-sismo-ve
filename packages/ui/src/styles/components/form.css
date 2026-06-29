@@ -1,0 +1,32 @@
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.field__label {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.field__input,
+.field__select,
+.field__textarea {
+  width: 100%;
+  min-height: 44px;
+  border: 2px solid var(--line-soft);
+  background: var(--bg-soft);
+  color: var(--text);
+  padding: 0.8rem 0.9rem;
+}
+
+.field__textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.field__help {
+  color: var(--text-dim);
+  line-height: 1.5;
+}

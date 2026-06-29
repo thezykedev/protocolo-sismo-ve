@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ayudaUrl } from '../config/platform';
+const onlineCenterUrl = ayudaUrl('centros');
+
+const registerMail = `mailto:info@sismo-ve.xyz?subject=${encodeURIComponent(
+  'Registro de centro de acopio'
+)}&body=${encodeURIComponent(
+  'Propuesta de centro de acopio para Sismo VE.\n\nNombre:\nCiudad:\nEstado:\nDirección:\nContacto:\nServicios:\nObservaciones:\n'
+)}`;
+---
+
+<Layout
+  title="Centros de acopio | Sismo VE"
+  description="Puente al directorio online de centros de acopio y puntos de ayuda."
+  activeNav="acopio"
+>
+  <section class="hero-panel">
+    <p class="eyebrow">DIRECTORIO CURADO</p>
+    <h1 class="seismic-command">
+      <span>CONSULTAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>REVISAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>PUBLICAR</span>
+    </h1>
+    <p class="hero-copy">
+      Los centros de acopio, albergues y puntos de ayuda se revisan en la plataforma online. La
+      versión offline no guarda registros vivos.
+    </p>
+  </section>
+
+  <section class="grid-panel">
+    <div class="info-block">
+      <p class="eyebrow">PLATAFORMA ONLINE</p>
+      <p>Mapa, directorio vivo y validación editorial.</p>
+      <a class="button-brutal" href={onlineCenterUrl} target="_blank" rel="noreferrer">
+        Abrir centros
+      </a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">REGISTRO MANUAL</p>
+      <p>Si prefieres enviar un punto por correo, usa el canal editorial.</p>
+      <a class="button-brutal" href={registerMail}>Proponer centro</a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">ALCANCE OFFLINE</p>
+      <p>Los registros sensibles y la capacidad en vivo quedan fuera del PWA instalada.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">CRITERIOS DE PUBLICACIÓN</p>
+    <div class="grid-panel">
+      <div class="info-block">
+        <p>Nombre, dirección exacta, ciudad, estado y contacto real.</p>
+      </div>
+      <div class="info-block">
+        <p>Coordenadas y servicios confirmados antes de publicar el registro.</p>
+      </div>
+      <div class="info-block">
+        <p>La coordinación viva se mantiene en la plataforma online, no en la app offline.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

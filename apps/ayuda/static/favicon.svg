@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Sismo VE">
+  <rect width="128" height="128" fill="#131313"/>
+  <rect x="9" y="9" width="110" height="110" fill="none" stroke="#3a3a3a" stroke-width="7"/>
+  <path d="M19 19h90v29H19z" fill="#f4d400"/>
+  <path d="M19 48h90v32H19z" fill="#0033a0"/>
+  <path d="M19 80h90v29H19z" fill="#cf142b"/>
+  <g fill="#ffffff">
+    <path d="M0 -4.2 1.22 -1.26 4.4 -1 2.02 1.05 2.72 4.1 0 2.42 -2.72 4.1 -2.02 1.05 -4.4 -1 -1.22 -1.26Z" transform="translate(33 65)"/>
+    <path d="M0 -4.2 1.22 -1.26 4.4 -1 2.02 1.05 2.72 4.1 0 2.42 -2.72 4.1 -2.02 1.05 -4.4 -1 -1.22 -1.26Z" transform="translate(43.3 61)"/>
+    <path d="M0 -4.2 1.22 -1.26 4.4 -1 2.02 1.05 2.72 4.1 0 2.42 -2.72 4.1 -2.02 1.05 -4.4 -1 -1.22 -1.26Z" transform="translate(53.7 58.8)"/>
+    <path d="M0 -4.2 1.22 -1.26 4.4 -1 2.02 1.05 2.72 4.1 0 2.42 -2.72 4.1 -2.02 1.05 -4.4 -1 -1.22 -1.26Z" transform="translate(64 58)"/>
+    <path d="M0 -4.2 1.22 -1.26 4.4 -1 2.02 1.05 2.72 4.1 0 2.42 -2.72 4.1 -2.02 1.05 -4.4 -1 -1.22 -1.26Z" transform="translate(74.3 58.8)"/>
+    <path d="M0 -4.2 1.22 -1.26 4.4 -1 2.02 1.05 2.72 4.1 0 2.42 -2.72 4.1 -2.02 1.05 -4.4 -1 -1.22 -1.26Z" transform="translate(84.7 61)"/>
+    <path d="M0 -4.2 1.22 -1.26 4.4 -1 2.02 1.05 2.72 4.1 0 2.42 -2.72 4.1 -2.02 1.05 -4.4 -1 -1.22 -1.26Z" transform="translate(95 65)"/>
+  </g>
+  <path d="M25 95h21l7-13 9 25 11-34 11 22h20" fill="none" stroke="#ffff00" stroke-width="7.5" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

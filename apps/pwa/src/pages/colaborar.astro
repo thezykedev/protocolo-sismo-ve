@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ayudaUrl } from '../config/platform';
+const onlinePlatformUrl = ayudaUrl('colaborar');
+
+const registerMail = `mailto:info@sismo-ve.xyz?subject=${encodeURIComponent(
+  'Propuesta de colaboración para Sismo VE'
+)}&body=${encodeURIComponent(
+  'Propuesta de colaboración para Sismo VE.\n\nNombre o organización:\nTipo de apoyo:\nCiudad:\nContacto:\nObservaciones:\n'
+)}`;
+---
+
+<Layout
+  title="Colaborar | Sismo VE"
+  description="Puente al flujo online para propuestas, apoyo y moderación comunitaria."
+  activeNav="colaborar"
+>
+  <section class="hero-panel">
+    <p class="eyebrow">APOYO CURADO</p>
+    <h1 class="seismic-command">
+      <span>PROPONER</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>REVISAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>APROBAR</span>
+    </h1>
+    <p class="hero-copy">
+      La colaboración operativa vive en la plataforma online. Aquí queda el acceso rápido y el
+      canal editorial.
+    </p>
+  </section>
+
+  <section class="grid-panel">
+    <div class="info-block">
+      <p class="eyebrow">PLATAFORMA ONLINE</p>
+      <p>Flujo de propuestas comunitarias y publicación visible.</p>
+      <a class="button-brutal" href={onlinePlatformUrl} target="_blank" rel="noreferrer">
+        Abrir colaborar
+      </a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">CONTACTO EDITORIAL</p>
+      <p>
+        <a class="inline-text-link" href="mailto:info@sismo-ve.xyz">info@sismo-ve.xyz</a> para
+        propuestas y coordinación.
+      </p>
+      <a class="button-brutal" href={registerMail}>Enviar propuesta</a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">ALCANCE</p>
+      <p>La app offline conserva protocolos, contactos y mochila; la colaboración viva va online.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">FLUJO DE APROBACIÓN</p>
+    <div class="contacts-grid">
+      <article class="directory-card">
+        <span class="pill pill--review">1</span>
+        <h3>Entrada</h3>
+        <p class="source-note">La propuesta llega por correo o por el formulario online.</p>
+      </article>
+      <article class="directory-card">
+        <span class="pill pill--review">2</span>
+        <h3>Validación</h3>
+        <p class="source-note">Se valida que el punto exista, tenga contacto real y aporte servicio útil.</p>
+      </article>
+      <article class="directory-card">
+        <span class="pill pill--verified">3</span>
+        <h3>Publicación</h3>
+        <p class="source-note">Si aprueba, pasa al mapa, al buscador y a la vista móvil resumida.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="grid-panel">
+    <div class="info-block">
+      <p class="eyebrow">STACK RECOMENDADO</p>
+      <p>
+        Astro para el sitio público, Leaflet para mapas y una base tipo PocketBase para guardar
+        envíos, estados de revisión y auditoría sin tocar el frontend cada vez.
+      </p>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">VENTAJA</p>
+      <p>
+        Separar contenido público y moderación permite escalar directorios más delicados, como
+        hospitales o pacientes, sin mezclarlos con los listados abiertos.
+      </p>
+    </div>
+  </section>
+</Layout>

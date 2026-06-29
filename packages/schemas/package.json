@@ -1,0 +1,9 @@
+{
+  "name": "@sismo-ve/schemas",
+  "version": "1.1.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

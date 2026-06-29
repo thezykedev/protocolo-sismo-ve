@@ -1,0 +1,124 @@
+---
+import protocols from '../data/earthquake-protocols.json';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Sismo VE"
+  description="App de emergencias para sismos en Venezuela. La guía esencial queda offline y la coordinación viva se abre en la plataforma online."
+  activeNav="inicio"
+>
+  <section class="hero-panel">
+    <p class="eyebrow">SI ESTÁ TEMBLANDO</p>
+    <h1 class="seismic-command">
+      <span>AGÁCHATE</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>CÚBRETE</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>SUJÉTATE</span>
+    </h1>
+    <p class="hero-copy">
+      Guía rápida para protegerte antes, durante y después de un sismo. Guarda esta app en tu
+      teléfono: después de abrirla una vez, podrás consultar los protocolos aunque falle
+      internet. La coordinación viva queda en la plataforma online.
+    </p>
+  </section>
+
+  <section class="phase-infographic" aria-label="Resumen de las tres fases del protocolo sísmico">
+    <article class="phase-card phase-card--before">
+      <span class="phase-card__number">01</span>
+      <img class="phase-card__image" src="/graphics/antes-sismo.png" alt="Morral de emergencia, suministros y salida despejada antes del sismo" />
+      <p class="eyebrow">{protocols.before.keyword}</p>
+      <h2>ANTES</h2>
+      <p>{protocols.before.summary}</p>
+    </article>
+    <article class="phase-card phase-card--during">
+      <span class="phase-card__number">02</span>
+      <img class="phase-card__image" src="/graphics/durante-sismo.png" alt="Persona cubierta bajo una mesa resistente durante un sismo" />
+      <p class="eyebrow">{protocols.during.keyword}</p>
+      <h2>DURANTE</h2>
+      <p>{protocols.during.summary}</p>
+    </article>
+    <article class="phase-card phase-card--after">
+      <span class="phase-card__number">03</span>
+      <img class="phase-card__image" src="/graphics/despues-sismo.png" alt="Persona evacuando con linterna y evitando escombros después del sismo" />
+      <p class="eyebrow">{protocols.after.keyword}</p>
+      <h2>DESPUÉS</h2>
+      <p>{protocols.after.summary}</p>
+    </article>
+  </section>
+
+  <section class="home-grid">
+    <a class="action-card" href="/protocolos#durante">
+      <span class="action-card__index">[01]</span>
+      <strong>DURANTE UN SISMO</strong>
+      <p>Pasos inmediatos para protegerte dentro y fuera de una estructura.</p>
+    </a>
+
+    <a class="action-card" href="/protocolos#despues">
+      <span class="action-card__index">[02]</span>
+      <strong>DESPUÉS DEL SISMO</strong>
+      <p>Revisión rápida de lesiones, fugas, réplicas y comunicación segura.</p>
+    </a>
+
+    <a class="action-card" href="/contactos">
+      <span class="action-card__index">[03]</span>
+      <strong>NÚMEROS DE EMERGENCIA</strong>
+      <p>Directorio breve con líneas verificadas y referencias que debes confirmar localmente.</p>
+    </a>
+
+    <a class="action-card" href="/mochila">
+      <span class="action-card__index">[04]</span>
+      <strong>KIT DE EMERGENCIA</strong>
+      <p>Checklist editable para preparar tu mochila de 72 horas.</p>
+    </a>
+
+    <a class="action-card" href="/centros-acopio">
+      <span class="action-card__index">[05]</span>
+      <strong>CENTROS DE ACOPIO</strong>
+      <p>Abre la plataforma online para registros vivos, mapa y datos comunitarios.</p>
+    </a>
+
+    <a class="action-card" href="/colaborar">
+      <span class="action-card__index">[06]</span>
+      <strong>COLABORAR</strong>
+      <p>Puente al flujo online para propuestas, apoyo y publicación revisada.</p>
+    </a>
+
+    <a class="action-card" href="/links-utiles">
+      <span class="action-card__index">[07]</span>
+      <strong>LINKS ÚTILES</strong>
+      <p>Recursos vivos y enlaces validados en la plataforma online.</p>
+    </a>
+
+    <a class="action-card" href="/ayuda">
+      <span class="action-card__index">[08]</span>
+      <strong>AYUDA ONLINE</strong>
+      <p>Acceso directo a pacientes, hospitales, sismos y correcciones.</p>
+    </a>
+  </section>
+
+  <section class="grid-panel">
+    <div class="info-block">
+      <p class="eyebrow">FUNCIONA SIN INTERNET</p>
+      <p>
+        Abre la app una vez con conexión para que el teléfono guarde las páginas esenciales. Luego
+        puedes consultarla sin señal desde el navegador o desde el acceso instalado.
+        Los módulos vivos se mantienen fuera de la caché offline.
+      </p>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">ACCESO RÁPIDO</p>
+      <p>
+        <a class="inline-text-link" href="/instalar">Ver cómo instalarla en Android o iPhone</a>.
+      </p>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">CONTACTO EDITORIAL</p>
+      <p>
+        <a class="inline-text-link" href="mailto:info@sismo-ve.xyz">info@sismo-ve.xyz</a> para
+        propuestas, centros y aliados.
+      </p>
+    </div>
+  </section>
+</Layout>

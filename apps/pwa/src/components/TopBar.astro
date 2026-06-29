@@ -1,0 +1,64 @@
+---
+import { desktopNavigationItems } from '../lib/navigation';
+
+interface Props {
+  active: string;
+  statusText: string;
+}
+
+const { active, statusText } = Astro.props;
+---
+
+<header class="topbar">
+  <a class="brand" href="/" aria-label="Ir al inicio">
+    <img class="brand__logo" src="/logo-mark.svg" alt="" aria-hidden="true" />
+    <span>SISMO VE</span>
+  </a>
+  <div class="status-chip" data-offline-chip data-offline-state="loading">
+    <span class="status-chip__icon" aria-hidden="true"></span>
+    <span class="status-chip__body">
+      <span data-offline-chip-text>{statusText}</span>
+      <span class="status-chip__meter" aria-hidden="true">
+        <span class="status-chip__meter-fill" data-offline-chip-progress></span>
+      </span>
+    </span>
+  </div>
+  <details class="desktop-menu">
+    <summary aria-label="Abrir navegación">
+      <span class="desktop-menu__label">MENU</span>
+      <span class="desktop-menu__mark" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </summary>
+    <nav class="desktop-menu__panel" aria-label="Navegación principal">
+      {
+        desktopNavigationItems.map((item) => (
+          <a class:list={[active === item.id && 'nav-active']} href={item.href} key={item.id}>
+            <span class="nav-label">
+              {item.icon === 'phone' && (
+                <svg
+                  class="nav-label__icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M6.5 4.5h2.8l1.2 4.1-1.8 1.4c1 1.9 2.6 3.5 4.5 4.5l1.4-1.8 4.1 1.2v2.8c0 1.2-1 2.2-2.2 2.2C10.3 19 5 13.7 5 7.1c0-1.2 1-2.2 1.5-2.6z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              )}
+              <span>{item.label}</span>
+            </span>
+          </a>
+        ))
+      }
+    </nav>
+  </details>
+</header>

@@ -1,0 +1,585 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/600.css';
+import '@fontsource/jetbrains-mono/700.css';
+import metadata from '../data/metadata.json';
+import BottomNav from '../components/BottomNav.astro';
+import TopBar from '../components/TopBar.astro';
+import type { NavigationId } from '../lib/navigation';
+import packageInfo from '../../package.json';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  activeNav?:
+    | NavigationId;
+  pageTitle?: string;
+  pageIntro?: string;
+  statusText?: string;
+}
+
+const {
+  title = 'Sismo VE',
+  description = 'Guía de emergencias para sismos en Venezuela, con contactos clave y acceso sin internet después de la primera carga.',
+  activeNav = 'inicio',
+  pageTitle,
+  pageIntro,
+  statusText = 'Preparando uso sin internet'
+} = Astro.props;
+
+const rawCommit = (process.env.SOURCE_COMMIT ?? 'local').trim();
+const shortCommit = rawCommit === 'local' ? 'local' : rawCommit.slice(0, 7);
+const buildLabel = `v${packageInfo.version} (${shortCommit})`;
+const offlineVersion = `${packageInfo.version}-${shortCommit}`;
+const siteUrl = (process.env.COOLIFY_URL ?? 'https://sismo-ve.xyz').replace(/\/$/, '');
+const socialImagePath = '/graphics/durante-sismo.png';
+const socialImageUrl = `${siteUrl}${socialImagePath}`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffff00" />
+    <meta name="apple-mobile-web-app-title" content="Sismo VE" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sismo VE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content="Persona cubierta bajo una mesa resistente durante un sismo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="canonical" href={siteUrl} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <TopBar active={activeNav} statusText={statusText} />
+    <div class="mobile-offline-banner" data-offline-banner aria-live="polite">
+      <span class="mobile-offline-banner__dot" data-offline-dot aria-hidden="true"></span>
+      <span class="mobile-offline-banner__body">
+        <span data-offline-banner-text>{statusText}</span>
+        <span class="mobile-offline-banner__meter" aria-hidden="true">
+          <span class="mobile-offline-banner__meter-fill" data-offline-banner-progress></span>
+        </span>
+      </span>
+    </div>
+    <main class="page-shell">
+      {
+        pageTitle && (
+          <section class="page-header">
+            <p class="eyebrow">PROTOCOLO SÍSMICO</p>
+            <h1>{pageTitle}</h1>
+            {pageIntro && <p class="lede">{pageIntro}</p>}
+          </section>
+        )
+      }
+      <slot />
+      <footer class="site-footer">
+        <p>
+          Contenido resumido a partir de documentos de autoprotección y fuentes operativas
+          verificables. Los directorios colaborativos se publican solo después de revisión manual.
+        </p>
+        <p>Contacto editorial: <a href="mailto:info@sismo-ve.xyz">info@sismo-ve.xyz</a></p>
+        <p>Actualizado: {metadata.updatedAt}</p>
+        <p>Build: {buildLabel}</p>
+      </footer>
+    </main>
+    <BottomNav active={activeNav} />
+    <script is:inline define:vars={{ offlineVersion }}>
+      (() => {
+        const chips = Array.from(document.querySelectorAll('[data-offline-chip]'));
+        const banner = document.querySelector('[data-offline-banner]');
+        const bannerText = document.querySelector('[data-offline-banner-text]');
+        const bannerDot = document.querySelector('[data-offline-dot]');
+        const chipProgressBars = Array.from(document.querySelectorAll('[data-offline-chip-progress]'));
+        const bannerProgress = document.querySelector('[data-offline-banner-progress]');
+        const storageKey = 'sismo-ve-offline-ready';
+        const statusKey = 'sismo-ve-offline-status';
+        const migrationKey = 'sismo-ve-sw-migration';
+        const migrationVersion = '2026-06-25-mpa-offline-v3';
+        const controlReloadKey = 'sismo-ve-sw-control-reload';
+        const manifestUrl = '/offline-manifest.json';
+        const concurrency = 4;
+
+        const states = {
+          ready: {
+            text: 'Lista para usar sin internet',
+            tone: 'ready',
+            progress: 100
+          },
+          loading: {
+            text: 'Preparando uso sin internet',
+            tone: 'loading',
+            progress: 8
+          },
+          registering: {
+            text: 'Registrando modo sin internet',
+            tone: 'loading',
+            progress: 14
+          },
+          caching: {
+            text: 'Guardando páginas para usar sin internet',
+            tone: 'loading',
+            progress: 24
+          },
+          finalizing: {
+            text: 'Terminando guardado sin internet',
+            tone: 'loading',
+            progress: 96
+          },
+          offline: {
+            text: 'Funciona sin internet',
+            tone: 'offline',
+            progress: 100
+          },
+          stalled: {
+            text: 'Falta conexión para terminar el guardado',
+            tone: 'loading',
+            progress: 92
+          },
+          paused: {
+            text: 'Reconecta internet para terminar el guardado',
+            tone: 'loading',
+            progress: 40
+          }
+        };
+
+        const currentOfflineVersion = offlineVersion;
+
+        const isReadyStored = () => {
+          try {
+            return localStorage.getItem(storageKey) === currentOfflineVersion;
+          } catch {
+            return false;
+          }
+        };
+
+        const markReadyStored = () => {
+          try {
+            localStorage.setItem(storageKey, currentOfflineVersion);
+          } catch {
+            // ignore storage errors
+          }
+        };
+
+        const clearReadyStored = () => {
+          try {
+            localStorage.removeItem(storageKey);
+          } catch {
+            // ignore storage errors
+          }
+        };
+
+        const readStoredStatus = () => {
+          try {
+            const raw = localStorage.getItem(statusKey);
+            const parsed = raw ? JSON.parse(raw) : null;
+            return parsed?.version === currentOfflineVersion ? parsed : null;
+          } catch {
+            return null;
+          }
+        };
+
+        const writeStoredStatus = (value) => {
+          try {
+            localStorage.setItem(statusKey, JSON.stringify(value));
+          } catch {
+            // ignore storage errors
+          }
+        };
+
+        const clearStoredStatus = () => {
+          try {
+            localStorage.removeItem(statusKey);
+          } catch {
+            // ignore storage errors
+          }
+        };
+
+        const needsMigration = () => {
+          try {
+            return localStorage.getItem(migrationKey) !== migrationVersion;
+          } catch {
+            return true;
+          }
+        };
+
+        const markMigrationComplete = () => {
+          try {
+            localStorage.setItem(migrationKey, migrationVersion);
+          } catch {
+            // ignore storage errors
+          }
+        };
+
+        const runServiceWorkerMigration = async () => {
+          if (!needsMigration()) return;
+
+          clearReadyStored();
+          clearStoredStatus();
+
+          try {
+            const registrations = await navigator.serviceWorker.getRegistrations();
+            await Promise.all(registrations.map((registration) => registration.unregister()));
+          } catch {
+            // ignore unregister failures
+          }
+
+          if ('caches' in window) {
+            try {
+              const keys = await caches.keys();
+              await Promise.all(keys.map((key) => caches.delete(key)));
+            } catch {
+              // ignore cache cleanup failures
+            }
+          }
+
+          markMigrationComplete();
+          location.reload();
+        };
+
+        const withTimeout = async (promise, ms) => {
+          let timer;
+
+          try {
+            return await Promise.race([
+              promise,
+              new Promise((resolve) => {
+                timer = setTimeout(() => resolve(false), ms);
+              })
+            ]);
+          } finally {
+            if (timer) clearTimeout(timer);
+          }
+        };
+
+        const needsControlReload = () => {
+          try {
+            return sessionStorage.getItem(controlReloadKey) !== '1';
+          } catch {
+            return true;
+          }
+        };
+
+        const markControlReload = () => {
+          try {
+            sessionStorage.setItem(controlReloadKey, '1');
+          } catch {
+            // ignore storage errors
+          }
+        };
+
+        const buildCachingText = (completed, total) => {
+          if (!total) return states.loading.text;
+          return `Guardando para usar sin internet (${completed}/${total})`;
+        };
+
+        const renderStoredStatus = (status) => {
+          if (!status) {
+            setState('loading');
+            return;
+          }
+
+          const online = navigator.onLine;
+          if (!online && status.ready) {
+            setState('offline');
+            return;
+          }
+
+          if (!online && status.phase === 'caching') {
+            setState('paused', {
+              progress: status.total ? Math.max(12, Math.round((status.completed / status.total) * 100)) : 40,
+              text: `Sin conexión: ${status.completed}/${status.total ?? 0} guardados`
+            });
+            return;
+          }
+
+          if (status.ready) {
+            setState('ready');
+            return;
+          }
+
+          if (status.phase === 'caching') {
+            const progress = status.total
+              ? Math.min(96, Math.max(24, Math.round((status.completed / status.total) * 100)))
+              : states.caching.progress;
+            setState('caching', {
+              progress,
+              text: buildCachingText(status.completed, status.total)
+            });
+            return;
+          }
+
+          if (status.phase === 'finalizing') {
+            setState('finalizing');
+            return;
+          }
+
+          setState(status.phase ?? 'loading');
+        };
+
+        const syncReadyState = async () => {
+          if (!('serviceWorker' in navigator)) return false;
+
+          try {
+            const alreadyReady = isReadyStored();
+            if (!alreadyReady) setState('registering');
+            const registration = await navigator.serviceWorker.register('/sw.js', {
+              scope: '/'
+            });
+
+            const awaitActivation = () =>
+              new Promise((resolve) => {
+                if (registration.active && navigator.serviceWorker.controller) {
+                  resolve(true);
+                  return;
+                }
+
+                const worker = registration.installing ?? registration.waiting;
+                if (!worker) {
+                  resolve(false);
+                  return;
+                }
+
+                worker.addEventListener('statechange', () => {
+                  if (worker.state === 'activated' && navigator.serviceWorker.controller) {
+                    resolve(true);
+                  }
+                });
+              });
+
+            if (!alreadyReady) setState('caching');
+            const activated = await withTimeout(awaitActivation(), 12000);
+            if (activated) {
+              if (!navigator.serviceWorker.controller && needsControlReload()) {
+                markControlReload();
+                location.reload();
+                return false;
+              }
+              return true;
+            }
+
+            if (!alreadyReady) setState('finalizing');
+            await withTimeout(navigator.serviceWorker.ready, 12000);
+            if (!navigator.serviceWorker.controller && needsControlReload()) {
+              markControlReload();
+              location.reload();
+              return false;
+            }
+            return true;
+          } catch {
+            return false;
+          }
+        };
+
+        const setState = (state, overrides = {}) => {
+          const next = states[state] ?? states.loading;
+          const text = overrides.text ?? next.text;
+          const progress = overrides.progress ?? next.progress;
+          chips.forEach((chip) => {
+            chip.dataset.offlineState = state;
+            const text = chip.querySelector('[data-offline-chip-text]');
+            if (text) text.textContent = overrides.text ?? next.text;
+          });
+
+          if (banner) banner.dataset.offlineState = state;
+          if (bannerText) bannerText.textContent = text;
+          if (bannerDot) bannerDot.dataset.offlineTone = next.tone;
+          chipProgressBars.forEach((bar) => {
+            bar.style.width = `${progress}%`;
+          });
+          if (bannerProgress) {
+            bannerProgress.style.width = `${progress}%`;
+          }
+        };
+
+        const fetchManifest = async () => {
+          const response = await fetch(manifestUrl, { cache: 'no-store' });
+          if (!response.ok) throw new Error('No se pudo leer offline-manifest.json');
+          return response.json();
+        };
+
+        const isRouteEntryReady = async (cache, routeEntry) => {
+          for (const alias of routeEntry.aliases) {
+            const cached = await cache.match(alias);
+            if (!cached) return false;
+          }
+          return true;
+        };
+
+        const cacheRouteEntry = async (cache, routeEntry) => {
+          const response = await fetch(routeEntry.source, { cache: 'no-store' });
+          if (!response.ok) throw new Error(`No se pudo guardar ${routeEntry.source}`);
+
+          const tasks = routeEntry.aliases.map((alias) => cache.put(alias, response.clone()));
+          await Promise.all(tasks);
+        };
+
+        const cacheAsset = async (cache, assetUrl) => {
+          const existing = await cache.match(assetUrl);
+          if (existing) return true;
+
+          const response = await fetch(assetUrl, { cache: 'no-store' });
+          if (!response.ok) throw new Error(`No se pudo guardar ${assetUrl}`);
+          await cache.put(assetUrl, response.clone());
+          return true;
+        };
+
+        const ensureOfflineBundle = async () => {
+          if (!('caches' in window)) return false;
+
+          const manifest = await fetchManifest();
+          const status = readStoredStatus();
+          const versionChanged = manifest.version !== currentOfflineVersion;
+
+          if (versionChanged) {
+            clearReadyStored();
+            clearStoredStatus();
+            throw new Error('Version offline inconsistente');
+          }
+
+          const cache = await caches.open(manifest.cacheName);
+          const routeChecks = await Promise.all(
+            manifest.routes.map((entry) => isRouteEntryReady(cache, entry))
+          );
+          const assetChecks = await Promise.all(
+            manifest.assets.map((assetUrl) => cache.match(assetUrl).then(Boolean))
+          );
+
+          const total = manifest.routes.length + manifest.assets.length;
+          let completed = routeChecks.filter(Boolean).length + assetChecks.filter(Boolean).length;
+
+          if (completed >= total) {
+            markReadyStored();
+            writeStoredStatus({
+              version: manifest.version,
+              phase: 'ready',
+              completed: total,
+              total,
+              ready: true
+            });
+            renderStoredStatus(readStoredStatus());
+            return true;
+          }
+
+          const pendingTasks = [
+            ...manifest.routes
+              .filter((_, index) => !routeChecks[index])
+              .map((routeEntry) => async () => cacheRouteEntry(cache, routeEntry)),
+            ...manifest.assets
+              .filter((_, index) => !assetChecks[index])
+              .map((assetUrl) => async () => cacheAsset(cache, assetUrl))
+          ];
+
+          writeStoredStatus({
+            version: manifest.version,
+            phase: 'caching',
+            completed,
+            total,
+            ready: false
+          });
+          renderStoredStatus(readStoredStatus());
+
+          const workers = Array.from({ length: Math.min(concurrency, pendingTasks.length) }, async () => {
+            while (pendingTasks.length > 0) {
+              const task = pendingTasks.shift();
+              if (!task) break;
+              await task();
+              completed += 1;
+              writeStoredStatus({
+                version: manifest.version,
+                phase: 'caching',
+                completed,
+                total,
+                ready: false
+              });
+              renderStoredStatus(readStoredStatus());
+            }
+          });
+
+          try {
+            await Promise.all(workers);
+            writeStoredStatus({
+              version: manifest.version,
+              phase: 'finalizing',
+              completed: total,
+              total,
+              ready: false
+            });
+            setState('finalizing');
+            markReadyStored();
+            writeStoredStatus({
+              version: manifest.version,
+              phase: 'ready',
+              completed: total,
+              total,
+              ready: true
+            });
+            renderStoredStatus(readStoredStatus());
+            return true;
+          } catch {
+            writeStoredStatus({
+              version: manifest.version,
+              phase: 'caching',
+              completed,
+              total,
+              ready: false
+            });
+            renderStoredStatus(readStoredStatus());
+            return false;
+          }
+        };
+
+        const update = () => {
+          renderStoredStatus(readStoredStatus());
+        };
+
+        const boot = async () => {
+          if ('serviceWorker' in navigator) {
+            await runServiceWorkerMigration();
+          }
+
+          renderStoredStatus(readStoredStatus());
+          window.addEventListener('online', update);
+          window.addEventListener('offline', update);
+          window.addEventListener('storage', (event) => {
+            if (event.key === statusKey || event.key === storageKey) {
+              renderStoredStatus(readStoredStatus());
+            }
+          });
+
+          const synced = await syncReadyState();
+          if (!synced && !isReadyStored() && navigator.onLine) {
+            setState('stalled');
+          }
+
+          if (navigator.onLine && !isReadyStored()) {
+            const bundled = await ensureOfflineBundle();
+            if (!bundled && !isReadyStored()) {
+              setState('stalled');
+            }
+          } else {
+            renderStoredStatus(readStoredStatus());
+          }
+
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('controllerchange', update);
+          }
+        };
+
+        boot();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "@sismo-ve/ui",
+  "version": "1.1.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tokens.css": "./src/styles/tokens.css",
+    "./base.css": "./src/styles/base.css",
+    "./components/button.css": "./src/styles/components/button.css",
+    "./components/card.css": "./src/styles/components/card.css",
+    "./components/form.css": "./src/styles/components/form.css",
+    "./components/status.css": "./src/styles/components/status.css",
+    "./components/nav.css": "./src/styles/components/nav.css"
+  }
+}

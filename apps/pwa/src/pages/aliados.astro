@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ayudaUrl } from '../config/platform';
+const onlinePlatformUrl = ayudaUrl('aliados');
+const correctionsUrl = ayudaUrl('correcciones');
+---
+
+<Layout
+  title="Sitios aliados | Sismo VE"
+  description="Puente a la red de aliados comunitarios y crowdsourced."
+  activeNav="aliados"
+>
+  <section class="hero-panel">
+    <p class="eyebrow">RED DE APOYO</p>
+    <h1 class="seismic-command">
+      <span>CONSULTAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>REVISAR</span>
+      <span class="seismic-command__separator" aria-hidden="true">·</span>
+      <span>PUBLICAR</span>
+    </h1>
+    <p class="hero-copy">
+      Los aliados vivos son aportados por la comunidad en la plataforma online. La versión offline conserva
+      solo la guía esencial.
+    </p>
+  </section>
+
+  <section class="grid-panel">
+    <div class="info-block">
+      <p class="eyebrow">PLATAFORMA ONLINE</p>
+      <p>Red de apoyo y publicación visible de los aportes de la comunidad.</p>
+      <a class="button-brutal" href={onlinePlatformUrl} target="_blank" rel="noreferrer">
+        Abrir aliados
+      </a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">CORRECCIONES</p>
+      <p>Si un dato cambia, se solicita una corrección o borrado.</p>
+      <a class="button-brutal" href={correctionsUrl} target="_blank" rel="noreferrer">
+        Pedir corrección
+      </a>
+    </div>
+    <div class="info-block">
+      <p class="eyebrow">ALCANCE OFFLINE</p>
+      <p>La versión instalada no guarda directorios vivos ni estados de moderación.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">QUÉ ENTRA</p>
+    <div class="grid-panel">
+      <div class="info-block">
+        <p>ONG, radios, farmacias, transporte, laboratorios y albergues.</p>
+      </div>
+      <div class="info-block">
+        <p>Todo se muestra tal y como fue reportado, como información crowdsourced.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

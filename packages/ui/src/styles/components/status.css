@@ -1,0 +1,32 @@
+.status-chip,
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  border: 2px solid var(--yellow);
+  padding: 0.45rem 0.7rem;
+  color: var(--yellow);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.status-chip--ready,
+.status-pill--approved,
+.status-pill--verified {
+  border-color: var(--ready);
+  color: var(--ready);
+}
+
+.status-chip--warning,
+.status-pill--pending,
+.status-pill--review {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.status-chip--quiet {
+  border-color: var(--line-soft);
+  color: var(--text-dim);
+}
