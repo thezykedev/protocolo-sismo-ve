@@ -62,28 +62,13 @@ function message(error: unknown, fallback: string): string {
   return error instanceof Error ? error.message : fallback;
 }
 
-export async function moderate(store: ModerationStore, input: ModerateInput): Promise<ModerateResult> {
-  let note: string | undefined;
+function isNotFound(error: unknown): boolean {
+  return typeof error === 'object' && error !== null && (error as { status?: number }).status === 404;
+}
 
-  if (input.apply) {
-    try {
-      await store.update(input.apply.collection, input.apply.id, input.apply.fields);
-    } catch (error) {
-      if (input.apply.required) {
-        return { ok: false, error: message(error, 'No se pudo aplicar el cambio al registro destino.') };
-      }
-      note = ' (el registro destino ya no existía o no se pudo modificar)';
-    }
-  }
-
-  if (input.resolve) {
-    try {
-      await store.update(input.resolve.collection, input.resolve.id, { status: input.resolve.status });
-    } catch (error) {
-      return { ok: false, error: message(error, 'No se pudo actualizar el estado.') };
-    }
-  }
-
+// Auditoría best-effort: una decisión ya aplicada no se revierte si el log falla. La garantía vive
+// aquí, no en cada adaptador.
+async function writeAudit(store: ModerationStore, input: ModerateInput, note: string | undefined): Promise<void> {
   try {
     await store.log({
       target_collection: input.audit.collection,
@@ -93,10 +78,41 @@ export async function moderate(store: ModerationStore, input: ModerateInput): Pr
       notes: note ? `${input.audit.notes ?? ''}${note}`.trim() : input.audit.notes
     });
   } catch {
-    // La auditoría es best-effort: una decisión ya aplicada no se revierte si el log falla.
-    // La garantía vive aquí, no en cada adaptador.
+    /* el log es secundario */
+  }
+}
+
+export async function moderate(store: ModerationStore, input: ModerateInput): Promise<ModerateResult> {
+  let note: string | undefined;
+  let applied = false;
+
+  if (input.apply) {
+    try {
+      await store.update(input.apply.collection, input.apply.id, input.apply.fields);
+      applied = true;
+    } catch (error) {
+      // Solo un 404 (el registro destino ya no existe) es best-effort cuando required:false —
+      // p. ej. un retiro cuyo registro ya fue borrado. Cualquier otro fallo (transitorio, regla de
+      // escritura) SÍ se reporta: no se cierra una decisión creyendo que se aplicó cuando no fue así.
+      if (input.apply.required || !isNotFound(error)) {
+        return { ok: false, error: message(error, 'No se pudo aplicar el cambio al registro destino.') };
+      }
+      note = ' (el registro destino ya no existía)';
+    }
   }
 
+  if (input.resolve) {
+    try {
+      await store.update(input.resolve.collection, input.resolve.id, { status: input.resolve.status });
+    } catch (error) {
+      // Si el efecto sobre el destino ya se aplicó, dejar rastro en auditoría aunque no se haya
+      // podido cerrar la entrada, y reportar para que el moderador reintente el cierre.
+      if (applied) await writeAudit(store, input, note);
+      return { ok: false, error: message(error, 'El cambio se aplicó pero no se pudo cerrar la entrada; reinténtalo.') };
+    }
+  }
+
+  await writeAudit(store, input, note);
   return { ok: true, note };
 }
 

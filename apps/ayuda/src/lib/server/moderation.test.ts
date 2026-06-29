@@ -9,7 +9,7 @@ type Records = Record<string, Record<string, Record<string, unknown>>>;
 function inMemoryStore(seed: Records = {}) {
   const records: Records = structuredClone(seed);
   const logs: ModerationLogInput[] = [];
-  const fail = { update: new Set<string>(), log: false };
+  const fail = { update: new Set<string>(), gone: new Set<string>(), log: false };
 
   const store: ModerationStore = {
     async getOne(collection, id) {
@@ -18,7 +18,14 @@ function inMemoryStore(seed: Records = {}) {
       return rec;
     },
     async update(collection, id, fields) {
-      if (fail.update.has(`${collection}/${id}`)) throw new Error('simulated update failure');
+      const key = `${collection}/${id}`;
+      if (fail.gone.has(key)) {
+        // Simula un destino borrado: PocketBase responde 404 (ClientResponseError con status).
+        const e: Error & { status?: number } = new Error('not found');
+        e.status = 404;
+        throw e;
+      }
+      if (fail.update.has(key)) throw new Error('simulated update failure');
       records[collection] ??= {};
       records[collection][id] = { ...(records[collection][id] ?? {}), ...fields };
     },
@@ -33,6 +40,7 @@ function inMemoryStore(seed: Records = {}) {
     records,
     logs,
     failUpdate: (collection: string, id: string) => fail.update.add(`${collection}/${id}`),
+    failUpdateGone: (collection: string, id: string) => fail.gone.add(`${collection}/${id}`),
     failLog: () => {
       fail.log = true;
     }
@@ -85,26 +93,59 @@ test('required apply failure aborts before resolve and is not logged', async () 
   assert.equal(s.logs.length, 0);
 });
 
-test('non-required apply failure still resolves and returns a note (retiros: target gone)', async () => {
+test('best-effort apply: a 404 (target gone) still resolves and is noted (retiros)', async () => {
   const s = inMemoryStore({
     patients_public: { p1: { status: 'verified' } },
     removal_requests: { r1: { status: 'pending' } }
   });
-  s.failUpdate('patients_public', 'p1');
+  s.failUpdateGone('patients_public', 'p1');
   const result = await moderate(s.store, {
     apply: { collection: 'patients_public', id: 'p1', fields: { status: 'archived' }, required: false },
     resolve: { collection: 'removal_requests', id: 'r1', status: 'accepted' },
     audit: { action: 'archive', moderator: 'mod@x', collection: 'patients_public', record: 'p1' }
   });
   assert.equal(result.ok, true);
-  assert.match(result.note ?? '', /no se pudo modificar/);
-  // La solicitud igual se cerró y la decisión quedó auditada (con la nota del fallo).
+  assert.match(result.note ?? '', /ya no existía/);
+  // La solicitud igual se cerró y la decisión quedó auditada (con la nota del 404).
   assert.equal(s.records.removal_requests.r1.status, 'accepted');
   assert.equal(s.logs.length, 1);
-  assert.match(s.logs[0].notes ?? '', /no se pudo modificar/);
+  assert.match(s.logs[0].notes ?? '', /ya no existía/);
 });
 
-test('resolve failure surfaces an error', async () => {
+test('a non-404 apply failure surfaces even when not required (no silent close)', async () => {
+  const s = inMemoryStore({
+    patients_public: { p1: { status: 'verified' } },
+    removal_requests: { r1: { status: 'pending' } }
+  });
+  s.failUpdate('patients_public', 'p1'); // error genérico (transitorio / regla), no 404
+  const result = await moderate(s.store, {
+    apply: { collection: 'patients_public', id: 'p1', fields: { status: 'archived' }, required: false },
+    resolve: { collection: 'removal_requests', id: 'r1', status: 'accepted' },
+    audit: { action: 'archive', moderator: 'mod@x', collection: 'patients_public', record: 'p1' }
+  });
+  assert.equal(result.ok, false);
+  // La solicitud NO se cierra: el registro seguiría público, hay que reintentar.
+  assert.equal(s.records.removal_requests.r1.status, 'pending');
+  assert.equal(s.logs.length, 0);
+});
+
+test('resolve failure after a successful apply still audits the applied change', async () => {
+  const s = inMemoryStore({
+    patients_public: { p1: { status: 'verified', patient_name: 'old' } },
+    updates_queue: { q1: { status: 'pending' } }
+  });
+  s.failUpdate('updates_queue', 'q1'); // el parche se aplica, pero cerrar la cola falla
+  const result = await moderate(s.store, {
+    apply: { collection: 'patients_public', id: 'p1', fields: { patient_name: 'new' }, required: true },
+    resolve: { collection: 'updates_queue', id: 'q1', status: 'accepted' },
+    audit: { action: 'update', moderator: 'mod@x', collection: 'patients_public', record: 'p1' }
+  });
+  assert.equal(result.ok, false);
+  assert.equal(s.records.patients_public.p1.patient_name, 'new'); // el cambio sí se aplicó
+  assert.equal(s.logs.length, 1); // y quedó auditado pese al fallo de cierre
+});
+
+test('resolve-only failure surfaces an error and writes no audit (nothing applied)', async () => {
   const s = inMemoryStore({ removal_requests: { r1: { status: 'pending' } } });
   s.failUpdate('removal_requests', 'r1');
   const result = await moderate(s.store, {
