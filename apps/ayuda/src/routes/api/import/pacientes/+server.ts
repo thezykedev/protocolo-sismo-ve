@@ -27,14 +27,19 @@ export const POST: RequestHandler = async ({ request, locals, setHeaders }) => {
 
   const records = normalizePatientSnapshot({ html, sourceName, sourceUrl });
 
-  try {
-    await Promise.all(records.map((record) => submitPatientImport(record)));
-  } catch {
-    // Continue returning the normalized payload so operators can inspect the result locally.
+  const results = await Promise.allSettled(records.map((record) => submitPatientImport(record)));
+  const created = results.filter((r) => r.status === 'fulfilled').length;
+  const failed = results.length - created;
+
+  // No fingir éxito: si no se guardó ninguno (p. ej. PocketBase caído), informarlo.
+  if (records.length > 0 && created === 0) {
+    throw error(502, 'No se pudo guardar ningún registro (¿backend no disponible?).');
   }
 
   return json({
     count: records.length,
+    created,
+    failed,
     records
   });
 };
