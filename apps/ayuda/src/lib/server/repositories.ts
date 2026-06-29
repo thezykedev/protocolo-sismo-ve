@@ -6,8 +6,21 @@ import type {
   UsefulLink
 } from '@sismo-ve/schemas';
 import { createServerPocketBase } from '$lib/pocketbase/server';
-import { fallbackList } from './fallback-db';
+import { fallbackList, fallbackSnapshotAt } from './fallback-db';
 import { fallbackAlliedSites, fallbackUsefulLinks } from './fallback-data';
+
+// Estado del backend para el indicador global, derivado del MISMO cliente que sirve los datos
+// (no de una segunda sonda HTTP en el layout): si PocketBase responde estamos en línea; si no,
+// el indicador degrada y reporta la hora del snapshot de respaldo. Una sola fuente de "degradado".
+export async function backendStatus(): Promise<{ online: boolean; snapshotAt: string | null }> {
+  try {
+    const pb = createServerPocketBase();
+    await pb.health.check({ signal: AbortSignal.timeout(2500) });
+    return { online: true, snapshotAt: null };
+  } catch {
+    return { online: false, snapshotAt: fallbackSnapshotAt() };
+  }
+}
 
 // Estrategia de datos:
 // 1) Fuente de verdad: PocketBase (online-first).
