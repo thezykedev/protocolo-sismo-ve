@@ -1,22 +1,7 @@
 @import "tailwindcss";
-
-:root {
-  --bg: #131313;
-  --bg-soft: #1f2020;
-  --line: #333333;
-  --line-soft: #484831;
-  --text: #e4e2e1;
-  --text-dim: #cac8aa;
-  --text-muted: #d7d5c6;
-  --yellow: #ffff00;
-  --yellow-ink: #1d1d00;
-  --orange: #ff6600;
-  --ready: #28d17c;
-  --ready-ink: #03150b;
-  --white: #ffffff;
-  --mono: "JetBrains Mono", monospace;
-  --sans: "Inter Variable", "Inter", sans-serif;
-}
+/* Tokens de diseño desde el paquete compartido: una sola fuente de la paleta/tipografía,
+   cruzada también por apps/ayuda. Antes esta :root era una copia idéntica que derivaba. */
+@import "@sismo-ve/ui/tokens.css";
 
 * {
   box-sizing: border-box;
