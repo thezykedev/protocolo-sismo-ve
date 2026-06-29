@@ -15,7 +15,7 @@
 <section class="content-grid">
   <div class="surface">
     <p class="eyebrow">PAYPAL</p>
-    <p class="muted-note">Usa un enlace de PayPal con el destino verificado del proyecto.</p>
+    <p class="muted-note">Usa un enlace de PayPal con el destino del proyecto.</p>
     <a class="button-brutal" href="https://www.paypal.com/" target="_blank" rel="noreferrer">Abrir PayPal</a>
   </div>
   <div class="surface">
@@ -28,7 +28,7 @@
   <div class="surface">
     <p class="eyebrow">TRANSPARENCIA</p>
     <p class="muted-note">
-      Las donaciones no compran prioridad, verificación ni visibilidad en registros de crisis.
+      Las donaciones no compran prioridad, trato especial ni visibilidad en registros de crisis.
     </p>
   </div>
 </section>

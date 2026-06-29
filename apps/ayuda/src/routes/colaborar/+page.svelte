@@ -52,14 +52,13 @@
 <section class="content-grid">
   <div class="surface">
     <p class="muted-note">
-      Los centros y aliados entran en cola editorial. Los hospitales y pacientes siguen reglas de
-      visibilidad más estrictas.
+      Toda la información es aportada por la comunidad. Los datos se publican sin moderación previa.
     </p>
   </div>
   <div class="surface">
     <p class="muted-note">
       La información de emergencia no debe mezclarse con CTA de donación ni con flujos de
-      verificación privada.
+      información privada.
     </p>
   </div>
 </section>

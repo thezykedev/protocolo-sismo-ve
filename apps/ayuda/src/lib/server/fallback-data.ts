@@ -1,4 +1,9 @@
-import type { AlliedSite, CommunityCenter, HospitalRecord, PatientPublicRecord, UsefulLink } from '@sismo-ve/schemas';
+import type { AlliedSite, UsefulLink } from '@sismo-ve/schemas';
+
+// Último recurso embebido SOLO para datos de referencia estáticos y seguros (aliados, links).
+// Los datos volátiles o sensibles (pacientes, hospitales, centros) NO se embeben: cuando
+// PocketBase no responde se usa el snapshot SQLite (ver fallback-db.ts), y si tampoco existe,
+// la lista queda vacía. No se sirven copias inventadas de datos de crisis.
 
 export const fallbackAlliedSites: AlliedSite[] = [
   {
@@ -53,7 +58,3 @@ export const fallbackUsefulLinks: UsefulLink[] = [
     description: 'Opción de eSIM para recuperar conectividad móvil durante desplazamientos o fallas de servicio.'
   }
 ];
-
-export const fallbackHospitals: HospitalRecord[] = [];
-export const fallbackCenters: CommunityCenter[] = [];
-export const fallbackPatients: PatientPublicRecord[] = [];

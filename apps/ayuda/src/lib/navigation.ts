@@ -9,7 +9,6 @@ export type HelpRouteId =
   | 'colaborar'
   | 'apoyar'
   | 'correcciones'
-  | 'admin'
   | 'pwa';
 
 export interface HelpNavItem {
@@ -44,6 +43,10 @@ export const helpNavItems: HelpNavItem[] = [
     label: 'Correcciones',
     description: 'Retiro o revisión de datos'
   },
-  { id: 'admin', href: '/admin', label: 'Admin', description: 'Moderación y acceso PB' },
-  { id: 'pwa', href: 'https://sismo-ve.xyz', label: 'PWA', description: 'Versión esencial offline' }
+  {
+    id: 'pwa',
+    href: 'https://sismo-ve.xyz',
+    label: 'Guía offline',
+    description: 'Protocolos esenciales sin conexión'
+  }
 ];

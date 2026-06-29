@@ -1,6 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { submitPatientImport } from '$lib/server/repositories';
+import { cedulaLast3 } from '@sismo-ve/schemas';
 
 export const load: PageServerLoad = async ({ setHeaders }) => {
   setHeaders({
@@ -31,7 +32,7 @@ export const actions: Actions = {
     const payload = {
       status: 'public_unverified',
       patient_name,
-      cedula_last3: cedula.slice(-3).padStart(3, '0'),
+      cedula_last3: cedulaLast3(cedula),
       hospital: hospital || undefined,
       condition_public,
       source_type: 'public_reporter',

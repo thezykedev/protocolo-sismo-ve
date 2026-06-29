@@ -31,14 +31,14 @@
   <p class="eyebrow">COORDINACIÓN HOSPITALARIA</p>
   <h1 class="page-title">Hospitales</h1>
   <p class="page-lead">
-    La coordinación hospitalaria se consulta aquí. Los registros públicos permanecen minimizados y
-    la revisión editorial controla la publicación de datos sensibles.
+    La coordinación hospitalaria se consulta aquí. Los registros públicos son crowdsourced, permanecen minimizados y
+    están sujetos a reportes de la comunidad.
   </p>
 </section>
 
 <section class="panel">
   <div class="panel__head">
-    <h2 class="panel__title">Estado de revisión</h2>
+    <h2 class="panel__title">Actualización</h2>
     <span class="panel__meta">Cache: no-cache, max-age=60</span>
   </div>
   <div class="content-grid">
@@ -66,15 +66,14 @@
         meta={`${hospital.city} · ${hospital.state}`}
         description={[hospital.address, hospital.capacity_note, hospital.services?.join(', ')].filter(Boolean).join(' · ')}
         href={hospital.source_url ?? null}
-        status={hospital.verification_status ?? 'Revisar'}
-        tone={hospital.verification_status === 'verified' ? 'verified' : 'pending'}
+        status="Crowdsourced"
+        tone="pending"
       />
     {/each}
   </section>
 {:else}
   <section class="empty-state empty-state--accent">
-    No hay hospitales aprobados en este momento. Los registros verificados aparecerán aquí después
-    de revisión.
+    No hay hospitales reportados en este momento. Los registros aparecerán aquí de forma inmediata.
   </section>
 {/if}
 

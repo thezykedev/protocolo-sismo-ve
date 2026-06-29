@@ -5,12 +5,14 @@ const timeWindows: Record<string, number> = {
   '1h': 1,
   '6h': 6,
   '24h': 24,
-  '7d': 24 * 7
+  '7d': 24 * 7,
+  '30d': 24 * 30
 };
 
 export const load: PageServerLoad = async ({ setHeaders, url }) => {
-  const windowKey = url.searchParams.get('window') ?? '24h';
-  const hours = timeWindows[windowKey] ?? 24;
+  const requestedWindow = url.searchParams.get('window');
+  const windowKey = requestedWindow && requestedWindow in timeWindows ? requestedWindow : '30d';
+  const hours = timeWindows[windowKey] ?? 24 * 30;
   const minMagnitude = Number(url.searchParams.get('minMagnitude') ?? '1');
   const search = (url.searchParams.get('search') ?? '').trim();
 

@@ -18,6 +18,8 @@ function normalizeWhitespace(value) {
   return value.replace(/\s+/g, ' ').trim();
 }
 
+// Copia local de cedulaLast3 de @sismo-ve/schemas: este script corre en Node puro (no pasa
+// por Vite), así que no puede importar el paquete TS. Mantener idéntico al de schemas.
 function cedulaLast3(value) {
   const digits = value.replace(/\D/g, '');
   return digits.slice(-3).padStart(3, '0');

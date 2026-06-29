@@ -24,8 +24,8 @@
   <p class="eyebrow">RED DE APOYO</p>
   <h1 class="page-title">Aliados</h1>
   <p class="page-lead">
-    La red aliada se mantiene separada de pacientes y moderación. Cada registro debe tener contacto
-    real, ubicación verificable y una utilidad clara.
+    La red aliada se construye de forma comunitaria. Cada registro asume un contacto
+    real, ubicación pública y una utilidad clara.
   </p>
 </section>
 
@@ -37,13 +37,13 @@
         meta={ally.category}
         description={[ally.notes_public, ally.contact_public].filter(Boolean).join(' · ')}
         href={ally.website ?? null}
-        status={ally.verification_status === 'verified' ? 'Verificado' : 'Aprobado'}
-        tone="verified"
+        status="Crowdsourced"
+        tone="pending"
       />
     {/each}
   </section>
 {:else}
   <section class="empty-state empty-state--accent">
-    No hay aliados aprobados en este momento.
+    No hay aliados comunitarios en este momento.
   </section>
 {/if}
