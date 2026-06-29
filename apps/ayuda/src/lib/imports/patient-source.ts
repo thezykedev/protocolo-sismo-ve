@@ -24,7 +24,11 @@ function inferRecord(cells: string[]): { patient_name: string; cedula?: string; 
   const patient_name = first || second || third || 'Registro sin nombre';
   const cedula = [first, second, third, fourth].find((value) => /\d{3,}/.test(value)) ?? '';
   const hospital = [first, second, third, fourth].find((value) => /hospital|clinica|centro/i.test(value)) ?? '';
-  const public_notes = [first, second, third, fourth].find((value) => value && value !== patient_name && value !== cedula && value !== hospital) ?? '';
+  // No publicar como nota una celda con secuencias largas de dígitos (teléfono, cédula completa,
+  // documento): public_notes es para un resumen clínico breve, no para PII numérica.
+  const public_notes = [first, second, third, fourth].find(
+    (value) => value && value !== patient_name && value !== cedula && value !== hospital && !/\d{4,}/.test(value)
+  ) ?? '';
 
   return { patient_name, cedula, hospital, public_notes };
 }

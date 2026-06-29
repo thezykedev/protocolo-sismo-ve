@@ -49,7 +49,10 @@ const records = rows.flatMap((rowMatch, index) => {
   const patient_name = first || second || third || 'Registro sin nombre';
   const cedula = [first, second, third, fourth].find((value) => /\d{3,}/.test(value)) ?? '';
   const hospital = [first, second, third, fourth].find((value) => /hospital|clinica|centro/i.test(value)) ?? '';
-  const public_notes = [first, second, third, fourth].find((value) => value && value !== patient_name && value !== cedula && value !== hospital) ?? '';
+  // No publicar como nota una celda con secuencias largas de dígitos (teléfono, cédula, documento).
+  const public_notes = [first, second, third, fourth].find(
+    (value) => value && value !== patient_name && value !== cedula && value !== hospital && !/\d{4,}/.test(value)
+  ) ?? '';
 
   return [
     {
