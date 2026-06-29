@@ -3,30 +3,22 @@ import { error, redirect, type Handle } from '@sveltejs/kit';
 import { resolveBaseUrl } from '$lib/pocketbase/server';
 import { isStaff, type AuthUser } from '$lib/server/auth';
 
-// Refresca el token solo cuando le queda poco de vida, no en cada request: mantiene la
-// sesión "deslizante" para usuarios activos sin golpear PocketBase (ni su rate limit) de más.
-const REFRESH_IF_REMAINING_S = 6 * 60 * 60; // refrescar si quedan < 6h
-
-function tokenSecondsRemaining(token: string): number {
-  try {
-    const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString('utf-8'));
-    if (typeof payload.exp !== 'number') return 0;
-    return payload.exp - Math.floor(Date.now() / 1000);
-  } catch {
-    return 0;
-  }
-}
-
 export const handle: Handle = async ({ event, resolve }) => {
   const pb = new PocketBase(resolveBaseUrl());
   pb.authStore.loadFromCookie(event.request.headers.get('cookie') ?? '');
 
+  // authStore.isValid SOLO comprueba la expiración del token, no su firma (el SDK no tiene el
+  // secreto del servidor): una cookie pb_auth forjada con un `exp` lejano pasaría como "válida"
+  // y locals.user (que gobierna la autorización del panel) quedaría bajo control del atacante.
+  // Por eso, ante cualquier sesión presente, se valida SIEMPRE contra PocketBase: authRefresh
+  // comprueba la firma y devuelve el record autoritativo (rol/active reales). Si falla
+  // (forjado/expirado/revocado) se limpia la sesión. authRefresh además desliza el token, así
+  // que la sesión sigue viva para usuarios legítimos.
   try {
-    if (pb.authStore.isValid && tokenSecondsRemaining(pb.authStore.token) < REFRESH_IF_REMAINING_S) {
+    if (pb.authStore.isValid) {
       await pb.collection('users').authRefresh();
     }
   } catch {
-    // token inválido/expirado o cuenta revocada: limpiar para forzar re-login
     pb.authStore.clear();
   }
 
