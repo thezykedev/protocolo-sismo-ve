@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const onlineCenterUrl = 'https://ayuda.sismo-ve.xyz/centros';
+import { ayudaUrl } from '../config/platform';
+const onlineCenterUrl = ayudaUrl('centros');
 
 const registerMail = `mailto:info@sismo-ve.xyz?subject=${encodeURIComponent(
   'Registro de centro de acopio'

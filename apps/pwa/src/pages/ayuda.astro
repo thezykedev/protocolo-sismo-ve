@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { ayudaUrl } from '../config/platform';
 
-const onlinePlatformUrl = 'https://ayuda.sismo-ve.xyz';
+const onlinePlatformUrl = ayudaUrl();
 const supportLinks = [
   {
     title: 'Pacientes',

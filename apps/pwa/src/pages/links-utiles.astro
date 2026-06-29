@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const onlinePlatformUrl = 'https://ayuda.sismo-ve.xyz/links-utiles';
-const correctionsUrl = 'https://ayuda.sismo-ve.xyz/correcciones';
+import { ayudaUrl } from '../config/platform';
+const onlinePlatformUrl = ayudaUrl('links-utiles');
+const correctionsUrl = ayudaUrl('correcciones');
 ---
 
 <Layout

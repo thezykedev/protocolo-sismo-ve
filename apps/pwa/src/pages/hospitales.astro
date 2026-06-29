@@ -1,8 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { ayudaUrl } from '../config/platform';
 
-const onlineHospitalUrl = 'https://ayuda.sismo-ve.xyz/hospitales';
-const correctionsUrl = 'https://ayuda.sismo-ve.xyz/correcciones';
+const onlineHospitalUrl = ayudaUrl('hospitales');
+const correctionsUrl = ayudaUrl('correcciones');
 ---
 
 <Layout

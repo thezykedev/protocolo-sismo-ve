@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const onlinePlatformUrl = 'https://ayuda.sismo-ve.xyz/colaborar';
+import { ayudaUrl } from '../config/platform';
+const onlinePlatformUrl = ayudaUrl('colaborar');
 
 const registerMail = `mailto:info@sismo-ve.xyz?subject=${encodeURIComponent(
   'Propuesta de colaboración para Sismo VE'
