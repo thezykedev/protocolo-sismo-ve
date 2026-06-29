@@ -169,7 +169,10 @@ function mapEMSCFeature(feature: any): SeismicEvent | null {
   const properties = feature?.properties ?? feature;
   const coordinates = feature?.geometry?.coordinates;
   const magnitude = Number(properties?.mag);
-  const eventTime = properties?.time ? new Date(properties.time).toISOString() : null;
+  // Proteger el parseo: un `time` no parseable haría que toISOString() lance RangeError y tumbe
+  // TODA la fuente EMSC (no solo esa fila). Validar antes, igual que GEOFON.
+  const parsedTime = properties?.time ? new Date(properties.time) : null;
+  const eventTime = parsedTime && !Number.isNaN(parsedTime.getTime()) ? parsedTime.toISOString() : null;
   const lat = Number(properties?.lat ?? coordinates?.[1]);
   const lng = Number(properties?.lon ?? coordinates?.[0]);
   if (!Number.isFinite(magnitude) || !Number.isFinite(lat) || !Number.isFinite(lng) || !eventTime) {
