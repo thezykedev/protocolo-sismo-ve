@@ -48,3 +48,8 @@ docs/research/
 data/drive_data/
 # ingest ledger + transcribed patient data (sensitive, local-only)
 data/ingest/
+
+# drive manifest + duplicado de imágenes (local-only, sensible)
+.drive_snapshots/
+data/gdrive_extract/
+data/drive_data/
