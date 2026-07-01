@@ -4,14 +4,22 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        PB_VERSION: "0.39.4"
+        PB_VERSION: "${PB_VERSION:-0.39.4}"
     restart: unless-stopped
+    # Crea el superuser al arrancar (entrypoint). Apunta a un .env con estas claves
+    # o expórtalas en el entorno del host. Faltando, simplemente no crea superuser.
+    environment:
+      POCKETBASE_ADMIN_EMAIL: "${POCKETBASE_ADMIN_EMAIL:-}"
+      POCKETBASE_ADMIN_PASSWORD: "${POCKETBASE_ADMIN_PASSWORD:-}"
     ports:
       - "8090:8090"
     volumes:
       - pocketbase_data:/pb/pb_data
       - pocketbase_public:/pb/pb_public
       - pocketbase_hooks:/pb/pb_hooks
+      # Migraciones montadas para iterar sin reconstruir la imagen (también van COPIADAS
+      # dentro de la imagen para despliegues sin el repo).
+      - ./pb_migrations:/pb/pb_migrations:ro
 
 volumes:
   pocketbase_data:

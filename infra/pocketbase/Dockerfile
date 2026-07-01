@@ -11,6 +11,11 @@ RUN apk add --no-cache ca-certificates unzip wget \
 
 WORKDIR /pb
 
+# El schema viaja en la imagen: PocketBase aplica estas migraciones al arrancar.
+COPY pb_migrations /pb/pb_migrations
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 EXPOSE 8090
 
-CMD ["pocketbase", "serve", "--http=0.0.0.0:8090"]
+ENTRYPOINT ["entrypoint.sh"]
