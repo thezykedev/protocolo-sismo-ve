@@ -131,6 +131,7 @@ export interface PatientPublicRecord {
 export interface PatientPrivateNote {
   id: string;
   patient: string;
+  cedula_full?: string;
   cedula_hash?: string;
   contact_name?: string;
   contact_phone?: string;
